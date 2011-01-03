@@ -9,19 +9,19 @@ demo.RcppBDT  <- function() {
 
     cat("Demo of setters\n");
     ## first init a base objects for uses for the functions below
-    bd <- new(BDTDate, 2010, 10, 1);    cat("From 2010, 10, 1 : ", format(bd$getString()), "\n")
+    bd <- new(BDTDate, 2010, 10, 1);    cat("From 2010, 10, 1 : ", format(bd$getDate()), "\n")
     ## then assign new values to the base object
-    bd$fromString("2010-10-02"); 	cat("From 2010-10-02  : ", format(bd$getString()), "\n")
-    bd$fromUndelString("20101003");     cat("From 20101003    : ", format(bd$getString()), "\n")
-    bd$setFromUTC(); 			cat("From curr. UTC   : ", format(bd$getString()), "\n")
-    bd$setFromLocalClock();		cat("From curr. local : ", format(bd$getString()), "\n")
-    bd$setEndOfMonth(); 		cat("end of month     : ", format(bd$getString()), "\n")
-    bd$setFirstOfNextMonth(); 		cat("1st of next Month: ", format(bd$getString()), "\n")
-    bd$addDays(4);                      cat("plus four days   : ", format(bd$getString()), "\n")
-    bd$subtractDays(3);                 cat("minus three  s   : ", format(bd$getString()), "\n")
+    #bd$fromString("2010-10-02"); 	cat("From 2010-10-02  : ", format(bd$getDate()), "\n")
+    #bd$fromUndelString("20101003");     cat("From 20101003    : ", format(bd$getDate()), "\n")
+    bd$setFromUTC(); 			cat("From curr. UTC   : ", format(bd$getDate()), "\n")
+    bd$setFromLocalClock();		cat("From curr. local : ", format(bd$getDate()), "\n")
+    bd$setEndOfMonth(); 		cat("end of month     : ", format(bd$getDate()), "\n")
+    bd$setFirstOfNextMonth(); 		cat("1st of next Month: ", format(bd$getDate()), "\n")
+    bd$addDays(4);                      cat("plus four days   : ", format(bd$getDate()), "\n")
+    bd$subtractDays(3);                 cat("minus three  s   : ", format(bd$getDate()), "\n")
 
-    bd$setIMMDate(12, 2010); 		cat("IMM Date Dec 2010: ", format(bd$getString()), "\n")
-    bd$setEndOfBizWeek();  		cat("end of biz week  : ", format(bd$getString()), "\n")
+    bd$setIMMDate(12, 2010); 		cat("IMM Date Dec 2010: ", format(bd$getDate()), "\n")
+    bd$setEndOfBizWeek();  		cat("end of biz week  : ", format(bd$getDate()), "\n")
 
     cat("\nDemo of getters\n")
     ## now just functions that return values to R

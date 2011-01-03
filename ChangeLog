@@ -1,9 +1,16 @@
 2011-01-02  Dirk Eddelbuettel  <edd@debian.org>
 
-	* R/RcppBDT.Rcpp: Modified modules wrapper name to make it clearer
+	* src/RcppBDT.cpp: Modified modules wrapper name to make it clearer
 	which function set and which functions get or convert data
 
 	* tests/RcppBDT.R: Define simplest test of just calling demo()
+
+	* inst/include/RcppBDT.h: Defined compile-time variable to allow use
+	of string functions; when not defined we use only pure C++ template
+	and do not need to link against the C++ library from Boost Date.Time
+	* src/RcppBDT.cpp: Make parts of code depend upon new compile variable
+	* src/Makevars: No longer link with -lboost_date_time
+	* demo/RcppBDT.R: Comment-out two string-using functions
 
 2011-01-01  Dirk Eddelbuettel  <edd@debian.org>
 

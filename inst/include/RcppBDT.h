@@ -24,8 +24,16 @@
 
 #include <RcppCommon.h>
 
+// this variable governs whether we need to link against 
+#define UseWithStrings 0
+
 //#include <boost/date_time.hpp>
-#include <boost/date_time/gregorian/gregorian.hpp> 	// Gregorian calendar types, including I/O
+
+#if UseWithString
+  #include <boost/date_time/gregorian/gregorian.hpp> 	// Gregorian calendar types, including I/O
+#else
+  #include <boost/date_time/gregorian/gregorian_types.hpp> 	// Gregorian calendar types, no I/O
+#endif
 
 namespace Rcpp {
     // non-intrusive extension via template specialisation
