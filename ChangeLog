@@ -1,3 +1,7 @@
+2011-01-03  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/Makevars.win: Added -I$(BOOSTLIB)
+
 2011-01-02  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/RcppBDT.cpp: Modified modules wrapper name to make it clearer
@@ -24,4 +28,5 @@
 
 2010-12-23  Dirk Eddelbuettel  <edd@debian.org>
 
-	* First draft version as an inline version
+	* Some first exploration with Rcpp modules around Boost Date.Time
+	using only inline
