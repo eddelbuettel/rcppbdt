@@ -1,0 +1,20 @@
+2011-01-02  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/RcppBDT.Rcpp: Modified modules wrapper name to make it clearer
+	which function set and which functions get or convert data
+
+	* tests/RcppBDT.R: Define simplest test of just calling demo()
+
+2011-01-01  Dirk Eddelbuettel  <edd@debian.org>
+
+	* demo/RcppBDT.R: Added RcppBDT demo showing a few functions
+
+2010-12-24  Dirk Eddelbuettel  <edd@debian.org>
+
+	* Added a few more functions
+
+	* DESCRIPTION: Set up as a simple package
+
+2010-12-23  Dirk Eddelbuettel  <edd@debian.org>
+
+	* First draft version as an inline version

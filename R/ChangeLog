@@ -1,0 +1,7 @@
+2011-01-01  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: Putting a first 0.0.1 release together as a package
+
+2010-12-24  Dirk Eddelbuettel  <edd@debian.org>
+
+	* Some first exploration with Rcpp modules around Boost Date.Time

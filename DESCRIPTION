@@ -1,0 +1,16 @@
+Package: RcppBDT
+Type: Package
+Title: Rcpp bindings for the Boost Date_Time library 
+Version: 0.0.1
+Date: $Date$
+Author: Dirk Eddelbuettel
+Maintainer: Romain Francois <romain@r-enthusiasts.com>
+Description: This package provides R with access to Boost Date_Time
+ functonality by using Rcpp modules. 
+ .
+ Currently only Date functionality is covered.
+License: GPL (>= 2)
+LazyLoad: yes
+Depends: Rcpp (>= 0.9.0), methods
+LinkingTo: Rcpp
+
