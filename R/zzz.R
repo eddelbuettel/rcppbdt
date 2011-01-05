@@ -20,5 +20,7 @@
 
 .onLoad <- function (lib, pack) {
     require(methods, quiet=TRUE, warn=FALSE)
-    BDTDate <<- Module("bdt")$date
+    .BDTDate <<- Module("bdt")$date
+    .bdt <<- new(.BDTDate)
+    .bdt$setFromUTC()
 }

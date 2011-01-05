@@ -1,7 +1,7 @@
 
 demo.RcppBDT  <- function() {
 
-    require(RcppBDT)
+    require(RcppBDT, quiet=TRUE, warn=FALSE)
 
     ## this uses the pretty-printing the Rcpp module logic to show
     ## all available functions and their docstring
@@ -9,10 +9,11 @@ demo.RcppBDT  <- function() {
 
     cat("Demo of setters\n");
     ## first init a base objects for uses for the functions below
-    bd <- new(BDTDate, 2010, 10, 1);    cat("From 2010, 10, 1 : ", format(bd$getDate()), "\n")
-    ## then assign new values to the base object
+    bd <- new(.BDTDate);
+    ## alternative constructor:  new(.BDTDate, 2010, 01, 02)
+    ## then assign new values to the base object -- strings are currently disabled
     #bd$fromString("2010-10-02"); 	cat("From 2010-10-02  : ", format(bd$getDate()), "\n")
-    #bd$fromUndelString("20101003");     cat("From 20101003    : ", format(bd$getDate()), "\n")
+    #bd$fromUndelString("20101003");    cat("From 20101003    : ", format(bd$getDate()), "\n")
     bd$setFromUTC(); 			cat("From curr. UTC   : ", format(bd$getDate()), "\n")
     bd$setFromLocalClock();		cat("From curr. local : ", format(bd$getDate()), "\n")
     bd$setEndOfMonth(); 		cat("end of month     : ", format(bd$getDate()), "\n")

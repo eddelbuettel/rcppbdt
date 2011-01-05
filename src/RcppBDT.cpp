@@ -80,12 +80,13 @@ std::string date_toExtIsoString(boost::gregorian::date *d) { return boost::grego
 //    return Rcpp::Date( ymd.year, ymd.month, ymd.day );
 //}
 Rcpp::Date date_toDate(boost::gregorian::date *d) { return Rcpp::wrap(*d); } // thanks to wrap() template above
+void date_fromDate(boost::gregorian::date *d, SEXP dt) { *d = Rcpp::as<boost::gregorian::date>(dt); } // thanks to as
 
 // construct end-of-month and first-of-next-month
 void date_endOfMonth(boost::gregorian::date *d) { *d = d->end_of_month(); } // not sure why I cannot call end_of_month directly
 void date_firstOfNextMonth(boost::gregorian::date *d) { *d = d->end_of_month() + boost::gregorian::days(1); }
 // return end-of-month and first-of-next-month for given date
-Rcpp::Date Date_endOfMonth(boost::gregorian::date *d) { return Rcpp::wrap(*d); }
+Rcpp::Date Date_endOfMonth(boost::gregorian::date *d) { return Rcpp::wrap(d->end_of_month()); }
 Rcpp::Date Date_firstOfNextMonth(boost::gregorian::date *d) { 
     boost::gregorian::date dt = d->end_of_month() + boost::gregorian::days(1);
     return Rcpp::wrap(dt); 
@@ -100,6 +101,7 @@ Rcpp::Date Date_endOfBizWeek(boost::gregorian::date *d) {
 }
 void date_addDays(boost::gregorian::date *d, unsigned len) { *d = *d + boost::gregorian::date_duration(len); }
 void date_subtractDays(boost::gregorian::date *d, unsigned len) { *d = *d - boost::gregorian::date_duration(len); }
+// no Rcpp-returning functions here as we can add/substract at the R level already
 
 void date_immDate(boost::gregorian::date *d, int mon, int year) {
     // with thanks to Whit Armstong for his rboostdatetime
@@ -150,6 +152,7 @@ RCPP_MODULE(bdt) {
 #endif
 
     .method("getDate", &date_toDate, "returns an R Date object")
+    .method("fromDate", &date_fromDate, "sets date from an R Date object")
 
     // member functions from the boost date class
     // -- does not work as there is another class in between  .method("year", &boost::gregorian::date::year)
