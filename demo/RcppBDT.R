@@ -31,6 +31,8 @@ demo.RcppBDT  <- function() {
     cat("end of biz week  : ", format(bd$getEndOfBizWeek()), "\n")
     cat("end of of month  : ", format(bd$getEndOfMonth()), "\n")
     cat("1st of next month: ", format(bd$getFirstOfNextMonth()), "\n")
+    cat("IMM Date Dec 2010: ", format(bd$getIMMDate(12, 2010)), "\n")
+    cat("3rd Wed Dec 2010 : ", format(bd$getNthDayMthWeek(3, 3, 12, 2010)), "\n")
 }
 
 demo.RcppBDT()

@@ -1,3 +1,13 @@
+2011-01-05  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/RcppBDT.cpp: Expose new functions to compute IMM date (third
+	Wednesday) and the more general 'nth day of mth week'
+
+	* R/bdt.R: Expose two new functions getIMMDate() and its generalisation
+	getNthDayOfMthWeek()
+
+	* demo/RcppBDT.R: Also added to demo
+
 2011-01-04  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/bdt.R: Added a few accessor functions for R

@@ -35,24 +35,24 @@ namespace Rcpp {
 }
 
 #if UseWithStrings
-void date_print(boost::gregorian::date *d) {
-    std::cout << *d << std::endl;
-}
+    void date_print(boost::gregorian::date *d) {
+	std::cout << *d << std::endl;
+    }
 
-// set the date d to the date from the supplied string s
-void date_fromString(boost::gregorian::date *d, std::string s) { 
-    *d = boost::gregorian::date(boost::gregorian::from_string(s)); 
-}
-void date_fromUndelString(boost::gregorian::date *d, std::string s) { 
-    *d = boost::gregorian::date(boost::gregorian::from_undelimited_string(s)); 
-}
-// return the date to R as an R type
-Rcpp::Date Date_fromString(boost::gregorian::date *d, std::string s) { 
-    return Rcpp::wrap(boost::gregorian::date(boost::gregorian::from_string(s))); 
-}
-Rcpp::Date Date_fromUndelString(boost::gregorian::date *d, std::string s) { 
-    return Rcpp::wrap(boost::gregorian::date(boost::gregorian::from_undelimited_string(s))); 
-}
+    // set the date d to the date from the supplied string s
+    void date_fromString(boost::gregorian::date *d, std::string s) { 
+	*d = boost::gregorian::date(boost::gregorian::from_string(s)); 
+    }
+    void date_fromUndelString(boost::gregorian::date *d, std::string s) { 
+	*d = boost::gregorian::date(boost::gregorian::from_undelimited_string(s)); 
+    }
+    // return the date to R as an R type
+    Rcpp::Date Date_fromString(boost::gregorian::date *d, std::string s) { 
+	return Rcpp::wrap(boost::gregorian::date(boost::gregorian::from_string(s))); 
+    }
+    Rcpp::Date Date_fromUndelString(boost::gregorian::date *d, std::string s) { 
+	return Rcpp::wrap(boost::gregorian::date(boost::gregorian::from_undelimited_string(s))); 
+    }
 #endif
 
 // these set the date from the clock, in local or universal time
@@ -69,10 +69,10 @@ int date_dayofweek(boost::gregorian::date *d) { return static_cast<int>( d->day_
 int date_dayofyear(boost::gregorian::date *d) { return static_cast<int>( d->day_of_year() ); }
 
 #if UseWithStrings
-// these extract the requested date portion or representation as an integer
-std::string date_toString(boost::gregorian::date *d) { return boost::gregorian::to_simple_string(*d); }
-std::string date_toIsoString(boost::gregorian::date *d) { return boost::gregorian::to_iso_string(*d); }
-std::string date_toExtIsoString(boost::gregorian::date *d) { return boost::gregorian::to_iso_extended_string(*d); }
+    // these extract the requested date portion or representation as an integer
+    std::string date_toString(boost::gregorian::date *d) { return boost::gregorian::to_simple_string(*d); }
+    std::string date_toIsoString(boost::gregorian::date *d) { return boost::gregorian::to_iso_string(*d); }
+    std::string date_toExtIsoString(boost::gregorian::date *d) { return boost::gregorian::to_iso_extended_string(*d); }
 #endif
 
 //Date date_toDate(date *d) { // earlier form before wrap()
@@ -103,14 +103,24 @@ void date_addDays(boost::gregorian::date *d, unsigned len) { *d = *d + boost::gr
 void date_subtractDays(boost::gregorian::date *d, unsigned len) { *d = *d - boost::gregorian::date_duration(len); }
 // no Rcpp-returning functions here as we can add/substract at the R level already
 
+// with thanks to Whit Armstong for doing this in his rboostdatetime
+typedef boost::gregorian::nth_day_of_the_week_in_month nth_dow;
 void date_immDate(boost::gregorian::date *d, int mon, int year) {
-    // with thanks to Whit Armstong for his rboostdatetime
-    typedef boost::gregorian::nth_day_of_the_week_in_month nth_dow;
-
     nth_dow ans_generator(nth_dow::third, boost::gregorian::Wednesday, mon);
     *d = ans_generator.get_date(year);
 }
+Rcpp::Date Date_immDate(boost::gregorian::date *d, int mon, int year) {
+    nth_dow ans_generator(nth_dow::third, boost::gregorian::Wednesday, mon);
+    return Rcpp::wrap(ans_generator.get_date(year));
+}
 
+Rcpp::Date Date_nthDayOfMthWeek(boost::gregorian::date *d, int nthday, int mthweek, int mon, int year) {
+    //boost::date_time::nth_kday_of_month<boost::gregorian::date>::week_num
+    //nth_dow ans_generator(mthweek, 
+    nth_dow ans_generator(static_cast<boost::date_time::nth_kday_of_month<boost::gregorian::date>::week_num>(mthweek), 
+			  nthday, mon);
+    return Rcpp::wrap(ans_generator.get_date(year));
+}
 
 RCPP_MODULE(bdt) {
 
@@ -124,13 +134,13 @@ RCPP_MODULE(bdt) {
     .constructor("default constructor")
     .constructor<int, int, int>("constructor from year, month, day")
 
-#if UseWithStrings
-    // free functions defined above with date* as first argument
-    .method("fromString", &date_fromString, "create a date from a delimited string")
-    .method("fromUndelString", &date_fromUndelString, "create a date from an un delimited string")
-    .method("getDateFromString", &Date_fromString, "return a date from a delimited string")
-    .method("getDateFromUndelString", &Date_fromUndelString, "return a date from an un delimited string")
-#endif
+    #if UseWithStrings
+        // free functions defined above with date* as first argument
+        .method("fromString", &date_fromString, "create a date from a delimited string")
+        .method("fromUndelString", &date_fromUndelString, "create a date from an un delimited string")
+        .method("getDateFromString", &Date_fromString, "return a date from a delimited string")
+        .method("getDateFromUndelString", &Date_fromUndelString, "return a date from an un delimited string")
+    #endif
 
     .method("setFromLocalClock", &date_localDay, "create a date from current local clock")
     .method("setFromUTC", &date_utcDay, "create a date from current universal clock")
@@ -145,11 +155,11 @@ RCPP_MODULE(bdt) {
     .method("getDayOfWeek", &date_dayofweek, "returns the day of the week")
     .method("getDayOfYear", &date_dayofyear, "returns the day of the year")
 
-#if UseWithStrings
-    .method("getString", &date_toString, "returns a string representation")
-    .method("getIsoString", &date_toIsoString, "returns an ISO string representation")
-    .method("getExtIsoString", &date_toExtIsoString, "returns an extended ISO string representation")
-#endif
+    #if UseWithStrings
+        .method("getString", &date_toString, "returns a string representation")
+        .method("getIsoString", &date_toIsoString, "returns an ISO string representation")
+        .method("getExtIsoString", &date_toExtIsoString, "returns an extended ISO string representation")
+    #endif
 
     .method("getDate", &date_toDate, "returns an R Date object")
     .method("fromDate", &date_fromDate, "sets date from an R Date object")
@@ -172,7 +182,10 @@ RCPP_MODULE(bdt) {
     .method("addDays", &date_addDays, "adds days to given date")
     .method("subtractDays", &date_subtractDays, "subtract days from given date")
 
-    .method("setIMMDate", &date_immDate, "return third Wednesday in given month and year")
+    .method("setIMMDate", &date_immDate, "sets third Wednesday in given month and year")
+    .method("getIMMDate", &Date_immDate, "return third Wednesday in given month and year")
+
+    .method("getNthDayMthWeek", &Date_nthDayOfMthWeek, "return nth week's given day-of-week in given month and year")
 
     ;
 

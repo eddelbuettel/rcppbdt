@@ -57,3 +57,11 @@ getDayOfYear <- function(d = Sys.Date()) {
     .bdt$fromDate(d)
     .bdt$getDayOfYear()
 }
+
+getIMMDate <- function(mon, year) {     # defined as third Wednesday
+    .bdt$getIMMDate(mon, year)
+}
+
+getNthDayOfMthWeek <- function(nthday, mthweek, mon, year) {
+    .bdt$getNthDayMthWeek(nthday, mthweek, mon, year)
+}
