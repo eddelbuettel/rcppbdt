@@ -24,10 +24,14 @@
 
 #include <RcppCommon.h>
 
-// this variable governs whether we need to link against 
+// Setting this variable governs whether we need to link against the
+// Boost Date.Time library (eg -lboost_date_time on Debian/Ubuntu) or
+// not The functions not involving string parsing or conversion are
+// all available via the templated Boost header files and are thus
+// compile-time only which make things a little easier.
+// On Windows, set the BOOSTLIB variable to point to a suitable directory.
+// On other systems, just have Boost in the include path 
 #define UseWithStrings 0
-
-//#include <boost/date_time.hpp>
 
 #if UseWithString
   #include <boost/date_time/gregorian/gregorian.hpp> 	// Gregorian calendar types, including I/O
