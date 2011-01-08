@@ -115,11 +115,18 @@ Rcpp::Date Date_immDate(boost::gregorian::date *d, int mon, int year) {
 }
 
 Rcpp::Date Date_nthDayOfMthWeek(boost::gregorian::date *d, int nthday, int mthweek, int mon, int year) {
-    //boost::date_time::nth_kday_of_month<boost::gregorian::date>::week_num
-    //nth_dow ans_generator(mthweek, 
-    nth_dow ans_generator(static_cast<boost::date_time::nth_kday_of_month<boost::gregorian::date>::week_num>(mthweek), 
-			  nthday, mon);
+    nth_dow ans_generator(static_cast<boost::date_time::nth_kday_of_month<boost::gregorian::date>::week_num>(mthweek), nthday, mon);
     return Rcpp::wrap(ans_generator.get_date(year));
+}
+
+Rcpp::Date Date_lastDayOfWeekInMonth(boost::gregorian::date *d, int weekday, int mon, int year) {
+    boost::gregorian::last_day_of_the_week_in_month lwdm(weekday, mon);
+    return Rcpp::wrap(lwdm.get_date(year));
+}
+
+Rcpp::Date Date_firstDayOfWeekInMonth(boost::gregorian::date *d, int weekday, int mon, int year) {
+    boost::gregorian::first_day_of_the_week_in_month fwdm(weekday, mon);
+    return Rcpp::wrap(fwdm.get_date(year));
 }
 
 RCPP_MODULE(bdt) {
@@ -186,6 +193,9 @@ RCPP_MODULE(bdt) {
     .method("getIMMDate", &Date_immDate, "return third Wednesday in given month and year")
 
     .method("getNthDayMthWeek", &Date_nthDayOfMthWeek, "return nth week's given day-of-week in given month and year")
+
+    .method("getLastDayOfWeekInMonth", &Date_lastDayOfWeekInMonth, "return date of last day-of-week in given month and year")
+    .method("getFirstDayOfWeekInMonth", &Date_firstDayOfWeekInMonth, "return date of last day-of-week in given month and year")
 
     ;
 

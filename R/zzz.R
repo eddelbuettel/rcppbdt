@@ -18,9 +18,25 @@
 ## You should have received a copy of the GNU General Public License
 ## along with RcppBDT.  If not, see <http://www.gnu.org/licenses/>.
 
+
+## new environment for our package, local to the package
+bdtEnv <- new.env(parent=emptyenv())
+
 .onLoad <- function (lib, pack) {
+
+    ## we need the methods package
     require(methods, quiet=TRUE, warn=FALSE)
-    .BDTDate <<- Module("bdt")$date
-    .bdt <<- new(.BDTDate)
-    .bdt$setFromUTC()
+
+    ## new environment for our package, stored in global env
+    #.RcppBDTenv <<- new.env(parent=emptyenv())
+
+    ## Create internal variables
+    #.RcppBDTenv$BDTDate <- Module("bdt")$date
+    #.RcppBDTenv$bdt <- new(.RcppBDTenv$BDTDate)
+    #.RcppBDTenv$bdt$setFromUTC()
+
+    bdtEnv$BDTDate <- Module("bdt")$date
+    bdtEnv$bdt <- new(bdtEnv$BDTDate)
+    bdtEnv$bdt$setFromUTC()
+
 }

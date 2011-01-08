@@ -1,3 +1,15 @@
+2011-01-08  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/RcppBDT.cpp: Added two new functions for date of first and last
+	weekday in a given month and year (eg first Friday in Jan 2011)
+
+	* R/bdt.R:
+	  - added function to export core object for access
+	  - changed functions to access core object via per-pack. environment
+	  - added functions for first/last day-of-week in month/year
+
+	* demo/RcppBDT.R: updated to keep in sync with other changes
+	
 2011-01-06  Dirk Eddelbuettel  <edd@dexter>
 
 	* inst/include/RcppBDT.h: Added paragraph about the UseWithString

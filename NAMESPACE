@@ -1,4 +1,3 @@
 import(Rcpp)
 useDynLib(RcppBDT)
 exportPattern("^[[:alpha:]]+")
-
