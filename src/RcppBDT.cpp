@@ -114,7 +114,7 @@ Rcpp::Date Date_immDate(boost::gregorian::date *d, int mon, int year) {
     return Rcpp::wrap(ans_generator.get_date(year));
 }
 
-Rcpp::Date Date_nthDayOfMthWeek(boost::gregorian::date *d, int nthday, int mthweek, int mon, int year) {
+Rcpp::Date Date_nthDayOfWeek(boost::gregorian::date *d, int nthday, int mthweek, int mon, int year) {
     nth_dow ans_generator(static_cast<boost::date_time::nth_kday_of_month<boost::gregorian::date>::week_num>(mthweek), nthday, mon);
     return Rcpp::wrap(ans_generator.get_date(year));
 }
@@ -127,6 +127,18 @@ Rcpp::Date Date_lastDayOfWeekInMonth(boost::gregorian::date *d, int weekday, int
 Rcpp::Date Date_firstDayOfWeekInMonth(boost::gregorian::date *d, int weekday, int mon, int year) {
     boost::gregorian::first_day_of_the_week_in_month fwdm(weekday, mon);
     return Rcpp::wrap(fwdm.get_date(year));
+}
+
+Rcpp::Date Date_firstDayOfWeekAfter(boost::gregorian::date *d, int weekday, SEXP date) {
+    boost::gregorian::first_day_of_the_week_after fdaf(weekday);
+    boost::gregorian::date dt = Rcpp::as<boost::gregorian::date>(date);
+    return Rcpp::wrap(fdaf.get_date(dt));
+}
+
+Rcpp::Date Date_lastDayOfWeekBefore(boost::gregorian::date *d, int weekday, SEXP date) {
+    boost::gregorian::first_day_of_the_week_before fdab(weekday);
+    boost::gregorian::date dt = Rcpp::as<boost::gregorian::date>(date);
+    return Rcpp::wrap(fdab.get_date(dt));
 }
 
 RCPP_MODULE(bdt) {
@@ -192,10 +204,13 @@ RCPP_MODULE(bdt) {
     .method("setIMMDate", &date_immDate, "sets third Wednesday in given month and year")
     .method("getIMMDate", &Date_immDate, "return third Wednesday in given month and year")
 
-    .method("getNthDayMthWeek", &Date_nthDayOfMthWeek, "return nth week's given day-of-week in given month and year")
+    .method("getNthDayOfWeek", &Date_nthDayOfWeek, "return nth week's given day-of-week in given month and year")
 
     .method("getLastDayOfWeekInMonth", &Date_lastDayOfWeekInMonth, "return date of last day-of-week in given month and year")
     .method("getFirstDayOfWeekInMonth", &Date_firstDayOfWeekInMonth, "return date of last day-of-week in given month and year")
+
+    .method("getFirstDayOfWeekAfter", &Date_firstDayOfWeekAfter, "return date of first day-of-week after given date")
+    .method("getLastDayOfWeekBefore", &Date_lastDayOfWeekBefore, "return date of last day-of-week before given date")
 
     ;
 

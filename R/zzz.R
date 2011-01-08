@@ -22,21 +22,48 @@
 ## new environment for our package, local to the package
 bdtEnv <- new.env(parent=emptyenv())
 
+## a simple alternative to enum type in C++ -- we could also have
+## these as parts of a data.frame
+Sun <- 0
+Mon <- 1
+Tue <- 2
+Wed <- 3
+Thu <- 4
+Fri <- 5
+Sat <- 6
+
+## likewise, identifiers for the months
+Jan <- 1
+Feb <- 2
+Mar <- 3
+Apr <- 4
+May <- 5
+Jun <- 6
+Jul <- 7
+Aug <- 8
+Sep <- 9
+Oct <- 10
+Nov <- 11
+Dec <- 12
+
+## and for sequences
+first <- 1
+second <- 2
+third <- 3
+fourth <- 4
+fifth <- 5
+
 .onLoad <- function (lib, pack) {
 
     ## we need the methods package
     require(methods, quiet=TRUE, warn=FALSE)
 
-    ## new environment for our package, stored in global env
-    #.RcppBDTenv <<- new.env(parent=emptyenv())
-
-    ## Create internal variables
-    #.RcppBDTenv$BDTDate <- Module("bdt")$date
-    #.RcppBDTenv$bdt <- new(.RcppBDTenv$BDTDate)
-    #.RcppBDTenv$bdt$setFromUTC()
-
+    ## store an instance of the date class as BDTDate
     bdtEnv$BDTDate <- Module("bdt")$date
+    ## and create a new object of the class as bdt
     bdtEnv$bdt <- new(bdtEnv$BDTDate)
     bdtEnv$bdt$setFromUTC()
+
+    #attach(daysOfWeek)
 
 }

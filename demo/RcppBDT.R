@@ -5,10 +5,11 @@ demo.RcppBDT  <- function() {
 
     ## this uses the pretty-printing the Rcpp module logic to show all
     ## available functions and their docstring (symbol now in per-package env)
-    #print(BDTDate)
+    #print(RcppBDT::bdtEnv$BDTDate)
 
     ## first init a base objects for uses for the functions below
     ## using the instance stored in an internal environment
+    ## alternative form: RcppBDT$bdt)
     bd <- getBDT()
 
     ## alternative constructors: see R/zzz.R
@@ -36,10 +37,12 @@ demo.RcppBDT  <- function() {
     cat("1st of next month : ", format(bd$getFirstOfNextMonth()), "\n")
 
     cat("\nDemo of functions\n")
-    cat("IMM Date Dec 2010 : ", format(getIMMDate(12, 2010)), "\n")
-    cat("3rd Wed Dec 2010  : ", format(getNthDayOfMthWeek(3, 3, 12, 2010)), "\n")
-    cat("Last Sat Dec 2010 : ", format(getLastDayOfWeekInMonth(6, 12, 2010)), "\n")
-    cat("First Sat Dec 2010: ", format(getFirstDayOfWeekInMonth(6, 12, 2010)), "\n")
+    cat("IMM Date Dec 2010 : ", format(getIMMDate(Dec, 2010)), "\n")
+    cat("3rd Wed Dec 2010  : ", format(getNthDayOfWeek(third, Wed, Dec, 2010)), "\n")
+    cat("Last Sat Dec 2010 : ", format(getLastDayOfWeekInMonth(Sat, Dec, 2010)), "\n")
+    cat("First Sat Dec 2010: ", format(getFirstDayOfWeekInMonth(Sat, Dec, 2010)), "\n")
+    cat("First Wed in 2011 : ", format(getFirstDayOfWeekAfter(Wed, as.Date("2010-12-31"))), "\n")
+    cat("Last Wed in 2010  : ", format(getLastDayOfWeekBefore(Wed, as.Date("2010-12-31"))), "\n")
 }
 
 demo.RcppBDT()

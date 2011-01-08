@@ -1,15 +1,26 @@
 2011-01-08  Dirk Eddelbuettel  <edd@debian.org>
 
+	* man/RcppBDT-package.Rd: updated
+	* man/dateFunctions.Rd: added documentation on functions
+	* man/constants.Rd: added documentation on constants defined
+	* man/bdtEnv.Rd: added documentation for bdtEnv variable
+
 	* src/RcppBDT.cpp: Added two new functions for date of first and last
 	weekday in a given month and year (eg first Friday in Jan 2011)
+
+	* R/zzz.R:
+	  - defined a number of constants: Sun, Mon, Tue, ... , Sat as well
+  	    as Jan, Feb, ..., Dec and first, second, ..., fifth
+	  - added some documentation on enviroment
 
 	* R/bdt.R:
 	  - added function to export core object for access
 	  - changed functions to access core object via per-pack. environment
 	  - added functions for first/last day-of-week in month/year
+	  - some variables renamed in the process of writing documentation
 
 	* demo/RcppBDT.R: updated to keep in sync with other changes
-	
+
 2011-01-06  Dirk Eddelbuettel  <edd@dexter>
 
 	* inst/include/RcppBDT.h: Added paragraph about the UseWithString

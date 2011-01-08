@@ -22,43 +22,43 @@ getBDT <- function() {
     bdtEnv$bdt
 }
 
-getEndOfBizWeek <- function(d = Sys.Date()) {
-    stopifnot(inherits(d, "Date"))
-    bdtEnv$bdt$getEndOfBizWeek(d)
+getEndOfBizWeek <- function(date = Sys.Date()) {
+    stopifnot(inherits(date, "Date"))
+    bdtEnv$bdt$getEndOfBizWeek(date)
 }
 
-getEndOfMonth <- function(d = Sys.Date()) {
-    stopifnot(inherits(d, "Date"))
-    bdtEnv$bdt$getEndOfMonth(d)
+getEndOfMonth <- function(date = Sys.Date()) {
+    stopifnot(inherits(date, "Date"))
+    bdtEnv$bdt$getEndOfMonth(date)
 }
 
-getYear <- function(d = Sys.Date()) {
-    stopifnot(inherits(d, "Date"))
-    bdtEnv$bdt$fromDate(d)
+getYear <- function(date = Sys.Date()) {
+    stopifnot(inherits(date, "Date"))
+    bdtEnv$bdt$fromDate(date)
     bdtEnv$bdt$getYear()
 }
 
-getMonth <- function(d = Sys.Date()) {
-    stopifnot(inherits(d, "Date"))
-    bdtEnv$bdt$fromDate(d)
+getMonth <- function(date = Sys.Date()) {
+    stopifnot(inherits(date, "Date"))
+    bdtEnv$bdt$fromDate(date)
     bdtEnv$bdt$getMonth()
 }
 
-getDay <- function(d = Sys.Date()) {
-    stopifnot(inherits(d, "Date"))
-    bdtEnv$bdt$fromDate(d)
+getDay <- function(date = Sys.Date()) {
+    stopifnot(inherits(date, "Date"))
+    bdtEnv$bdt$fromDate(date)
     bdtEnv$bdt$getDay()
 }
 
-getDayOfWeek <- function(d = Sys.Date()) {
-    stopifnot(inherits(d, "Date"))
-    bdtEnv$bdt$fromDate(d)
+getDayOfWeek <- function(date = Sys.Date()) {
+    stopifnot(inherits(date, "Date"))
+    bdtEnv$bdt$fromDate(date)
     bdtEnv$bdt$getDayOfWeek()
 }
 
-getDayOfYear <- function(d = Sys.Date()) {
-    stopifnot(inherits(d, "Date"))
-    bdtEnv$bdt$fromDate(d)
+getDayOfYear <- function(date = Sys.Date()) {
+    stopifnot(inherits(date, "Date"))
+    bdtEnv$bdt$fromDate(date)
     bdtEnv$bdt$getDayOfYear()
 }
 
@@ -66,8 +66,8 @@ getIMMDate <- function(mon, year) {     # defined as third Wednesday
     bdtEnv$bdt$getIMMDate(mon, year)
 }
 
-getNthDayOfMthWeek <- function(nthday, mthweek, mon, year) {
-    bdtEnv$bdt$getNthDayMthWeek(nthday, mthweek, mon, year)
+getNthDayOfWeek <- function(nthday, dow, mon, year) {
+    bdtEnv$bdt$getNthDayOfWeek(nthday, dow, mon, year)
 }
 
 getLastDayOfWeekInMonth <- function(nthday, mon, year) {
@@ -76,4 +76,12 @@ getLastDayOfWeekInMonth <- function(nthday, mon, year) {
 
 getFirstDayOfWeekInMonth <- function(nthday, mon, year) {
     bdtEnv$bdt$getFirstDayOfWeekInMonth(nthday, mon, year)
+}
+
+getFirstDayOfWeekAfter <- function(dow, date) {
+    bdtEnv$bdt$getFirstDayOfWeekAfter(dow, date)
+}
+
+getLastDayOfWeekBefore <- function(dow, date) {
+    bdtEnv$bdt$getLastDayOfWeekBefore(dow, date)
 }
