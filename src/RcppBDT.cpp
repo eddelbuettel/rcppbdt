@@ -114,8 +114,8 @@ Rcpp::Date Date_immDate(boost::gregorian::date *d, int mon, int year) {
     return Rcpp::wrap(ans_generator.get_date(year));
 }
 
-Rcpp::Date Date_nthDayOfWeek(boost::gregorian::date *d, int nthday, int mthweek, int mon, int year) {
-    nth_dow ans_generator(static_cast<boost::date_time::nth_kday_of_month<boost::gregorian::date>::week_num>(mthweek), nthday, mon);
+Rcpp::Date Date_nthDayOfWeek(boost::gregorian::date *d, int nthday, int dow, int mon, int year) {
+    nth_dow ans_generator(static_cast<boost::date_time::nth_kday_of_month<boost::gregorian::date>::week_num>(nthday), dow, mon);
     return Rcpp::wrap(ans_generator.get_date(year));
 }
 
