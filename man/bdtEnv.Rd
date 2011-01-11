@@ -1,10 +1,13 @@
-\name{bdtEnv}
-\alias{bdtEnv}
+\name{bdt}
+\alias{bdt}
 \docType{package}
-\title{Bindings for Boost Date_Time}
+\title{Default object for RcppBDT Boost Date_Time binding}
 \description{
-  The \verb{bdtEnv} environment contains the reference class instance
-  created by means of Rcpp modules, as well as an object instance.
+  The \verb{bdt} variable is a default instance of the reference class
+  created by means of Rcpp modules.
+
+  New instances can be created using either the default constructor
+  (without argument) or the constructor using year, month, date arguments.
 }
 \details{
   Please consult the Boost documentation for (copious) details on the

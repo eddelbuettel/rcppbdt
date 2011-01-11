@@ -1,5 +1,4 @@
 \name{RcppBDT Date functions}
-\alias{getBDT}
 \alias{getEndOfBizWeek}
 \alias{getEndOfMonth}
 \alias{getYear}
@@ -44,8 +43,6 @@ getLastDayOfWeekInMonth(nthday, mon, year)
 getFirstDayOfWeekInMonth(nthday, mon, year) 
 getFirstDayOfWeekAfter(dow, date) 
 getLastDayOfWeekBefore(dow, date)
-
-getBDT() 
 }
 \arguments{
   \item{date}{a \code{\link{Date}} object}
@@ -62,10 +59,6 @@ getBDT()
 }
 \value{
   All functions return a \code{\link{Date}} object.
-
-  The sole exception is \code{getBDT} which returns the \code{bdt}
-  instance of the class created by \code{Rcpp modules}. The Boost
-  functions are accessed via this class instance.
 }
 \details{Details of the Boost functions are provided by the Boost documentation.}
 \author{Dirk Eddelbuettel \email{edd@debian.org}}
