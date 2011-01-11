@@ -18,9 +18,14 @@
 ## You should have received a copy of the GNU General Public License
 ## along with RcppBDT.  If not, see <http://www.gnu.org/licenses/>.
 
+## This and the code below in onLoad() owe some gratitude to
+## the wls package inside the Rcpp repository on R-forge
+##
+## grab the namespace of this package for use below
+.NAMESPACE <- environment()
 
-## new environment for our package, local to the package
-bdtEnv <- new.env(parent=emptyenv())
+# dummy module, will be replaced later
+bdt <- new( "Module" )
 
 ## a simple alternative to enum type in C++ -- we could also have
 ## these as parts of a data.frame
@@ -58,12 +63,13 @@ fifth <- 5
     ## we need the methods package
     require(methods, quiet=TRUE, warn=FALSE)
 
-    ## store an instance of the date class as BDTDate
-    bdtEnv$BDTDate <- Module("bdt")$date
-    ## and create a new object of the class as bdt
-    bdtEnv$bdt <- new(bdtEnv$BDTDate)
-    bdtEnv$bdt$setFromUTC()
-
-    #attach(daysOfWeek)
-
+    unlockBinding("bdt", .NAMESPACE)    	# unlock
+    bdtMod <- Module( "bdt" )$date		# get the module code
+    bdt <- new(bdtMod)                  	# default constructor for reference instance
+    bdt$setFromUTC()                    	# but set a default value
+    assign("bdt", bdt, .NAMESPACE)      	# assign the reference instance
+    assign("bdtMod", bdtMod, .NAMESPACE)  	# and the module
+    lockBinding( "bdt", .NAMESPACE)		# and lock
 }
+
+

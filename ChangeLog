@@ -1,3 +1,12 @@
+2011-01-11  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION (Version): bumped version to 0.0.3
+	
+	* R/zzz.R: change initialization after borrowing a better approach
+	from John's wls package in the Rcpp repo on R-Forge: now 'bdt' is
+	the default instance of the reference class, and the module code is
+	available via 'bdtMod'
+
 2011-01-08  Dirk Eddelbuettel  <edd@debian.org>
 
 	* man/RcppBDT-package.Rd: updated
