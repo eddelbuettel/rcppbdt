@@ -3,6 +3,8 @@
 	* R/zzz.R (.onLoad): import module, construct from class 'date'
 	* demo/RcppBDT.R: adjusted accordingly
 
+	* R/constants.R: define date constants here and not in zzz.R
+
 	* cleanup: added simple cleanup script
 
 2011-01-11  Dirk Eddelbuettel  <edd@debian.org>
