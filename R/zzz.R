@@ -64,8 +64,8 @@ fifth <- 5
     require(methods, quiet=TRUE, warn=FALSE)
 
     unlockBinding("bdt", .NAMESPACE)    	# unlock
-    bdtMod <- Module( "bdt" )$date		# get the module code
-    bdt <- new(bdtMod)                  	# default constructor for reference instance
+    bdtMod <- Module( "bdt" )			# get the module code
+    bdt <- new( bdtMod$date )                  	# date class default constructor for reference instance
     bdt$setFromUTC()                    	# but set a default value
     assign("bdt", bdt, .NAMESPACE)      	# assign the reference instance
     assign("bdtMod", bdtMod, .NAMESPACE)  	# and the module

@@ -5,12 +5,13 @@ demo.RcppBDT  <- function() {
 
     ## this uses the pretty-printing the Rcpp module logic to show all
     ## available functions and their docstring (symbol is not exported)
-    #print(bdtMod)
+    ##
+    ## print(bdtMod$date)
 
     ## we use a base object 'bdt' for the functions below
     ## by using the instance stored in the environment
     ##
-    ## alternatively could construct a new instance from bdtMod, see R/zzz.R
+    ## alternatively could construct a new instance from bdtMod$date, see R/zzz.R
 
     cat("Demo of setters\n");
     ## conversions from string commented out, see inst/include/RcppBDT.h for details

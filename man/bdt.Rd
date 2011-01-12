@@ -4,11 +4,12 @@
 \docType{package}
 \title{Default object for RcppBDT Boost Date_Time binding}
 \description{
-  The \verb{bdt} variable is a default instance of the reference class
+  The \verb{bdt} variable is a default instance of the 'date' class
   created by means of Rcpp modules.
 
   The \verb{bdtMod} variable is an instance of the class created by Rcpp
-  modules; see \code{print(bdtMod)} for available methods.
+  modules. It currently contains just the \code{date} class; see
+  \code{print(bdtMod$date)} for its available methods. 
   
   New instances can be created using either the default constructor
   (without argument) or the constructor using year, month, date arguments.
