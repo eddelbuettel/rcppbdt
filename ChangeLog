@@ -1,6 +1,6 @@
 2011-01-13  Dirk Eddelbuettel  <edd@debian.org>
 
-	* R/methods.R: added print and format methods
+	* R/zzz.R: added print and format methods
 	* man/bdt.Rd: documented print and format methods
 
 2011-01-12  Dirk Eddelbuettel  <edd@debian.org>

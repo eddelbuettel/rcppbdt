@@ -38,6 +38,10 @@ bdt <- new( "Module" )
     bdt$setFromUTC()                    	# but set a default value
     assign("bdt", bdt, .NAMESPACE)      	# assign the reference instance
     assign("bdtMod", bdtMod, .NAMESPACE)  	# and the module
+
+    setMethod("print", "Rcpp_date", function(x, ...) print(x$getDate(), ...))
+    setMethod("format", "Rcpp_date", function(x, ...) format(x$getDate(), ...))
+
     lockBinding( "bdt", .NAMESPACE)		# and lock
 }
 
