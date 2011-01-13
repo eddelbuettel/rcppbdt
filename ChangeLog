@@ -1,7 +1,7 @@
 2011-01-13  Dirk Eddelbuettel  <edd@debian.org>
 
-	* R/methods.R: added a print method
-	* man/bdt.Rd: documented print method
+	* R/methods.R: added print and format methods
+	* man/bdt.Rd: documented print and format methods
 
 2011-01-12  Dirk Eddelbuettel  <edd@debian.org>
 

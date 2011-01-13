@@ -20,4 +20,4 @@
 
 setMethod("print", "Rcpp_date", function(x, ...) print(x$getDate(), ...))
 
-
+setMethod("format", "Rcpp_date", function(x, ...) format(x$getDate(), ...))

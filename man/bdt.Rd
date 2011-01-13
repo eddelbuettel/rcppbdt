@@ -2,6 +2,7 @@
 \alias{bdt}
 \alias{bdtMod}
 \alias{print,Rcpp_date-method}
+\alias{format,Rcpp_date-method}
 \docType{package}
 \title{Default object for RcppBDT Boost Date_Time binding}
 \description{
@@ -17,8 +18,8 @@
 }
 \section{Method}{
   \describe{
-    \item{print}{\code{signature(x = "Rcpp_date")}: print a (BDT) date
-      class object}
+    \item{print}{\code{signature(x = "Rcpp_date")}: prints a (BDT) date class object}
+    \item{format}{\code{signature(x = "Rcpp_date")}: formats a (BDT) date class object}
   }
 }
 \details{
