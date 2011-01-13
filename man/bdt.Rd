@@ -1,6 +1,7 @@
 \name{bdt}
 \alias{bdt}
 \alias{bdtMod}
+\alias{print,Rcpp_date-method}
 \docType{package}
 \title{Default object for RcppBDT Boost Date_Time binding}
 \description{
@@ -13,6 +14,12 @@
   
   New instances can be created using either the default constructor
   (without argument) or the constructor using year, month, date arguments.
+}
+\section{Method}{
+  \describe{
+    \item{print}{\code{signature(x = "Rcpp_date")}: print a (BDT) date
+      class object}
+  }
 }
 \details{
   Please consult the Boost documentation for (copious) details on the

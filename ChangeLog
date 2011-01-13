@@ -1,3 +1,8 @@
+2011-01-13  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/methods.R: added a print method
+	* man/bdt.Rd: documented print method
+
 2011-01-12  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/zzz.R (.onLoad): import module, construct from class 'date'
@@ -39,7 +44,7 @@
 
 	* demo/RcppBDT.R: updated to keep in sync with other changes
 
-2011-01-06  Dirk Eddelbuettel  <edd@dexter>
+2011-01-06  Dirk Eddelbuettel  <edd@debian.org>
 
 	* inst/include/RcppBDT.h: Added paragraph about the UseWithString
 	variable with governs whether input/output functionality is loaded
