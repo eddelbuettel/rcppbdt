@@ -2,6 +2,7 @@
 
 	* R/zzz.R: added print and format methods
 	* man/bdt.Rd: documented print and format methods
+	* demo/RcppBDT.R: simplied thanks to format method
 
 2011-01-12  Dirk Eddelbuettel  <edd@debian.org>
 

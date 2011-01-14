@@ -15,17 +15,17 @@ demo.RcppBDT  <- function() {
 
     cat("Demo of setters\n");
     ## conversions from string commented out, see inst/include/RcppBDT.h for details
-    ##bdt$fromString("2010-10-02"); 	cat("From 2010-10-02   : ", format(bdt$getDate()), "\n")
-    ##bdt$fromUndelString("20101003");  cat("From 20101003     : ", format(bdt$getDate()), "\n")
-    bdt$setFromUTC(); 			cat("From curr. UTC    : ", format(bdt$getDate()), "\n")
-    bdt$setFromLocalClock();		cat("From curr. local  : ", format(bdt$getDate()), "\n")
-    bdt$setEndOfMonth(); 		cat("end of month      : ", format(bdt$getDate()), "\n")
-    bdt$setFirstOfNextMonth(); 		cat("1st of next Month : ", format(bdt$getDate()), "\n")
-    bdt$addDays(4);                     cat("plus four days    : ", format(bdt$getDate()), "\n")
-    bdt$subtractDays(3);                cat("minus three days  : ", format(bdt$getDate()), "\n")
+    ##bdt$fromString("2010-10-02"); 	cat("From 2010-10-02   : ", format(bdt), "\n")
+    ##bdt$fromUndelString("20101003");  cat("From 20101003     : ", format(bdt), "\n")
+    bdt$setFromUTC(); 			cat("From curr. UTC    : ", format(bdt), "\n")
+    bdt$setFromLocalClock();		cat("From curr. local  : ", format(bdt), "\n")
+    bdt$setEndOfMonth(); 		cat("end of month      : ", format(bdt), "\n")
+    bdt$setFirstOfNextMonth(); 		cat("1st of next Month : ", format(bdt), "\n")
+    bdt$addDays(4);                     cat("plus four days    : ", format(bdt), "\n")
+    bdt$subtractDays(3);                cat("minus three days  : ", format(bdt), "\n")
 
-    bdt$setIMMDate(12, 2010); 		cat("IMM Date Dec 2010 : ", format(bdt$getDate()), "\n")
-    bdt$setEndOfBizWeek();  		cat("end of biz week   : ", format(bdt$getDate()), "\n")
+    bdt$setIMMDate(12, 2010); 		cat("IMM Date Dec 2010 : ", format(bdt), "\n")
+    bdt$setEndOfBizWeek();  		cat("end of biz week   : ", format(bdt), "\n")
 
     cat("\nDemo of getters\n")
     ## now just functions that return values to R
