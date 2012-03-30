@@ -1,3 +1,6 @@
-import(Rcpp)
+import(Rcpp,methods)
 useDynLib(RcppBDT)
+
 exportPattern("^[[:alpha:]]+")
+exportMethods( "format", "show" )
+

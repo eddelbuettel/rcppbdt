@@ -1,7 +1,7 @@
 ##
 ## zzz.R: Loading Rcpp and Boost Date_Time glue
 ##
-## Copyright (C) 2010 - 2011 Dirk Eddelbuettel and Romain Francois
+## Copyright (C) 2010 - 2012 Dirk Eddelbuettel and Romain Francois
 ##
 ## This file is part of RcppBDT.
 ##
@@ -18,31 +18,20 @@
 ## You should have received a copy of the GNU General Public License
 ## along with RcppBDT.  If not, see <http://www.gnu.org/licenses/>.
 
-## This and the code below in onLoad() owe some gratitude to
-## the wls package inside the Rcpp repository on R-forge
-##
-## grab the namespace of this package for use below
-.NAMESPACE <- environment()
 
-# dummy module, will be replaced later
-bdt <- new( "Module" )
+delayedAssign( "bdt", local( { 
+    x <- new( bdtMod$date ); x$setFromUTC(); x 
+}) )                                                                        
 
-.onLoad <- function (lib, pack) {
+    
 
-    ## we need the methods package
-    require(methods, quiet=TRUE, warn=FALSE)
-
-    unlockBinding("bdt", .NAMESPACE)    	# unlock
-    bdtMod <- Module( "bdt" )			# get the module code
-    bdt <- new( bdtMod$date )                  	# date class default constructor for reference instance
-    bdt$setFromUTC()                    	# but set a default value
-    assign("bdt", bdt, .NAMESPACE)      	# assign the reference instance
-    assign("bdtMod", bdtMod, .NAMESPACE)  	# and the module
-
-    setMethod("print", "Rcpp_date", function(x, ...) print(x$getDate(), ...))
+.onLoad <- function (lib, pkg) {
+    loadRcppModules( direct = FALSE )
+    
+    setMethod("show", "Rcpp_date", function(object) print(object$getDate()))
+    setGeneric( "format", function(x,...) standardGeneric("format") )
     setMethod("format", "Rcpp_date", function(x, ...) format(x$getDate(), ...))
 
-    lockBinding( "bdt", .NAMESPACE)		# and lock
 }
 
 
