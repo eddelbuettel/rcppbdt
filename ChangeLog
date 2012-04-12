@@ -1,10 +1,15 @@
 2012-04-11  Dirk Eddelbuettel  <edd@debian.org>
 
-	* inst/include/RcppBDT.h, src/RcppBDT.cpp: Prefix local #define
+	* inst/include/RcppBDT.h, src/RcppBDT.cpp: prefix local #define
 	variable with RcppBDT_ to avoid any possivke clashes
 
-	* inst/include/RcppBDT.h, src/RcppBDT.cpp: Remove exception
+	* inst/include/RcppBDT.h, src/RcppBDT.cpp: remove exception
 	specifications in partial specializations for as and wrap
+
+2012-03-30  Romain Francois  <romain@r-enthusiasts.com>
+
+	* R/zzz.R, RcppBDT.cpp, NAMESPACE, DESCRIPTION: update module
+	initialization
 
 2011-01-17  Dirk Eddelbuettel  <edd@debian.org>
 
