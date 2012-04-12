@@ -1,8 +1,8 @@
-// -*- mode: C++; c-indent-level: 4; c-basic-offset: 4; tab-width: 8 -*-
+// -*- mode: C++; c-indent-level: 4; c-basic-offset: 4; indent-tabs-mode: nil; -*-
 //
 // RcppBDT.h: Rcpp and Boost Date_Time glue
 //
-// Copyright (C) 2010 - 2011 Dirk Eddelbuettel and Romain Francois
+// Copyright (C) 2010 - 2012  Dirk Eddelbuettel and Romain Francois
 //
 // This file is part of RcppBDT.
 //
@@ -31,9 +31,9 @@
 // compile-time only which make things a little easier.
 // On Windows, set the BOOSTLIB variable to point to a suitable directory.
 // On other systems, just have Boost in the include path 
-#define UseWithStrings 0
+#define RcppBDT_UseWithStrings 0
 
-#if UseWithString
+#if RcppBDT_UseWithString
   #include <boost/date_time/gregorian/gregorian.hpp> 	// Gregorian calendar types, including I/O
 #else
   #include <boost/date_time/gregorian/gregorian_types.hpp> 	// Gregorian calendar types, no I/O
@@ -41,10 +41,10 @@
 
 namespace Rcpp {
     // non-intrusive extension via template specialisation
-    template <> boost::gregorian::date as( SEXP dt ) throw(not_compatible);
+    template <> boost::gregorian::date as( SEXP dt );
 
     // non-intrusive extension via template specialisation
-    template <> SEXP wrap(const boost::gregorian::date &d) throw(not_compatible);
+    template <> SEXP wrap(const boost::gregorian::date &d);
 }
 
 #include <Rcpp.h>
