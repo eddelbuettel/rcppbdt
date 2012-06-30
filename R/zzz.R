@@ -19,25 +19,33 @@
 ## along with RcppBDT.  If not, see <http://www.gnu.org/licenses/>.
 
 
+## .onLoad <- function (lib, pkg) {
+##     req <- get(paste("req", "uire", sep=""))	# we already Imports: methods, but there may
+##     req("methods")  	        		# be a race condition lurking
+##     loadRcppModules(direct=FALSE)
+
+##     setMethod("show", "Rcpp_date", .show_date)
+##     setGeneric("format", function(x,...) standardGeneric("format") )
+##     setMethod("format", "Rcpp_date", .format_date )
+## }
+
+
+loadModule("bdtMod", TRUE)
+
+## create a variable 'bdt' from out bdtMod Module
+## this variable is used as a package-global instance
 delayedAssign( "bdt", local( {
-    x <- new( bdtMod$date )
+    x <- new( date )
     x$setFromUTC()
     x
 }) )
 
-
 .format_date <- function(x, ...) format(x$getDate(), ...)
 .show_date <- function(object) print(object$getDate())
 
-.onLoad <- function (lib, pkg) {
-    req <- get(paste("req", "uire", sep=""))	# we already Imports: methods, but there may
-    req("methods")  	        		# be a race condition lurking
-    loadRcppModules(direct=FALSE)
-
+## define an onLoad expression to set some methods
+evalqOnLoad({
     setMethod("show", "Rcpp_date", .show_date)
     setGeneric("format", function(x,...) standardGeneric("format") )
     setMethod("format", "Rcpp_date", .format_date )
-
-}
-
-
+})
