@@ -2,6 +2,8 @@
 
 	* R/zzz.R: Updated for R 2.15.1 using loadModule() and evalqOnLoad()
 
+	* man/bdt.Rd: Added two required alias'es flagged by R CMD check
+
 2012-04-11  Dirk Eddelbuettel  <edd@debian.org>
 
 	* inst/include/RcppBDT.h, src/RcppBDT.cpp: prefix local #define

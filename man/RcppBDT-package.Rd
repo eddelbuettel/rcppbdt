@@ -5,8 +5,9 @@
 \title{Bindings for Boost Date_Time}
 \description{
   This package provides R with access to Boost Date_Time
-  functonality by using Rcpp modules. Currently only Date functionality 
-  is covered.
+  functonality by using Rcpp modules.
+
+  Currently only Date functionality is covered.
 }
 \details{
   Please consult the Boost documentation for (copious) details on the
