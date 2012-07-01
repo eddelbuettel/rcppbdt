@@ -1,5 +1,5 @@
 \name{NEWS}
-\title{News for Package \pkg{e1071}}
+\title{News for Package \pkg{RcppBDT}}
 \newcommand{\cpkg}{\href{http://CRAN.R-project.org/package=#1}{\pkg{#1}}}
 
 \section{Changes in version 0.2.0 (2012-06-30}{
