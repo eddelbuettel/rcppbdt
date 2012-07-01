@@ -2,7 +2,7 @@
 \title{News for Package \pkg{RcppBDT}}
 \newcommand{\cpkg}{\href{http://CRAN.R-project.org/package=#1}{\pkg{#1}}}
 
-\section{Changes in version 0.2.0 (2012-06-30}{
+\section{Changes in version 0.2.0 (2012-06-30)}{
   \itemize{
     \item The core module, which wraps what in C++ is
     boost::gregorian::date, is now exposed as an Rcpp module bdtDate.
