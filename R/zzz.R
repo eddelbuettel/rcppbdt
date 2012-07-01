@@ -35,7 +35,7 @@ loadModule("bdtMod", TRUE)
 ## create a variable 'bdt' from out bdtMod Module
 ## this variable is used as a package-global instance
 delayedAssign( "bdt", local( {
-    x <- new( date )
+    x <- new( bdtDate )
     x$setFromUTC()
     x
 }) )
@@ -45,7 +45,7 @@ delayedAssign( "bdt", local( {
 
 ## define an onLoad expression to set some methods
 evalqOnLoad({
-    setMethod("show", "Rcpp_date", .show_date)
+    setMethod("show", "Rcpp_bdtDate", .show_date)
     setGeneric("format", function(x,...) standardGeneric("format") )
-    setMethod("format", "Rcpp_date", .format_date )
+    setMethod("format", "Rcpp_bdtDate", .format_date )
 })

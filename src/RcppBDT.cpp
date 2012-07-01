@@ -146,8 +146,8 @@ RCPP_MODULE(bdtMod) {
     using namespace boost::gregorian;
     using namespace Rcpp;
 
-    // exposing a class (boost::gregorian::)date as "date" on the R side
-    class_<date>("date")
+    // exposing a class (boost::gregorian::)date as "bdtDate" on the R side
+    class_<date>("bdtDate")
 	
     // constructors
     .constructor("default constructor")

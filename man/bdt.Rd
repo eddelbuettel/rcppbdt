@@ -1,10 +1,10 @@
 \name{bdt}
 \alias{bdt}
 \alias{bdtMod}
-\alias{show,Rcpp_date-method}
-\alias{format,Rcpp_date-method}
-\alias{date}
-\alias{Rcpp_date-class}
+\alias{show,Rcpp_bdtDate-method}
+\alias{format,Rcpp_bdtDate-method}
+\alias{bdtDate}
+\alias{Rcpp_bdtDate-class}
 \docType{package}
 \title{Default object for RcppBDT Boost Date_Time binding}
 \description{
