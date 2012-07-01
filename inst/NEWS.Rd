@@ -6,7 +6,7 @@
   \itemize{
     \item The core module, which wraps what in C++ is
     boost::gregorian::date, is now exposed as an Rcpp module bdtDate.
-    As all example as demos operated off a (package-global) variable
+    As all example and demos operated off a (package-global) variable
     'bdt', no user visible change was needed outside of the code
     instantiating at package load.
 
