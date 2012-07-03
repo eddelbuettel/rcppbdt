@@ -1,3 +1,9 @@
+2012-07-02  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: Version 0.2.0
+
+	* inst/NEWS.Rd, inst/NEWS: Added
+
 2012-06-30  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/zzz.R: Updated for R 2.15.1 using loadModule() and evalqOnLoad()
