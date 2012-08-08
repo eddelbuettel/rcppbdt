@@ -1,7 +1,7 @@
 ##
 ## bdt.R: Some accessor functions for Boost Date_Time functionality
 ##
-## Copyright (C) 2010 - 2011 Dirk Eddelbuettel and Romain Francois
+## Copyright (C) 2010 - 2012  Dirk Eddelbuettel and Romain Francois
 ##
 ## This file is part of RcppBDT.
 ##
@@ -20,11 +20,13 @@
 
 getEndOfBizWeek <- function(date = Sys.Date()) {
     stopifnot(inherits(date, "Date"))
+    bdt$fromDate(date)
     bdt$getEndOfBizWeek(date)
 }
 
 getEndOfMonth <- function(date = Sys.Date()) {
     stopifnot(inherits(date, "Date"))
+    bdt$fromDate(date)
     bdt$getEndOfMonth(date)
 }
 

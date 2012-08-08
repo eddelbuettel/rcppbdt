@@ -1,3 +1,8 @@
+2012-08-08  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/bdt.R (getEndOfBizWeek,getEndOfMonth): Add call to fromDate() to
+  	pass the argument to the bdt instance
+
 2012-07-02  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION: Version 0.2.0

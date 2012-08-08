@@ -2,6 +2,13 @@
 \title{News for Package \pkg{RcppBDT}}
 \newcommand{\cpkg}{\href{http://CRAN.R-project.org/package=#1}{\pkg{#1}}}
 
+\section{Changes in version 0.2.1 (2012-08-08)}{
+  \itemize{
+    \item Bug for getEndOfBizWeek() and getEndOfMonth() who were lacking
+    a call to fromDate(date) to actually pass the date for which the
+    functions are computing the end of business week or month.
+  }
+}
 \section{Changes in version 0.2.0 (2012-07-02)}{
   \itemize{
     \item The core module, which wraps what in C++ is
