@@ -1,3 +1,11 @@
+2012-08-20  Dirk Eddelbuettel  <edd@dexter>
+
+	* src/RcppBDTtz.cpp: New modules 'bdtTz' for time zone functionality
+	* R/zzz.R: Load bdtTzMod module on startup
+	* inst/include/RcppBDT.h: Also include local_time.hpp header
+
+	* inst/data/date_time_zonespec.csv: Time zone data from Boost sources
+
 2012-08-08  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION: Version 0.2.1

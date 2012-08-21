@@ -39,6 +39,8 @@
   #include <boost/date_time/gregorian/gregorian_types.hpp> 	// Gregorian calendar types, no I/O
 #endif
 
+#include <boost/date_time/local_time/local_time.hpp> 	 
+
 namespace Rcpp {
     // non-intrusive extension via template specialisation
     template <> boost::gregorian::date as( SEXP dt );
