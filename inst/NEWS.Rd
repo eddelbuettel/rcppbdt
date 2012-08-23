@@ -2,6 +2,12 @@
 \title{News for Package \pkg{RcppBDT}}
 \newcommand{\cpkg}{\href{http://CRAN.R-project.org/package=#1}{\pkg{#1}}}
 
+\section{Changes in version 0.x.y (2012-xx-yy)}{
+  \itemize{
+    \item New module providing time zone information such as offset to
+    UTC, amount of DST, abbreviated and full timezone names.
+  }
+}
 \section{Changes in version 0.2.1 (2012-08-08)}{
   \itemize{
     \item Bug for getEndOfBizWeek() and getEndOfMonth() who were lacking

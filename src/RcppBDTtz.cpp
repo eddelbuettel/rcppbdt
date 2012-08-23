@@ -21,49 +21,60 @@
 
 #include <RcppBDT.h>
 
-void tzSetDB(boost::local_time::tz_database *tz, std::string file) {
-    tz->load_from_file(file);
-}
+class bdtTz {
 
-Rcpp::CharacterVector tzGetRegions(boost::local_time::tz_database *tz) {
-    std::vector<std::string> regions = tz->region_list();
-    Rcpp::StringVector vec(regions.begin(), regions.end());
-    return(vec);		// Rcpp::wrap() called implicitly
-}
+public:
 
-SEXP tzGetTotalSecondsFromUTC(boost::local_time::tz_database *tz, std::string region) {
-    boost::local_time::time_zone_ptr tzp = tz->time_zone_from_region(region);
-    boost::posix_time::time_duration tdt = tzp->base_utc_offset();
-    long offset = tdt.total_seconds();
-    //std::cout << tdt << " -- " << offset << std::endl;
-    return(Rcpp::wrap(offset));
-}
+    bdtTz(std::string zonefile, std::string region) {
+    	m_tz.load_from_file(zonefile); 			// load db from csv zonefile
+    	m_tzp = m_tz.time_zone_from_region(region);	// init with given region
+    }
 
-SEXP tzGetDstTotalSeconds(boost::local_time::tz_database *tz, std::string region) {
-    boost::local_time::time_zone_ptr tzp = tz->time_zone_from_region(region);
-    boost::posix_time::time_duration tdt = tzp->dst_offset();
-    long offset = tdt.total_seconds();
-    //std::cout << tdt << " -- " << offset << std::endl;
-    return(Rcpp::wrap(offset));
-}
+    std::vector<std::string> getRegions() { return( m_tz.region_list() ); }
+
+    long getUtcTotalSec() {
+	boost::posix_time::time_duration tdt = m_tzp->base_utc_offset();
+	return(tdt.total_seconds());
+    }
+
+    long getDstTotalSec() {
+	boost::posix_time::time_duration tdt = m_tzp->dst_offset();
+	return(tdt.total_seconds());
+    }
+
+    std::string getDstZoneAbbrev() { return(m_tzp->dst_zone_abbrev()); }
+    std::string getStdZoneAbbrev() { return(m_tzp->std_zone_abbrev()); }
+    std::string getDstZoneName()   { return(m_tzp->dst_zone_name());   }
+    std::string getStdZoneName()   { return(m_tzp->std_zone_name());   }
+    bool        hasDst()           { return(m_tzp->has_dst());         }
+    std::string getPosixString()   { return(m_tzp->to_posix_string()); }
+
+private:
+
+    bdtTz() {};			// hide default constructor
+
+    boost::local_time::tz_database m_tz;
+    boost::local_time::time_zone_ptr m_tzp;
+};
+
 
 RCPP_MODULE(bdtTzMod) {
 
-    using namespace boost::local_time;
-    using namespace Rcpp;
-
-    // exposing a class (boost::gregorian::)date as "bdtTz" on the R side
-    class_<tz_database>("bdtTz")
+    Rcpp::class_<bdtTz>("bdtTz")   
 	
-    // constructors
-    .constructor("default constructor")  // needs to invalidate as we need a tz file
+    .constructor<std::string,std::string>("constructor with zonefile and region")  
 
-    .method("setDB", &tzSetDB, "load time zone database from file")
+    .method("getRegions",       &bdtTz::getRegions,       "get vector of TZ region names")
 
-    .method("getRegions", &tzGetRegions, "get vector of TZ region names")
+    .method("getUtcOffset",     &bdtTz::getUtcTotalSec,   "get seconds from UTC")
+    .method("getDstOffset",     &bdtTz::getDstTotalSec  , "get DST offset in seconds")
 
-    .method("getUtcOffsetInSeconds", &tzGetTotalSecondsFromUTC)
-    .method("getDstOffsetInSeconds", &tzGetDstTotalSeconds)
+    .method("getDstZoneAbbrev", &bdtTz::getDstZoneAbbrev, "get DST zone abbreviation")
+    .method("getStdZoneAbbrev", &bdtTz::getStdZoneAbbrev, "get standard zone abbreviation")
+    .method("getDstZoneName",   &bdtTz::getDstZoneName,   "get DST zone name")
+    .method("getStdZoneName",   &bdtTz::getStdZoneName,   "get standard zone name")
+    .method("hasDst",           &bdtTz::hasDst,           "true if timezone has daylight savings")
+    .method("getPosixString",   &bdtTz::getPosixString,   "get posix time zone representation")
 
     ;
 

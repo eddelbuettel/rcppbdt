@@ -1,3 +1,9 @@
+2012-08-22  Dirk Eddelbuettel  <edd@dexter>
+
+	* src/RcppBDTtz.cpp: Rewritten bdtTz to be based on small class
+	wrapping tz_db object plus one pointer but of which are initialized
+	from the constructor
+
 2012-08-20  Dirk Eddelbuettel  <edd@dexter>
 
 	* src/RcppBDTtz.cpp: New modules 'bdtTz' for time zone functionality
