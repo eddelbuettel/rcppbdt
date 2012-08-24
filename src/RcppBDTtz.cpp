@@ -25,7 +25,15 @@ class bdtTz {
 
 public:
 
-    bdtTz(std::string zonefile, std::string region) {
+    bdtTz(std::string region) {
+	// nice little trick: evaluate a Language() object corresponding to the R call
+	//    system.file("data", "date_time_zonespec.csv", package="RcppBDT")
+	// but from C++
+	Rcpp::Language ll = Rcpp::Language("system.file", "data", 
+					   "date_time_zonespec.csv", 
+					   Rcpp::Named("package","RcppBDT"));
+	std::string zonefile = Rcpp::as<std::string>(ll.eval(R_GlobalEnv));
+
     	m_tz.load_from_file(zonefile); 			// load db from csv zonefile
     	m_tzp = m_tz.time_zone_from_region(region);	// init with given region
     }
@@ -62,11 +70,11 @@ RCPP_MODULE(bdtTzMod) {
 
     Rcpp::class_<bdtTz>("bdtTz")   
 	
-    .constructor<std::string,std::string>("constructor with zonefile and region")  
+    .constructor<std::string>("constructor with region string (eg \"Europe/London\")")  
 
     .method("getRegions",       &bdtTz::getRegions,       "get vector of TZ region names")
 
-    .method("getUtcOffset",     &bdtTz::getUtcTotalSec,   "get seconds from UTC")
+    .method("getUtcOffset",     &bdtTz::getUtcTotalSec,   "get UTC offset in seconds")
     .method("getDstOffset",     &bdtTz::getDstTotalSec  , "get DST offset in seconds")
 
     .method("getDstZoneAbbrev", &bdtTz::getDstZoneAbbrev, "get DST zone abbreviation")

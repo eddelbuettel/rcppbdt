@@ -1,3 +1,8 @@
+2012-08-24  Dirk Eddelbuettel  <edd@dexter>
+
+	* src/RcppBDTtz.cpp: Use Language evaluation to get location of zone
+	db file, reducing constructor to single argument for region
+
 2012-08-22  Dirk Eddelbuettel  <edd@dexter>
 
 	* src/RcppBDTtz.cpp: Rewritten bdtTz to be based on small class
