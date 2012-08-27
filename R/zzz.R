@@ -33,6 +33,7 @@
 loadModule("bdtMod", TRUE)
 loadModule("bdtTzMod", TRUE)
 loadModule("bdtDuMod", TRUE)
+loadModule("bdtPtMod", TRUE)
 
 ## create a variable 'bdt' from out bdtMod Module
 ## this variable is used as a package-global instance
