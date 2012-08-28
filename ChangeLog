@@ -1,3 +1,8 @@
+2012-08-27  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/RcppBDTpt.cpp: getDatetime() now uses struct tm and mktime
+	which dels correctly with offsets to UTC
+
 2012-08-26  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/RcppBDTpt.cpp: Started module 'bdtPt' with posix time objects

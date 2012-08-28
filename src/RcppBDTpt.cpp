@@ -44,10 +44,17 @@ public:
         boost::gregorian::date::ymd_type ymd = m_pt.date().year_month_day();     // convert to date and then to y/m/d struct
         return Rcpp::Date( ymd.year, ymd.month, ymd.day );
     }
+    // Rcpp::Datetime getDatetime() {
+    //     //std::cout << "At C++ level: " << m_pt << std::endl;
+    //     boost::posix_time::ptime epoch(boost::gregorian::date(1970,1,1));
+    //     boost::posix_time::time_duration x = m_pt - epoch; // needs a UTC to local correction
+    //     return Rcpp::Datetime( x.total_seconds() + 1.0 * x.fractional_seconds() / x.ticks_per_second() );// off by UTC difference
+    // }
     Rcpp::Datetime getDatetime() {
         boost::posix_time::ptime epoch(boost::gregorian::date(1970,1,1));
-        boost::posix_time::time_duration x = m_pt - epoch;
-        return Rcpp::Datetime( x.total_seconds() + 1.0 * x.fractional_seconds() / x.ticks_per_second() );
+        boost::posix_time::time_duration x = m_pt - epoch; // this needs a UTC to local correction, but we get the fractional seconds
+        struct tm t = boost::posix_time::to_tm(m_pt);      // this helps with UTC conversion
+        return Rcpp::Datetime( mktime(&t) + 1.0 * x.fractional_seconds() / x.ticks_per_second());
     }
 
 private:
