@@ -7,6 +7,10 @@
 	simplified existing code by using them; and added new setter from the
 	R Datetime class as well
 
+	* man/bdtDu.Rd: Added
+	* man/bdtPt.Rd: Added
+	* man/bdtTz.Rd: Added
+
 2012-08-27  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/RcppBDTpt.cpp: getDatetime() now uses struct tm and mktime
