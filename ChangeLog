@@ -1,3 +1,12 @@
+2012-09-01  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/include/RcppBDT.h: Added declarations for two new templated
+	converters as<>() and wrap() for the boost::posix_time::ptime class
+	* src/RcppBDTpt.cpp (Rcpp): Added implementation for new templated
+	converters as<>(), wrap() for the boost::posix_time::ptime class;
+	simplified existing code by using them; and added new setter from the
+	R Datetime class as well
+
 2012-08-27  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/RcppBDTpt.cpp: getDatetime() now uses struct tm and mktime

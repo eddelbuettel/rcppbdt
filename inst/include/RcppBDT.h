@@ -39,19 +39,32 @@
 #define RcppBDT_UseWithStrings 0
 
 #if RcppBDT_UseWithString
-  #include <boost/date_time/gregorian/gregorian.hpp> 	// Gregorian calendar types, including I/O
+  #include <boost/date_time/gregorian/gregorian.hpp> 		// Gregorian calendar types, with I/O
 #else
   #include <boost/date_time/gregorian/gregorian_types.hpp> 	// Gregorian calendar types, no I/O
 #endif
 
 #include <boost/date_time/local_time/local_time.hpp> 	 
 
-namespace Rcpp {
-    // non-intrusive extension via template specialisation
-    template <> boost::gregorian::date as( SEXP dt );
 
+namespace Rcpp {
+
+    // First the 'date' class boost::gregorian::date
+    //
+    // non-intrusive extension via template specialisation
+    template <> boost::gregorian::date as(SEXP dt);
+    //
     // non-intrusive extension via template specialisation
     template <> SEXP wrap(const boost::gregorian::date &d);
+
+
+    // Second the 'datetime' class boost::posix_time::ptime
+    //
+    // non-intrusive extension via template specialisation
+    template <> boost::posix_time::ptime as(SEXP dt);
+    //
+    // non-intrusive extension via template specialisation
+    template <> SEXP wrap(const boost::posix_time::ptime &dt);
 }
 
 #include <Rcpp.h>
