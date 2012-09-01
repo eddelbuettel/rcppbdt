@@ -29,7 +29,7 @@ public:
 	// nice little trick: evaluate a Language() object corresponding to the R call
 	//    system.file("data", "date_time_zonespec.csv", package="RcppBDT")
 	// but from C++
-	Rcpp::Language ll = Rcpp::Language("system.file", "data", "date_time_zonespec.csv", 
+	Rcpp::Language ll = Rcpp::Language("system.file", "extdata", "date_time_zonespec.csv", 
 					   Rcpp::Named("package","RcppBDT"));
 	std::string zonefile = Rcpp::as<std::string>(ll.eval(R_GlobalEnv));
     	m_tz.load_from_file(zonefile); 			// load db from csv zonefile
