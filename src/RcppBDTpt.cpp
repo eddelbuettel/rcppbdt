@@ -19,9 +19,6 @@
 // You should have received a copy of the GNU General Public License
 // along with RcppBDT.  If not, see <http://www.gnu.org/licenses/>.
 
-// this enables use of nanoseconds 
-#define BOOST_DATE_TIME_POSIX_TIME_STD_CONFIG 1
-
 #include <RcppBDT.h>
 
 class bdtPt {

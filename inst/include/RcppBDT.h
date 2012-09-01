@@ -24,6 +24,11 @@
 
 #include <RcppCommon.h>
 
+// Setting this variable enables use of nanoseconds (as opposed to microseconds)
+// for the maximum resolution; this comes at a cost of 96 bits as opposed to 64 bits
+// We enable it to experiement with it knowing that R already has a 64 bit resolution
+#define BOOST_DATE_TIME_POSIX_TIME_STD_CONFIG 1
+
 // Setting this variable governs whether we need to link against the
 // Boost Date.Time library (eg -lboost_date_time on Debian/Ubuntu) or
 // not The functions not involving string parsing or conversion are
