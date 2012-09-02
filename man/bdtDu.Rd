@@ -1,6 +1,8 @@
 \name{bdtDu}
 \alias{bdtDu}
 \alias{Rcpp_bdtDu-class}
+\alias{show,Rcpp_bdtDu-method}
+\alias{format,Rcpp_bdtDu-method}
 \docType{package}
 \title{Rcpp module bdtDu for binding of Boost Date_Time duration functionality}
 \description{
@@ -12,6 +14,12 @@
   minute, seconds and fractional seconds.  Fractional seconds ought to
   be at a nano-second granularity; there may be platforms not permitting
   this.
+}
+\section{Method}{
+  \describe{
+    \item{show}{\code{signature(x = "Rcpp_bdtDu")}: prints a (BDTdu) duration class object}
+    \item{format}{\code{signature(x = "Rcpp_bdtDu")}: formats a (BDTdu) duration class object}
+  }
 }
 \details{
   Please consult the Boost documentation for (copious) details on the

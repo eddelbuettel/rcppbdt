@@ -1,6 +1,7 @@
 2012-09-02  Dirk Eddelbuettel  <edd@debian.org>
 
-	* R/zzz.R: show() and format() methods added for ptime and tz modules
+	* R/zzz.R: Added show() and format() methods for the ptime, du and tz
+	modules
 
 2012-09-01  Dirk Eddelbuettel  <edd@debian.org>
 

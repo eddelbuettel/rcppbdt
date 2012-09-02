@@ -52,14 +52,19 @@ delayedAssign( "bdt", local( {
 .format_pt <- function(x, ...) format(x$getDatetime(), ...)
 .show_pt   <- function(object) print(object$getDatetime())
 
+.format_du <- function(x, ...) format(as.difftime( x$getTotalSeconds( ) + x$getFractionalSeconds( ) / 1.0e9 , units="secs"))
+.show_du   <- function(object) print(as.difftime( object$getTotalSeconds( ) + object$getFractionalSeconds( ) / 1.0e9 , units="secs"))
+
 
 ## define an onLoad expression to set some methods
 evalqOnLoad({
     setMethod("show", "Rcpp_bdtDate", .show_date)
     setMethod("show", "Rcpp_bdtTz", .show_tz)
     setMethod("show", "Rcpp_bdtPt", .show_pt)
+    setMethod("show", "Rcpp_bdtDu", .show_du)
     setGeneric("format", function(x,...) standardGeneric("format"))
     setMethod("format", "Rcpp_bdtDate", .format_date)
     setMethod("format", "Rcpp_bdtTz", .format_tz)
     setMethod("format", "Rcpp_bdtPt", .format_pt)
+    setMethod("format", "Rcpp_bdtDu", .format_du)
 })
