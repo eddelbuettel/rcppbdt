@@ -1,1 +1,2 @@
-RcppBDT	 Boost Date.Time functionality accessible via Rcpp
+RcppBDT	     Boost Date.Time date functionality demo
+RcppBDTtz    Boost Date.Time timezone functionality demo
