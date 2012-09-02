@@ -68,12 +68,8 @@ public:
     //     dt.attr("tzone") = m_tzone;
     //     return dt;
     // }
-    Rcpp::Datetime getDstLocalStart(const int year) {
-        boost::posix_time::ptime t = m_tzp->dst_local_start_time(year);
-        boost::posix_time::ptime epoch(boost::gregorian::date(1970,1,1));
-        boost::posix_time::time_duration::sec_type x = // need to correct difference to epoch by UTC offset
-            (t - epoch - m_tzp->base_utc_offset()).total_seconds();
-        return Rcpp::Datetime(x);
+    Rcpp::Datetime getDstLocalStart(const int year) { 
+        return Rcpp::wrap( m_tzp->dst_local_start_time(year) ); 	// uses posix_time::ptime wrap()
     }
     // SEXP getDstEnd(const int year) {
     //     boost::posix_time::ptime t = m_tzp->dst_local_end_time(year);
@@ -85,11 +81,7 @@ public:
     //     return dt;
     // }
     Rcpp::Datetime getDstLocalEnd(const int year) {
-        boost::posix_time::ptime t = m_tzp->dst_local_end_time(year);
-        boost::posix_time::ptime epoch(boost::gregorian::date(1970,1,1));
-        boost::posix_time::time_duration::sec_type x = // need to correct difference to epoch by UTC offset
-            (t - epoch - m_tzp->base_utc_offset()).total_seconds();
-        return Rcpp::Datetime(x);
+        return Rcpp::wrap(m_tzp->dst_local_end_time(year));		// uses posix_time::ptime wrap()
     }
 
 private:

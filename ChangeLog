@@ -7,9 +7,11 @@
 	simplified existing code by using them; and added new setter from the
 	R Datetime class as well
 
-	* man/bdtDu.Rd: Added
-	* man/bdtPt.Rd: Added
-	* man/bdtTz.Rd: Added
+	* man/bdtDu.Rd: Added manual page for duration class
+	* man/bdtPt.Rd: Added manual page for ptime class
+	* man/bdtTz.Rd: Added manual page for tzone class
+
+	* demo/RcppBDTtz.R: Added new demo for tzone class
 
 2012-08-27  Dirk Eddelbuettel  <edd@debian.org>
 
