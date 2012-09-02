@@ -44,16 +44,22 @@ delayedAssign( "bdt", local( {
 }) )
 
 .format_date <- function(x, ...) format(x$getDate(), ...)
-.show_date <- function(object) print(object$getDate())
+.show_date   <- function(object) print(object$getDate())
 
 .format_tz <- function(x, ...) format(x$getRegion(), ...)
-.show_tz <- function(object) print(object$getRegion())
+.show_tz   <- function(object) print(object$getRegion())
+
+.format_pt <- function(x, ...) format(x$getDatetime(), ...)
+.show_pt   <- function(object) print(object$getDatetime())
+
 
 ## define an onLoad expression to set some methods
 evalqOnLoad({
     setMethod("show", "Rcpp_bdtDate", .show_date)
     setMethod("show", "Rcpp_bdtTz", .show_tz)
-    setGeneric("format", function(x,...) standardGeneric("format") )
-    setMethod("format", "Rcpp_bdtDate", .format_date )
-    setMethod("format", "Rcpp_bdtTz", .format_tz )
+    setMethod("show", "Rcpp_bdtPt", .show_pt)
+    setGeneric("format", function(x,...) standardGeneric("format"))
+    setMethod("format", "Rcpp_bdtDate", .format_date)
+    setMethod("format", "Rcpp_bdtTz", .format_tz)
+    setMethod("format", "Rcpp_bdtPt", .format_pt)
 })

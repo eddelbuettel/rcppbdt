@@ -1,3 +1,7 @@
+2012-09-02  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/zzz.R: show() and format() methods added for ptime and tz modules
+
 2012-09-01  Dirk Eddelbuettel  <edd@debian.org>
 
 	* inst/include/RcppBDT.h: Added declarations for two new templated

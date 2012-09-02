@@ -12,12 +12,16 @@ demo.RcppBDTtz  <- function() {
     cat("zone std and dst abbreviation:  ", tz$getStdZoneAbbrev(), "and", tz$getDstZoneAbbrev(), "\n")
     cat("zone std and dst names:         ", tz$getStdZoneName(), "and", tz$getDstZoneName(), "\n")
 
+    cat("\n")
     # format() as cat() enforces txt
-    cat("2012 year dst start and end:    ", format(tz$getDstLocalStart(2012)), "and", format(tz$getDstLocalEnd(2012)), "\n")
+    cat("2012 year dst start:            ", format(tz$getDstLocalStart(2012)), "\n")
+    cat("2012 year dst end:              ", format(tz$getDstLocalEnd(2012)), "\n")
 
+    cat("\n")
     cat("Offset to UTC (in seconds):     ", tz$getUtcOffset(), "\n")
     cat("DST offset (in seconds):        ", tz$getDstOffset(), "\n")
 
+    cat("\n")
     cat("Formal POSIX string of region:  ", tz$getPosixString(), "\n")
 
     cat("\n")
