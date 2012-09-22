@@ -1,6 +1,6 @@
 // -*- mode: C++; c-indent-level: 4; c-basic-offset: 4; indent-tabs-mode: nil; -*-
 //
-// RcppBDT.cpp: Rcpp and Boost Date_Time glue
+// RcppBDTdt.cpp: Rcpp and Boost Date_Time glue for dates
 //
 // Copyright (C) 2010 - 2012 Dirk Eddelbuettel and Romain Francois
 //
@@ -33,6 +33,149 @@ namespace Rcpp {
         return Rcpp::wrap(Rcpp::Date( ymd.year, ymd.month, ymd.day ));
     }
 }
+
+typedef boost::gregorian::date 				bgd;
+typedef boost::gregorian::nth_day_of_the_week_in_month 	nth_dow;
+
+static const boost::gregorian::greg_weekday friday(boost::gregorian::Friday); // used for end-of-biz-week calcs
+
+class bdtDt {
+
+public:
+    bdtDt() : m_dt(1970,1,1) { };                    			// default empty constructor, using epoch
+    //bdtDt(int datenum);
+    bdtDt(int year, int month, int day) : m_dt(year, month, day) { };
+
+    // these set the date from the clock, in local or universal time
+    void setFromLocalClock()		{ m_dt = boost::gregorian::date(boost::gregorian::day_clock::local_day()); }
+    void setFromUTCClock()        	{ m_dt = boost::gregorian::date(boost::gregorian::day_clock::universal_day()); }
+    Rcpp::Date getLocalDay() 		{ return Rcpp::wrap(boost::gregorian::date(boost::gregorian::day_clock::local_day())); }
+    Rcpp::Date getUTCDay() 		{ return Rcpp::wrap(boost::gregorian::date(boost::gregorian::day_clock::universal_day())); }
+
+    // these extract the requested date portion or representation as an integer
+    int getYear() 			{ return static_cast<int>( m_dt.year() ); }
+    int getMonth() 			{ return static_cast<int>( m_dt.month() ); }
+    int getDay() 			{ return static_cast<int>( m_dt.day() ); }
+    int getDayOfWeek() 			{ return static_cast<int>( m_dt.day_of_week() ); }
+    int getDayOfYear() 			{ return static_cast<int>( m_dt.day_of_year() ); }
+
+    void setDate(SEXP dt)		{ m_dt = Rcpp::as<boost::gregorian::date>(dt); }
+    void fromDate(SEXP dt)		{ m_dt = Rcpp::as<boost::gregorian::date>(dt); Rf_warning("'fromDate' is deprecated, use 'setDate'"); }
+    Rcpp::Date getDate()		{ return Rcpp::wrap(m_dt); }
+
+    int getWeekNumber()			{ return m_dt.week_number(); }
+    long getModJulian()			{ return m_dt.week_number(); }
+    long getJulian()			{ return m_dt.week_number(); }
+
+    // construct end-of-month and first-of-next-monthm returning a boost::gregorian::date object
+    void setEndOfMonth()		{ m_dt = m_dt.end_of_month(); } 
+    bgd getEndOfMonth()			{ return m_dt.end_of_month(); } 
+    void setFirstOfNextMonth()		{ m_dt = m_dt.end_of_month() + boost::gregorian::days(1); } 
+    bgd getFirstOfNextMonth() 		{ return m_dt.end_of_month() + boost::gregorian::days(1); }
+
+    void setEndOfBizWeek() 		{ m_dt += boost::gregorian::days_until_weekday(m_dt, friday); }
+    Rcpp::Date getEndOfBizWeek() 	{ return Rcpp::wrap( m_dt += boost::gregorian::days_until_weekday(m_dt, friday) ); }
+
+    void addDays(unsigned int len) 	{ m_dt += boost::gregorian::date_duration(len); }
+    void subtractDays(unsigned int len) { m_dt -= boost::gregorian::date_duration(len); }
+
+    // with thanks to Whit Armstong for doing this in his rboostdatetime
+    void setIMMDate(int mon, int year)  { m_dt = nth_dow(nth_dow::third, boost::gregorian::Wednesday, mon).get_date(year); }
+
+private:
+    boost::gregorian::date m_dt; 			// private Boost date instance
+
+};
+
+Rcpp::Date getIMMDate(bdtDt *d, int mon, int year) { 				// does not use bdtDt pointer, but need for RCPP_MODULE use
+    nth_dow ans_generator(nth_dow::third, boost::gregorian::Wednesday, mon);
+    return Rcpp::wrap(ans_generator.get_date(year));
+}
+
+Rcpp::Date getNthDayOfWeek(bdtDt *d, int nthday, int dow, int mon, int year) { 	// does not use bdtDt pointer, but need for RCPP_MODULE use
+    nth_dow ans_generator(static_cast<boost::date_time::nth_kday_of_month<boost::gregorian::date>::week_num>(nthday), dow, mon);
+    return Rcpp::wrap(ans_generator.get_date(year));
+}
+
+Rcpp::Date getLastDayOfWeekInMonth(bdtDt *d, int weekday, int mon, int year) {	// does not use bdtDt pointer, but need for RCPP_MODULE use
+    boost::gregorian::last_day_of_the_week_in_month lwdm(weekday, mon);
+    return Rcpp::wrap(lwdm.get_date(year));
+}
+
+Rcpp::Date getFirstDayOfWeekInMonth(bdtDt *d, int weekday, int mon, int year) {	// does not use bdtDt pointer, but need for RCPP_MODULE use
+    boost::gregorian::first_day_of_the_week_in_month fwdm(weekday, mon);
+    return Rcpp::wrap(fwdm.get_date(year));
+}
+
+Rcpp::Date getFirstDayOfWeekAfter(bdtDt *d, int weekday, SEXP date) {		// does not use bdtDt pointer, but need for RCPP_MODULE use
+    boost::gregorian::first_day_of_the_week_after fdaf(weekday);
+    boost::gregorian::date dt = Rcpp::as<boost::gregorian::date>(date);
+    return Rcpp::wrap(fdaf.get_date(dt));
+}
+
+Rcpp::Date getLastDayOfWeekBefore(bdtDt *d, int weekday, SEXP date) {		// does not use bdtDt pointer, but need for RCPP_MODULE use
+    boost::gregorian::first_day_of_the_week_before fdab(weekday);
+    boost::gregorian::date dt = Rcpp::as<boost::gregorian::date>(date);
+    return Rcpp::wrap(fdab.get_date(dt));
+}
+
+RCPP_MODULE(bdtDtMod) {
+    Rcpp::class_<bdtDt>("bdtDt")   
+	
+        .constructor("default constructor not setting a value")  
+        .constructor<int,int,int>("constructor with year, month, and day")  
+
+        .method("setFromLocalClock",    &bdtDt::setFromLocalClock,	"set from local date")
+        .method("setFromUTC", 		&bdtDt::setFromUTCClock,      	"set from UTC date")
+        .method("getLocalClock", 	&bdtDt::getLocalDay, 		"return a date from local time")
+        .method("getUTC", 		&bdtDt::getUTCDay, 		"return a date from UTC time")
+
+        .method("getYear",              &bdtDt::getYear,              	"get year of date")
+        .method("getMonth",             &bdtDt::getMonth,             	"get month of date")
+        .method("getDay",               &bdtDt::getDay,               	"get day of date")
+        .method("getDayOfWeek",         &bdtDt::getDayOfWeek,         	"get day of the week of date")
+        .method("getDayOfYear",         &bdtDt::getDayOfYear,         	"get day of the year of date")
+
+        .method("setDate", 		&bdtDt::setDate, 		"set date from an R Date object")
+        .method("getDate",  		&bdtDt::getDate, 		"get date object")
+        .method("fromDate", 		&bdtDt::fromDate, 		"set date from an R Date object (deprecated)")
+
+        .method("getWeekNumber", 	&bdtDt::getWeekNumber, 		"returns the number of the week")
+        .method("getModJulian", 	&bdtDt::getModJulian, 		"returns the modified Julian day")
+        .method("getJulian", 		&bdtDt::getJulian, 		"returns the Julian day")
+
+        .method("setEndOfMonth", 	&bdtDt::setEndOfMonth, 	  	"set to the last day of the month for given date")
+        .method("setFirstOfNextMonth", 	&bdtDt::setFirstOfNextMonth,	"set to the first day of the next month for given date")
+        .method("getEndOfMonth", 	&bdtDt::getEndOfMonth, 		"return the last day of the month for given date")
+        .method("getFirstOfNextMonth", 	&bdtDt::getFirstOfNextMonth, 	"return the first day of the next month for given date")
+
+        .method("setEndOfBizWeek", 	&bdtDt::setEndOfBizWeek, 	"set to the Friday of the week for given date")
+        .method("getEndOfBizWeek", 	&bdtDt::getEndOfBizWeek, 	"return the Friday of the week for given date")
+
+        .method("addDays", 		&bdtDt::addDays, 		"adds days to given date")
+        .method("subtractDays", 	&bdtDt::subtractDays, 		"subtract days from given date")
+
+        .method("setIMMDate", 		&bdtDt::setIMMDate, 		"sets third Wednesday in given month and year")
+
+        .method("getIMMDate", 		&getIMMDate, 			"return third Wednesday in given month and year")
+
+        .method("getNthDayOfWeek", 	&getNthDayOfWeek, 		"return nth week's given day-of-week in given month and year")
+        
+        .method("getLastDayOfWeekInMonth", &getLastDayOfWeekInMonth, 	"return date of last day-of-week in given month and year")
+        .method("getFirstDayOfWeekInMonth", &getFirstDayOfWeekInMonth, 	"return date of last day-of-week in given month and year")
+        
+        .method("getFirstDayOfWeekAfter", &getFirstDayOfWeekAfter, 	"return date of first day-of-week after given date")
+        .method("getLastDayOfWeekBefore", &getLastDayOfWeekBefore, 	"return date of last day-of-week before given date")
+
+        ;
+
+}
+
+
+
+// old previous (first) implementation below
+
+#if 0
 
 #if RcppBDT_UseWithStrings
     void date_print(boost::gregorian::date *d) {
@@ -215,3 +358,4 @@ RCPP_MODULE(bdtMod) {
     ;
 
 }
+#endif
