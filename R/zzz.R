@@ -30,7 +30,6 @@
 ## }
 
 
-##loadModule("bdtMod", TRUE)
 loadModule("bdtDtMod", TRUE)
 loadModule("bdtTzMod", TRUE)
 loadModule("bdtDuMod", TRUE)
@@ -43,9 +42,6 @@ delayedAssign( "bdt", local( {
     x$setFromUTC()
     x
 }) )
-
-.format_date <- function(x, ...) format(x$getDate(), ...)
-.show_date   <- function(object) print(object$getDate())
 
 .format_dt <- function(x, ...) format(x$getDate(), ...)
 .show_dt   <- function(object) print(object$getDate())

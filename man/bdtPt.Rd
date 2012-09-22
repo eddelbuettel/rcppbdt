@@ -18,8 +18,8 @@
 }
 \section{Method}{
   \describe{
-    \item{show}{\code{signature(x = "Rcpp_bdtPt")}: prints a (BDTpt) ptime class object}
-    \item{format}{\code{signature(x = "Rcpp_bdtPt")}: formats a (BDTpt) ptime class object}
+    \item{show}{\code{signature(x = "Rcpp_bdtPt")}: prints a (bdtPt) ptime class object}
+    \item{format}{\code{signature(x = "Rcpp_bdtPt")}: formats a (bdtPt) ptime class object}
   }
 }
 \details{

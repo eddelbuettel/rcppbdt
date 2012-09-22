@@ -22,8 +22,8 @@
 }
 \section{Method}{
   \describe{
-    \item{show}{\code{signature(x = "Rcpp_bdtTz")}: prints a (BDTtz) timezone class object}
-    \item{format}{\code{signature(x = "Rcpp_bdtTz")}: formats a (BDTtz) timezone class object}
+    \item{show}{\code{signature(x = "Rcpp_bdtTz")}: prints a (bdtTz) timezone class object}
+    \item{format}{\code{signature(x = "Rcpp_bdtTz")}: formats a (bdtTz) timezone class object}
   }
 }
 \details{

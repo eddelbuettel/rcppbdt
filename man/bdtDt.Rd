@@ -1,28 +1,29 @@
-\name{bdt}
+\name{bdtDt}
 \alias{bdt}
-\alias{bdtMod}
-\alias{show,Rcpp_bdtDate-method}
-\alias{format,Rcpp_bdtDate-method}
-\alias{bdtDate}
-\alias{Rcpp_bdtDate-class}
+\alias{bdtDt}
+\alias{show,Rcpp_bdtDt-method}
+\alias{format,Rcpp_bdtDt-method}
+\alias{Rcpp_bdtDt-class}
 \docType{package}
-\title{Default object for RcppBDT Boost Date_Time binding}
+\title{Rcpp module bdtDt for binding of Boost Date_Time Date functionality}
 \description{
-  The \verb{bdt} variable is a default instance of the 'date' class
-  created by means of Rcpp modules. It facilities accessing the member
-  functions via utility function, see for example \code{\link{getEndOfBizWeek}}.
+  The \verb{bdtDt} module is created using Rcpp modules and wraps a
+  helper class \verb{bdtDt} around Boost Date_time date
+  functionality provided by the Boost class \code{boost::gregorian::date}.
 
-  The \verb{bdtDate} variable is an instance of the class created by Rcpp
-  modules. It contain just the \code{date} class from Boost Date_time; see
-  \code{print(bdtDate)} for the available methods. 
-  
   New instances can be created using either the default constructor
   (without arguments) or the constructor using year, month, date arguments.
+
+  The \verb{bdt} variable is a default instance of this \code{bdtDt}
+  reference class. It facilities accessing the member functions via
+  utility function, see for example \code{\link{getEndOfBizWeek}} or
+  \code{print(bdtDt)} for the available methods.
+  
 }
 \section{Method}{
   \describe{
-    \item{show}{\code{signature(x = "Rcpp_date")}: prints a (BDT) date class object}
-    \item{format}{\code{signature(x = "Rcpp_date")}: formats a (BDT) date class object}
+    \item{show}{\code{signature(x = "Rcpp_bdtDt")}: prints a (bdtDt) date class object}
+    \item{format}{\code{signature(x = "Rcpp_bdtDt")}: formats a (bdtDt) date class object}
   }
 }
 \details{
