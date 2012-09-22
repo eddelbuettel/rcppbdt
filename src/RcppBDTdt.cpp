@@ -34,17 +34,12 @@ namespace Rcpp {
     }
 }
 
-typedef boost::gregorian::date 				bgd;
-typedef boost::gregorian::nth_day_of_the_week_in_month 	nth_dow;
-
-static const boost::gregorian::greg_weekday friday(boost::gregorian::Friday); // used for end-of-biz-week calcs
-
 class bdtDt {
 
 public:
-    bdtDt() : m_dt(1970,1,1) { };                    			// default empty constructor, using epoch
-    //bdtDt(int datenum);
-    bdtDt(int year, int month, int day) : m_dt(year, month, day) { };
+    bdtDt()  				{ setFromLocalClock(); } 	// default empty constructor, using epoch
+    bdtDt(SEXP dt) 			{ setDate(dt); } 		// constructor from SEXP using R Date
+    bdtDt(int year, int month, int day) : m_dt(year, month, day) { } 	// constructor using year, month, day
 
     // these set the date from the clock, in local or universal time
     void setFromLocalClock()		{ m_dt = boost::gregorian::date(boost::gregorian::day_clock::local_day()); }
@@ -69,18 +64,27 @@ public:
 
     // construct end-of-month and first-of-next-monthm returning a boost::gregorian::date object
     void setEndOfMonth()		{ m_dt = m_dt.end_of_month(); } 
-    bgd getEndOfMonth()			{ return m_dt.end_of_month(); } 
+    boost::gregorian::date getEndOfMonth() { 
+        				  return m_dt.end_of_month(); } 
     void setFirstOfNextMonth()		{ m_dt = m_dt.end_of_month() + boost::gregorian::days(1); } 
-    bgd getFirstOfNextMonth() 		{ return m_dt.end_of_month() + boost::gregorian::days(1); }
+    boost::gregorian::date getFirstOfNextMonth() { 
+                                          return m_dt.end_of_month() + boost::gregorian::days(1); }
 
-    void setEndOfBizWeek() 		{ m_dt += boost::gregorian::days_until_weekday(m_dt, friday); }
-    Rcpp::Date getEndOfBizWeek() 	{ return Rcpp::wrap( m_dt += boost::gregorian::days_until_weekday(m_dt, friday) ); }
+    void setEndOfBizWeek() 		{ 
+        m_dt += boost::gregorian::days_until_weekday(m_dt, boost::gregorian::greg_weekday(boost::gregorian::Friday)); 
+    }
+    Rcpp::Date getEndOfBizWeek() 	{ 
+        return Rcpp::wrap( m_dt += boost::gregorian::days_until_weekday(m_dt, boost::gregorian::greg_weekday(boost::gregorian::Friday) )); 
+    }
 
     void addDays(unsigned int len) 	{ m_dt += boost::gregorian::date_duration(len); }
     void subtractDays(unsigned int len) { m_dt -= boost::gregorian::date_duration(len); }
 
     // with thanks to Whit Armstong for doing this in his rboostdatetime
-    void setIMMDate(int mon, int year)  { m_dt = nth_dow(nth_dow::third, boost::gregorian::Wednesday, mon).get_date(year); }
+    void setIMMDate(int mon, int year)  { 
+        m_dt = boost::gregorian::nth_day_of_the_week_in_month(boost::gregorian::nth_day_of_the_week_in_month::third, 
+                                                              boost::gregorian::Wednesday, mon).get_date(year); 
+    }
 
 private:
     boost::gregorian::date m_dt; 			// private Boost date instance
@@ -88,12 +92,12 @@ private:
 };
 
 Rcpp::Date getIMMDate(bdtDt *d, int mon, int year) { 				// does not use bdtDt pointer, but need for RCPP_MODULE use
-    nth_dow ans_generator(nth_dow::third, boost::gregorian::Wednesday, mon);
-    return Rcpp::wrap(ans_generator.get_date(year));
+    return Rcpp::wrap( boost::gregorian::nth_day_of_the_week_in_month(boost::gregorian::nth_day_of_the_week_in_month::third, 
+                                                                      boost::gregorian::Wednesday, mon).get_date(year) );
 }
 
 Rcpp::Date getNthDayOfWeek(bdtDt *d, int nthday, int dow, int mon, int year) { 	// does not use bdtDt pointer, but need for RCPP_MODULE use
-    nth_dow ans_generator(static_cast<boost::date_time::nth_kday_of_month<boost::gregorian::date>::week_num>(nthday), dow, mon);
+    boost::gregorian::nth_day_of_the_week_in_month ans_generator(static_cast<boost::date_time::nth_kday_of_month<boost::gregorian::date>::week_num>(nthday), dow, mon);
     return Rcpp::wrap(ans_generator.get_date(year));
 }
 
@@ -123,6 +127,7 @@ RCPP_MODULE(bdtDtMod) {
     Rcpp::class_<bdtDt>("bdtDt")   
 	
         .constructor("default constructor not setting a value")  
+        .constructor<SEXP>("constructor using R Date type")  
         .constructor<int,int,int>("constructor with year, month, and day")  
 
         .method("setFromLocalClock",    &bdtDt::setFromLocalClock,	"set from local date")

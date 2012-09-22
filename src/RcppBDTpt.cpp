@@ -41,8 +41,9 @@ namespace Rcpp {
 class bdtPt {
 
 public:
-    bdtPt() { }                    			// default empty constructor 
-    bdtPt(int year, int month, int day, 		// constructor from date and duration
+    bdtPt() 				  { setFromLocalTimeInMicroSeconds(); }  	// default empty constructor 
+    bdtPt(SEXP dt) 			  { setFromDatetime(dt); }     			// constructor from R's Datetime
+    bdtPt(int year, int month, int day, 			// constructor from date and duration
           int hours, int minutes, int seconds, 
           int fractionalseconds) : m_pt(boost::gregorian::date(year, month, day), 
                                         boost::posix_time::time_duration(hours, minutes, seconds, fractionalseconds)) { }
@@ -71,7 +72,8 @@ private:
 RCPP_MODULE(bdtPtMod) {
     Rcpp::class_<bdtPt>("bdtPt")   
 	
-        .constructor("default constructor not setting a value")  
+        .constructor("default constructor setting current local time")  
+        .constructor<SEXP>("constructor using R Datetime")
         .constructor<int,int,int,int,int,int,int>("constructor with year, month, day, hours, minutes, seconds and fractional_seconds")  
 
         .method("setFromLocalTimeInSeconds",      &bdtPt::setFromLocalTimeInSeconds,      "set from local time with seconds")
