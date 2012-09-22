@@ -1,7 +1,7 @@
 ##
 ## zzz.R: Loading Rcpp and Boost Date_Time glue
 ##
-## Copyright (C) 2010 - 2012 Dirk Eddelbuettel and Romain Francois
+## Copyright (C) 2010 - 2012  Dirk Eddelbuettel and Romain Francois
 ##
 ## This file is part of RcppBDT.
 ##
@@ -30,21 +30,25 @@
 ## }
 
 
-loadModule("bdtMod", TRUE)
+##loadModule("bdtMod", TRUE)
+loadModule("bdtDtMod", TRUE)
 loadModule("bdtTzMod", TRUE)
 loadModule("bdtDuMod", TRUE)
 loadModule("bdtPtMod", TRUE)
 
-## create a variable 'bdt' from out bdtMod Module
-## this variable is used as a package-global instance
+## create a variable 'bdt' from the bdtDt Module (formerly: bdtMod)
+## this variable is used as a package-global instance in some R access function
 delayedAssign( "bdt", local( {
-    x <- new( bdtDate )
+    x <- new( bdtDt )
     x$setFromUTC()
     x
 }) )
 
 .format_date <- function(x, ...) format(x$getDate(), ...)
 .show_date   <- function(object) print(object$getDate())
+
+.format_dt <- function(x, ...) format(x$getDate(), ...)
+.show_dt   <- function(object) print(object$getDate())
 
 .format_tz <- function(x, ...) format(x$getRegion(), ...)
 .show_tz   <- function(object) print(object$getRegion())
@@ -58,12 +62,12 @@ delayedAssign( "bdt", local( {
 
 ## define an onLoad expression to set some methods
 evalqOnLoad({
-    setMethod("show", "Rcpp_bdtDate", .show_date)
+    setMethod("show", "Rcpp_bdtDt", .show_dt)
     setMethod("show", "Rcpp_bdtTz", .show_tz)
     setMethod("show", "Rcpp_bdtPt", .show_pt)
     setMethod("show", "Rcpp_bdtDu", .show_du)
     setGeneric("format", function(x,...) standardGeneric("format"))
-    setMethod("format", "Rcpp_bdtDate", .format_date)
+    setMethod("format", "Rcpp_bdtDt", .format_dt)
     setMethod("format", "Rcpp_bdtTz", .format_tz)
     setMethod("format", "Rcpp_bdtPt", .format_pt)
     setMethod("format", "Rcpp_bdtDu", .format_du)

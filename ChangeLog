@@ -1,3 +1,9 @@
+2012-09-22  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/RcppBDTdt.cpp: Rewrite of the initial Date functionality in the
+	style of the three recently added classes which simplifies things
+	greatly; new class transparently replaces old class 
+
 2012-09-02  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/zzz.R: Added show() and format() methods for the ptime, du and tz

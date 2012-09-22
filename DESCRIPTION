@@ -16,7 +16,5 @@ License: GPL (>= 2)
 LazyLoad: yes
 Depends: Rcpp (>= 0.9.13), methods
 Imports: methods, Rcpp
-SystemRequirements: Boost 
-LinkingTo: Rcpp
-RcppModules: bdtMod
-
+LinkingTo: Rcpp, BoostHeaders
+SystemRequirements: Boost (or the BoostHeaders package)
