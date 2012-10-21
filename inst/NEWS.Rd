@@ -2,7 +2,7 @@
 \title{News for Package \pkg{RcppBDT}}
 \newcommand{\cpkg}{\href{http://CRAN.R-project.org/package=#1}{\pkg{#1}}}
 
-\section{Changes in version 0.2.2 (2012-10-01)}{
+\section{Changes in [unreleased] version 0.2.2 (2012-11-01)}{
   \itemize{
     \item New module 'bdtDt' replacing the old 'bdtDate' module in a
     more transparent stule using a local class which is wrapped, just like

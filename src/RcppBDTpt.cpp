@@ -64,6 +64,11 @@ public:
         return Rcpp::Date( ymd.year, ymd.month, ymd.day );
     }
 
+    void addHours(int h)        	  { m_pt += boost::posix_time::time_duration(h, 0, 0, 0); }
+    void addMinutes(int m)        	  { m_pt += boost::posix_time::time_duration(0, m, 0, 0); }
+    void addSeconds(int s)        	  { m_pt += boost::posix_time::time_duration(0, 0, s, 0); }
+    void addFractionalSeconds(int fs)     { m_pt += boost::posix_time::time_duration(0, 0, 0, fs); }
+
 private:
     boost::posix_time::ptime m_pt; 		// private ptime instace
 
@@ -87,5 +92,11 @@ RCPP_MODULE(bdtPtMod) {
 
         .method("getDatetime",                    &bdtPt::getDatetime,                    "get datetime representation")
         .method("getDate",                        &bdtPt::getDate,                        "get date representation")
+
+        .method("addHours",                       &bdtPt::addHours,                       "add given hours to posix time object")
+        .method("addMinutes",                     &bdtPt::addMinutes,                     "add given minutes to posix time object")
+        .method("addSeconds",                     &bdtPt::addSeconds,                     "add given seconds to posix time object")
+        .method("addFractionalSeconds",           &bdtPt::addFractionalSeconds,           "add given fractional seconds to posix time object")
+
     ;
 }

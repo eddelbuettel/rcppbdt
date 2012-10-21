@@ -1,8 +1,13 @@
+2012-10-21  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/RcppBDTpt.cpp: Added addHours(), addMinutes(), addSeconds() and
+	addFractionalSeconds() to posix time class, shadowing Boost's side
+
 2012-09-22  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/RcppBDTdt.cpp: Rewrite of the initial Date functionality in the
 	style of the three recently added classes which simplifies things
-	greatly; new class transparently replaces old class 
+	greatly; new class transparently replaces old class
 
 2012-09-02  Dirk Eddelbuettel  <edd@debian.org>
 
