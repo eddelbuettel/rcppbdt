@@ -2,6 +2,7 @@
 
 	* src/RcppBDTpt.cpp: Added addHours(), addMinutes(), addSeconds() and
 	addFractionalSeconds() to posix time class, shadowing Boost's side
+	* src/RcppBDTpt.cpp: Added constructor from numeric
 
 2012-09-22  Dirk Eddelbuettel  <edd@debian.org>
 

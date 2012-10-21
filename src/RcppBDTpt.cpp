@@ -42,7 +42,8 @@ class bdtPt {
 
 public:
     bdtPt() 				  { setFromLocalTimeInMicroSeconds(); }  	// default empty constructor 
-    bdtPt(SEXP dt) 			  { setFromDatetime(dt); }     			// constructor from R's Datetime
+    bdtPt(SEXP dt) 			  { setFromDatetime(dt); }     			// constructor from R's / Rcpp's Datetime
+    bdtPt(double dt) 			  { setFromDouble(dt); }     			// constructor from double using Rcpp's Datetime
     bdtPt(int year, int month, int day, 			// constructor from date and duration
           int hours, int minutes, int seconds, 
           int fractionalseconds) : m_pt(boost::gregorian::date(year, month, day), 
@@ -56,6 +57,11 @@ public:
     void setFromTimeT(const time_t t)     { m_pt = boost::posix_time::from_time_t(t); }
 
     void setFromDatetime(const SEXP dt)   { m_pt = Rcpp::as<boost::posix_time::ptime>(dt); }
+    void setFromDouble(const double d)   { 
+        Rcpp::Datetime dt(d);
+        m_pt = boost::posix_time::ptime(boost::gregorian::date(dt.getYear(), dt.getMonth(), dt.getDay()), 
+                                        boost::posix_time::time_duration(dt.getHours(), dt.getMinutes(), dt.getSeconds(), dt.getMicroSeconds()/1000.0));
+    }
 
     Rcpp::Datetime getDatetime() 	  { return Rcpp::wrap(m_pt); }
 
@@ -79,6 +85,7 @@ RCPP_MODULE(bdtPtMod) {
 	
         .constructor("default constructor setting current local time")  
         .constructor<SEXP>("constructor using R Datetime")
+        .constructor<double>("constructor from numeric via Datetime")
         .constructor<int,int,int,int,int,int,int>("constructor with year, month, day, hours, minutes, seconds and fractional_seconds")  
 
         .method("setFromLocalTimeInSeconds",      &bdtPt::setFromLocalTimeInSeconds,      "set from local time with seconds")
