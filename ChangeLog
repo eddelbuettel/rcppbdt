@@ -1,5 +1,8 @@
 2012-10-21  Dirk Eddelbuettel  <edd@debian.org>
 
+	* src/RcppBDTdu.cpp: Added method to add posix time, and return the
+	resulting posix time object permitting simple mix of duration and time
+
 	* src/RcppBDTpt.cpp: Added addHours(), addMinutes(), addSeconds() and
 	addFractionalSeconds() to posix time class, shadowing Boost's side
 	* src/RcppBDTpt.cpp: Added constructor from numeric

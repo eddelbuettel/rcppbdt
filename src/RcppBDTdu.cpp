@@ -44,6 +44,12 @@ public:
     void addMilliSeconds(int s) { m_td += boost::posix_time::milliseconds(s); }
     void addMicroSeconds(int s) { m_td += boost::posix_time::microseconds(s); }
     void addNanoSeconds(int s)  { m_td += boost::posix_time::nanoseconds(s); }
+
+    Rcpp::Datetime getAddedPosixtime(SEXP ptsexp)  { 
+        boost::posix_time::ptime pt(Rcpp::as<boost::posix_time::ptime>(ptsexp)); 
+        pt += m_td;
+        return Rcpp::wrap(pt); 
+    }
             
 private:
     boost::posix_time::time_duration m_td;
@@ -73,5 +79,8 @@ RCPP_MODULE(bdtDuMod) {
         .method("addMilliSeconds",        &bdtDu::addMilliSeconds,        "add given milliseconds to duration object")
         .method("addMicroSeconds",        &bdtDu::addMicroSeconds,        "add given microseconds to duration object")
         .method("addNanoSeconds",         &bdtDu::addNanoSeconds,         "add given nanoseconds to duration object")
+
+        .method("getAddedPosixtime",      &bdtDu::getAddedPosixtime,	  "adds duration to given posix time and returns posix time")
+
     ;
 }
