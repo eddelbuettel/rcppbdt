@@ -58,28 +58,16 @@ public:
             
 };
 
-using namespace Rcpp ;
+//using namespace Rcpp ;
 
-object<bdtDu> hours(int h){
-    return new bdtDu( boost::posix_time::hours(h) ) ;   
-}
-object<bdtDu> minutes(int m){
-    return new bdtDu( boost::posix_time::minutes(m)) ;   
-}
-object<bdtDu> seconds(int s){
-    return new bdtDu( boost::posix_time::seconds(s)) ;   
-}
-object<bdtDu> milliseconds(int ms){
-    return new bdtDu( boost::posix_time::milliseconds(ms)) ;   
-}
-object<bdtDu> microseconds(int ms){
-    return new bdtDu( boost::posix_time::microseconds(ms)) ;   
-}
-object<bdtDu> nanoseconds(int ms){
-    return new bdtDu( boost::posix_time::nanoseconds(ms)) ;   
-}
+Rcpp::object<bdtDu> hours(int h)		{ return new bdtDu( boost::posix_time::hours(h) ); }
+Rcpp::object<bdtDu> minutes(int m)		{ return new bdtDu( boost::posix_time::minutes(m) ); }
+Rcpp::object<bdtDu> seconds(int s)		{ return new bdtDu( boost::posix_time::seconds(s) ); }
+Rcpp::object<bdtDu> milliseconds(int ms)	{ return new bdtDu( boost::posix_time::milliseconds(ms) ); }
+Rcpp::object<bdtDu> microseconds(int ms)	{ return new bdtDu( boost::posix_time::microseconds(ms) ); }
+Rcpp::object<bdtDu> nanoseconds(int ms) 	{ return new bdtDu( boost::posix_time::nanoseconds(ms) ); }
   
-object<bdtDu> arith_bdtDu_bdtDu( object<bdtDu> e1, object<bdtDu> e2, std::string op ){
+Rcpp::object<bdtDu> arith_bdtDu_bdtDu( Rcpp::object<bdtDu> e1, Rcpp::object<bdtDu> e2, std::string op ){
     if( ! op.compare("+") ){
         return new bdtDu( e1->m_td + e2->m_td ) ;   
     } else if( ! op.compare("-") ){
@@ -90,7 +78,7 @@ object<bdtDu> arith_bdtDu_bdtDu( object<bdtDu> e1, object<bdtDu> e2, std::string
     return new bdtDu( 0,0,0,0 )  ;
 }
 
-object<bdtDu> arith_bdtDu_int( object<bdtDu> e1, int e2, std::string op ){
+Rcpp::object<bdtDu> arith_bdtDu_int( Rcpp::object<bdtDu> e1, int e2, std::string op ){
     if( ! op.compare("*") ){
         return new bdtDu( e1->m_td * e2 ) ;   
     } else if( ! op.compare("/") ){
@@ -101,7 +89,7 @@ object<bdtDu> arith_bdtDu_int( object<bdtDu> e1, int e2, std::string op ){
     return new bdtDu( 0,0,0,0 )  ;
 }
 
-bool compare_bdtDu_bdtDu( object<bdtDu> e1, object<bdtDu> e2, std::string op ){
+bool compare_bdtDu_bdtDu( Rcpp::object<bdtDu> e1, Rcpp::object<bdtDu> e2, std::string op ){
     if( !op.compare( "==" ) ){
         return e1->m_td == e2->m_td ;   
     } else if( !op.compare( "!=" ) ){
@@ -120,7 +108,7 @@ bool compare_bdtDu_bdtDu( object<bdtDu> e1, object<bdtDu> e2, std::string op ){
 }
 
 RCPP_MODULE(bdtDuMod) {
-    class_<bdtDu>("bdtDu")   
+    Rcpp::class_<bdtDu>("bdtDu")   
 	
         .constructor<int,int,int,int>("constructor with hours, minutes, seconds and fractional_seconds")  
 
@@ -145,15 +133,15 @@ RCPP_MODULE(bdtDuMod) {
         .method("getAddedPosixtime",      &bdtDu::getAddedPosixtime,	  "adds duration to given posix time and returns posix time")
     ;
     
-    function( "hours", &hours ) ; 
-    function( "minutes", &minutes ) ; 
-    function( "seconds", &seconds ) ; 
-    function( "milliseconds", &milliseconds ) ; 
-    function( "microseconds", &microseconds ) ;
-    function( "nanoseconds", &nanoseconds ) ; 
+    function( "hours", 		&hours ) ; 
+    function( "minutes", 	&minutes ) ; 
+    function( "seconds", 	&seconds ) ; 
+    function( "milliseconds", 	&milliseconds ) ; 
+    function( "microseconds", 	&microseconds ) ;
+    function( "nanoseconds", 	&nanoseconds ) ; 
     
-    function( "arith_bdtDu_bdtDu", &arith_bdtDu_bdtDu ) ; 
-    function( "arith_bdtDu_int", &arith_bdtDu_int ) ; 
-    function( "compare_bdtDu_bdtDu", &compare_bdtDu_bdtDu ) ;
+    function( "arith_bdtDu_bdtDu", 	&arith_bdtDu_bdtDu ) ; 
+    function( "arith_bdtDu_int", 	&arith_bdtDu_int ) ; 
+    function( "compare_bdtDu_bdtDu",	&compare_bdtDu_bdtDu ) ;
 }
 
