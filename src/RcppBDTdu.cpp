@@ -26,7 +26,9 @@ class bdtDu {
 public:
 
     bdtDu(int hours, int minutes, int seconds, int fractionalseconds) : m_td(hours, minutes, seconds, fractionalseconds) { }
-
+    bdtDu(boost::posix_time::time_duration td) : m_td(td){} 
+    bdtDu(const bdtDu& other) : m_td(other.m_td){}
+    
     long getHours()             { return(m_td.hours()); }
     long getMinutes()           { return(m_td.minutes()); }
     long getSeconds()           { return(m_td.seconds()); }
@@ -44,20 +46,81 @@ public:
     void addMilliSeconds(int s) { m_td += boost::posix_time::milliseconds(s); }
     void addMicroSeconds(int s) { m_td += boost::posix_time::microseconds(s); }
     void addNanoSeconds(int s)  { m_td += boost::posix_time::nanoseconds(s); }
-
     Rcpp::Datetime getAddedPosixtime(SEXP ptsexp)  { 
         boost::posix_time::ptime pt(Rcpp::as<boost::posix_time::ptime>(ptsexp)); 
         pt += m_td;
         return Rcpp::wrap(pt); 
     }
             
-private:
+// [RF] easier for me to have this public
+// private:
     boost::posix_time::time_duration m_td;
             
 };
 
+using namespace Rcpp ;
+
+object<bdtDu> hours(int h){
+    return new bdtDu( boost::posix_time::hours(h) ) ;   
+}
+object<bdtDu> minutes(int m){
+    return new bdtDu( boost::posix_time::minutes(m)) ;   
+}
+object<bdtDu> seconds(int s){
+    return new bdtDu( boost::posix_time::seconds(s)) ;   
+}
+object<bdtDu> milliseconds(int ms){
+    return new bdtDu( boost::posix_time::milliseconds(ms)) ;   
+}
+object<bdtDu> microseconds(int ms){
+    return new bdtDu( boost::posix_time::microseconds(ms)) ;   
+}
+object<bdtDu> nanoseconds(int ms){
+    return new bdtDu( boost::posix_time::nanoseconds(ms)) ;   
+}
+  
+object<bdtDu> arith_bdtDu_bdtDu( object<bdtDu> e1, object<bdtDu> e2, std::string op ){
+    if( ! op.compare("+") ){
+        return new bdtDu( e1->m_td + e2->m_td ) ;   
+    } else if( ! op.compare("-") ){
+        return new bdtDu( e1->m_td - e2->m_td ) ;
+    }
+    Rf_error( "operator not implemented" )  ;
+    // not reached
+    return new bdtDu( 0,0,0,0 )  ;
+}
+
+object<bdtDu> arith_bdtDu_int( object<bdtDu> e1, int e2, std::string op ){
+    if( ! op.compare("*") ){
+        return new bdtDu( e1->m_td * e2 ) ;   
+    } else if( ! op.compare("/") ){
+        return new bdtDu( e1->m_td / e2 ) ;
+    }
+    Rf_error( "operator not implemented" )  ;
+    // not reached
+    return new bdtDu( 0,0,0,0 )  ;
+}
+
+bool compare_bdtDu_bdtDu( object<bdtDu> e1, object<bdtDu> e2, std::string op ){
+    if( !op.compare( "==" ) ){
+        return e1->m_td == e2->m_td ;   
+    } else if( !op.compare( "!=" ) ){
+        return e1->m_td != e2->m_td ;
+    } else if( !op.compare( ">" ) ){
+        return e1->m_td > e2->m_td ;
+    } else if( !op.compare( "<" ) ){
+        return e1->m_td < e2->m_td ;
+    } else if( !op.compare( ">=" ) ){
+        return e1->m_td >= e2->m_td ;
+    } else if( !op.compare( "<=" ) ){
+        return e1->m_td <= e2->m_td ;
+    }
+    Rf_error( "unknown operator" ) ;
+    return R_NilValue ;
+}
+
 RCPP_MODULE(bdtDuMod) {
-    Rcpp::class_<bdtDu>("bdtDu")   
+    class_<bdtDu>("bdtDu")   
 	
         .constructor<int,int,int,int>("constructor with hours, minutes, seconds and fractional_seconds")  
 
@@ -79,8 +142,18 @@ RCPP_MODULE(bdtDuMod) {
         .method("addMilliSeconds",        &bdtDu::addMilliSeconds,        "add given milliseconds to duration object")
         .method("addMicroSeconds",        &bdtDu::addMicroSeconds,        "add given microseconds to duration object")
         .method("addNanoSeconds",         &bdtDu::addNanoSeconds,         "add given nanoseconds to duration object")
-
         .method("getAddedPosixtime",      &bdtDu::getAddedPosixtime,	  "adds duration to given posix time and returns posix time")
-
     ;
+    
+    function( "hours", &hours ) ; 
+    function( "minutes", &minutes ) ; 
+    function( "seconds", &seconds ) ; 
+    function( "milliseconds", &milliseconds ) ; 
+    function( "microseconds", &microseconds ) ;
+    function( "nanoseconds", &nanoseconds ) ; 
+    
+    function( "arith_bdtDu_bdtDu", &arith_bdtDu_bdtDu ) ; 
+    function( "arith_bdtDu_int", &arith_bdtDu_int ) ; 
+    function( "compare_bdtDu_bdtDu", &compare_bdtDu_bdtDu ) ;
 }
+

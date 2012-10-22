@@ -1,3 +1,9 @@
+2012-10-22  Romain Francois  <romain@r-enthusiasts.com>
+
+	* src/RcppBDTdu.cpp: implementing functions hours, minutes, ... and operators
+	+,-(du, du) *,/(du,int)
+	* R/zzz.R: associated S4 methods
+
 2012-10-21  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/RcppBDTdu.cpp: Added method to add posix time, and return the

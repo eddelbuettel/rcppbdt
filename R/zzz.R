@@ -67,4 +67,17 @@ evalqOnLoad({
     setMethod("format", "Rcpp_bdtTz", .format_tz)
     setMethod("format", "Rcpp_bdtPt", .format_pt)
     setMethod("format", "Rcpp_bdtDu", .format_du)
+    
+    setMethod("Arith", signature(e1 = "Rcpp_bdtDu", e2 = "Rcpp_bdtDu" ), function(e1, e2){
+        arith_bdtDu_bdtDu( e1, e2, .Generic )
+    } )
+    setMethod("Arith", signature(e1 = "Rcpp_bdtDu", e2 = "integer" ), function(e1, e2){
+        arith_bdtDu_int( e1, e2, .Generic )
+    } )
+    setMethod("Arith", signature(e1 = "Rcpp_bdtDu", e2 = "numeric" ), function(e1, e2){
+        arith_bdtDu_int( e1, as.integer(e2), .Generic )
+    } )
+    setMethod("Compare", signature(e1 = "Rcpp_bdtDu", e2 = "Rcpp_bdtDu" ), function(e1, e2){
+        compare_bdtDu_bdtDu( e1, e2, .Generic )
+    } )
 })
