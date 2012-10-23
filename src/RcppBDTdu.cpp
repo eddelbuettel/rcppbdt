@@ -44,6 +44,12 @@ Rcpp::object<bdtDu> arith_bdtDu_int( Rcpp::object<bdtDu> e1, int e2, std::string
         return new bdtDu( e1->m_td * e2 ) ;   
     } else if( ! op.compare("/") ){
         return new bdtDu( e1->m_td / e2 ) ;
+    } else if( ! op.compare("+") ){
+        //Rf_warning("Interpreting int as seconds");
+        return new bdtDu(e1->m_td + boost::posix_time::time_duration(0,0,e2,0));
+    } else if( ! op.compare("-") ){
+        //Rf_warning("Interpreting int as seconds");
+        return new bdtDu(e1->m_td - boost::posix_time::time_duration(0, 0, e2, 0));
     }
     Rf_error( "operator not implemented" )  ;
     // not reached
