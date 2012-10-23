@@ -26,8 +26,8 @@ class bdtDu {
 public:
 
     bdtDu(int hours, int minutes, int seconds, int fractionalseconds) : m_td(hours, minutes, seconds, fractionalseconds) { }
-    bdtDu(boost::posix_time::time_duration td) : m_td(td){} 
-    bdtDu(const bdtDu& other) : m_td(other.m_td){}
+    bdtDu(boost::posix_time::time_duration td) : m_td(td) {} 
+    bdtDu(const bdtDu& other) : m_td(other.m_td ){}
     
     long getHours()             { return(m_td.hours()); }
     long getMinutes()           { return(m_td.minutes()); }
@@ -51,11 +51,13 @@ public:
         pt += m_td;
         return Rcpp::wrap(pt); 
     }
-            
-// [RF] easier for me to have this public
-// private:
+
+private:
     boost::posix_time::time_duration m_td;
-            
+
+    friend Rcpp::object<bdtDu> arith_bdtDu_bdtDu(Rcpp::object<bdtDu>, Rcpp::object<bdtDu>, std::string);
+    friend Rcpp::object<bdtDu> arith_bdtDu_int(Rcpp::object<bdtDu>, int, std::string);
+    friend bool compare_bdtDu_bdtDu(Rcpp::object<bdtDu>, Rcpp::object<bdtDu>, std::string);
 };
 
 //using namespace Rcpp ;
