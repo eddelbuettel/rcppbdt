@@ -38,7 +38,7 @@ namespace Rcpp {
     }
 }
 
-Rcpp::object<bdtPt> arith_bdtPt_bdtDu(Rcpp::object<bdtPt> e1, Rcpp::object<bdtDu> e2, std::string op){
+bdtPt* arith_bdtPt_bdtDu(Rcpp::object<bdtPt> e1, Rcpp::object<bdtDu> e2, std::string op){
     if( ! op.compare("+") ){
         return new bdtPt( e1->m_pt + e2->m_td ) ;   
     } else if( ! op.compare("-") ){
@@ -95,6 +95,6 @@ RCPP_MODULE(bdtPtMod) {
 
     ;
 
-    function("arith_bdtPt_bdtDu", 	&arith_bdtPt_bdtDu); 
-    function("compare_bdtPt_bdtPt",	&compare_bdtPt_bdtPt);
+    Rcpp::function("arith_bdtPt_bdtDu", 	&arith_bdtPt_bdtDu); 
+    Rcpp::function("compare_bdtPt_bdtPt",	&compare_bdtPt_bdtPt);
 }

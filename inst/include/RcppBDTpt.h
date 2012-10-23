@@ -66,7 +66,7 @@ public:
 private:
     boost::posix_time::ptime m_pt; 		// private ptime instace
 
-    friend Rcpp::object<bdtPt> arith_bdtPt_bdtDu(Rcpp::object<bdtPt>, Rcpp::object<bdtDu>, std::string);
+    friend bdtPt* arith_bdtPt_bdtDu(Rcpp::object<bdtPt>, Rcpp::object<bdtDu>, std::string);
     friend bool compare_bdtPt_bdtPt(Rcpp::object<bdtPt>, Rcpp::object<bdtPt>, std::string);
 };
 
