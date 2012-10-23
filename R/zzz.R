@@ -62,22 +62,24 @@ evalqOnLoad({
     setMethod("show", "Rcpp_bdtTz", .show_tz)
     setMethod("show", "Rcpp_bdtPt", .show_pt)
     setMethod("show", "Rcpp_bdtDu", .show_du)
+
     setGeneric("format", function(x,...) standardGeneric("format"))
     setMethod("format", "Rcpp_bdtDt", .format_dt)
     setMethod("format", "Rcpp_bdtTz", .format_tz)
     setMethod("format", "Rcpp_bdtPt", .format_pt)
     setMethod("format", "Rcpp_bdtDu", .format_du)
-    
-    setMethod("Arith", signature(e1 = "Rcpp_bdtDu", e2 = "Rcpp_bdtDu" ), function(e1, e2){
-        arith_bdtDu_bdtDu( e1, e2, .Generic )
-    } )
-    setMethod("Arith", signature(e1 = "Rcpp_bdtDu", e2 = "integer" ), function(e1, e2){
-        arith_bdtDu_int( e1, e2, .Generic )
-    } )
-    setMethod("Arith", signature(e1 = "Rcpp_bdtDu", e2 = "numeric" ), function(e1, e2){
-        arith_bdtDu_int( e1, as.integer(e2), .Generic )
-    } )
-    setMethod("Compare", signature(e1 = "Rcpp_bdtDu", e2 = "Rcpp_bdtDu" ), function(e1, e2){
-        compare_bdtDu_bdtDu( e1, e2, .Generic )
-    } )
+
+    setMethod("Arith", signature(e1 = "Rcpp_bdtDu", e2 = "Rcpp_bdtDu" ),
+              function(e1, e2){ arith_bdtDu_bdtDu( e1, e2, .Generic )} )
+    setMethod("Arith", signature(e1 = "Rcpp_bdtDu", e2 = "integer" ),
+              function(e1, e2){arith_bdtDu_int( e1, e2, .Generic )} )
+    setMethod("Arith", signature(e1 = "Rcpp_bdtDu", e2 = "numeric" ),
+              function(e1, e2){ arith_bdtDu_int( e1, as.integer(e2), .Generic )} )
+    setMethod("Compare", signature(e1 = "Rcpp_bdtDu", e2 = "Rcpp_bdtDu" ),
+              function(e1, e2) {compare_bdtDu_bdtDu( e1, e2, .Generic )} )
+
+    setMethod("Arith", signature(e1 = "Rcpp_bdtPt", e2 = "Rcpp_bdtDu" ),
+              function(e1, e2){ arith_bdtPt_bdtDu( e1, e2, .Generic )} )
+    setMethod("Compare", signature(e1 = "Rcpp_bdtPt", e2 = "Rcpp_bdtPt"),
+              function(e1, e2) compare_bdtPt_bdtPt(e1, e2, .Generic))
 })

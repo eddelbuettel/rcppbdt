@@ -21,45 +21,6 @@
 
 #include <RcppBDT.h>
 
-class bdtDu {
-
-public:
-
-    bdtDu(int hours, int minutes, int seconds, int fractionalseconds) : m_td(hours, minutes, seconds, fractionalseconds) { }
-    bdtDu(boost::posix_time::time_duration td) : m_td(td) {} 
-    bdtDu(const bdtDu& other) : m_td(other.m_td ){}
-    
-    long getHours()             { return(m_td.hours()); }
-    long getMinutes()           { return(m_td.minutes()); }
-    long getSeconds()           { return(m_td.seconds()); }
-    long getTotalSeconds()      { return(m_td.total_seconds()); }
-    long getTotalMilliSeconds() { return(m_td.total_milliseconds()); }
-    long getTotalMicroSeconds() { return(m_td.total_microseconds()); }
-    long getTotalNanoSeconds()  { return(m_td.total_nanoseconds()); }
-    long getFractionalSeconds() { return(m_td.fractional_seconds()); }
-    unsigned short getNumFractionalDigits() { return(m_td.num_fractional_digits()); }
-    long getTicksPerSecond()    { return(m_td.ticks_per_second()); }
-
-    void addHours(int h)        { m_td += boost::posix_time::hours(h); }
-    void addMinutes(int m)      { m_td += boost::posix_time::minutes(m); }
-    void addSeconds(int s)      { m_td += boost::posix_time::seconds(s); }
-    void addMilliSeconds(int s) { m_td += boost::posix_time::milliseconds(s); }
-    void addMicroSeconds(int s) { m_td += boost::posix_time::microseconds(s); }
-    void addNanoSeconds(int s)  { m_td += boost::posix_time::nanoseconds(s); }
-    Rcpp::Datetime getAddedPosixtime(SEXP ptsexp)  { 
-        boost::posix_time::ptime pt(Rcpp::as<boost::posix_time::ptime>(ptsexp)); 
-        pt += m_td;
-        return Rcpp::wrap(pt); 
-    }
-
-private:
-    boost::posix_time::time_duration m_td;
-
-    friend Rcpp::object<bdtDu> arith_bdtDu_bdtDu(Rcpp::object<bdtDu>, Rcpp::object<bdtDu>, std::string);
-    friend Rcpp::object<bdtDu> arith_bdtDu_int(Rcpp::object<bdtDu>, int, std::string);
-    friend bool compare_bdtDu_bdtDu(Rcpp::object<bdtDu>, Rcpp::object<bdtDu>, std::string);
-};
-
 //using namespace Rcpp ;
 
 Rcpp::object<bdtDu> hours(int h)		{ return new bdtDu( boost::posix_time::hours(h) ); }

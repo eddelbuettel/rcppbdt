@@ -1,3 +1,8 @@
+2012-10-22  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/RcppBDTpt.cpp: Comparison and arithmethic support for posix time
+	* R/zzz.R: associated S4 methods
+
 2012-10-22  Romain Francois  <romain@r-enthusiasts.com>
 
 	* src/RcppBDTdu.cpp: implementing functions hours, minutes, ... and operators

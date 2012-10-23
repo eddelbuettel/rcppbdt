@@ -38,47 +38,35 @@ namespace Rcpp {
     }
 }
 
-class bdtPt {
-
-public:
-    bdtPt() 				  { setFromLocalTimeInMicroSeconds(); }  	// default empty constructor 
-    bdtPt(SEXP dt) 			  { setFromDatetime(dt); }     			// constructor from R's / Rcpp's Datetime
-    bdtPt(double dt) 			  { setFromDouble(dt); }     			// constructor from double using Rcpp's Datetime
-    bdtPt(int year, int month, int day, 			// constructor from date and duration
-          int hours, int minutes, int seconds, 
-          int fractionalseconds) : m_pt(boost::gregorian::date(year, month, day), 
-                                        boost::posix_time::time_duration(hours, minutes, seconds, fractionalseconds)) { }
-    
-    void setFromLocalTimeInSeconds()      { m_pt = boost::posix_time::second_clock::local_time(); }
-    void setFromUTCInSeconds()            { m_pt = boost::posix_time::second_clock::universal_time(); }
-    void setFromLocalTimeInMicroSeconds() { m_pt = boost::posix_time::microsec_clock::local_time(); }
-    void setFromUTCInMicroSeconds()       { m_pt = boost::posix_time::microsec_clock::universal_time(); }
-                                    
-    void setFromTimeT(const time_t t)     { m_pt = boost::posix_time::from_time_t(t); }
-
-    void setFromDatetime(const SEXP dt)   { m_pt = Rcpp::as<boost::posix_time::ptime>(dt); }
-    void setFromDouble(const double d)   { 
-        Rcpp::Datetime dt(d);
-        m_pt = boost::posix_time::ptime(boost::gregorian::date(dt.getYear(), dt.getMonth(), dt.getDay()), 
-                                        boost::posix_time::time_duration(dt.getHours(), dt.getMinutes(), dt.getSeconds(), dt.getMicroSeconds()/1000.0));
+Rcpp::object<bdtPt> arith_bdtPt_bdtDu(Rcpp::object<bdtPt> e1, Rcpp::object<bdtDu> e2, std::string op){
+    if( ! op.compare("+") ){
+        return new bdtPt( e1->m_pt + e2->m_td ) ;   
+    } else if( ! op.compare("-") ){
+        return new bdtPt( e1->m_pt - e2->m_td ) ;
     }
+    Rf_error( "operator not implemented" )  ;
+    // not reached
+    return new bdtPt();
+}
 
-    Rcpp::Datetime getDatetime() 	  { return Rcpp::wrap(m_pt); }
-
-    Rcpp::Date getDate() { 
-        boost::gregorian::date::ymd_type ymd = m_pt.date().year_month_day();     // convert to date and then to y/m/d struct
-        return Rcpp::Date( ymd.year, ymd.month, ymd.day );
+bool compare_bdtPt_bdtPt(Rcpp::object<bdtPt> e1, Rcpp::object<bdtPt> e2, std::string op) {
+    if( !op.compare( "==" ) ){
+        return e1->m_pt == e2->m_pt ;   
+    } else if( !op.compare( "!=" ) ){
+        return e1->m_pt != e2->m_pt ;
+    } else if( !op.compare( ">" ) ){
+        return e1->m_pt > e2->m_pt ;
+    } else if( !op.compare( "<" ) ){
+        return e1->m_pt < e2->m_pt ;
+    } else if( !op.compare( ">=" ) ){
+        return e1->m_pt >= e2->m_pt ;
+    } else if( !op.compare( "<=" ) ){
+        return e1->m_pt <= e2->m_pt ;
     }
+    Rf_error("unknown operator in bdtPt comparison");
+    return R_NilValue ;
+}
 
-    void addHours(int h)        	  { m_pt += boost::posix_time::time_duration(h, 0, 0, 0); }
-    void addMinutes(int m)        	  { m_pt += boost::posix_time::time_duration(0, m, 0, 0); }
-    void addSeconds(int s)        	  { m_pt += boost::posix_time::time_duration(0, 0, s, 0); }
-    void addFractionalSeconds(int fs)     { m_pt += boost::posix_time::time_duration(0, 0, 0, fs); }
-
-private:
-    boost::posix_time::ptime m_pt; 		// private ptime instace
-
-};
 
 RCPP_MODULE(bdtPtMod) {
     Rcpp::class_<bdtPt>("bdtPt")   
@@ -106,4 +94,7 @@ RCPP_MODULE(bdtPtMod) {
         .method("addFractionalSeconds",           &bdtPt::addFractionalSeconds,           "add given fractional seconds to posix time object")
 
     ;
+
+    function("arith_bdtPt_bdtDu", 	&arith_bdtPt_bdtDu); 
+    function("compare_bdtPt_bdtPt",	&compare_bdtPt_bdtPt);
 }
