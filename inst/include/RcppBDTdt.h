@@ -28,6 +28,8 @@ public:
     bdtDt()  				{ setFromLocalClock(); } 	// default empty constructor, using epoch
     bdtDt(SEXP dt) 			{ setDate(dt); } 		// constructor from SEXP using R Date
     bdtDt(int year, int month, int day) : m_dt(year, month, day) { } 	// constructor using year, month, day
+    bdtDt(boost::gregorian::date dt) : m_dt(dt) {} 
+    bdtDt(const bdtDt& other) : m_dt(other.m_dt) {}
 
     // these set the date from the clock, in local or universal time
     void setFromLocalClock()		{ m_dt = boost::gregorian::date(boost::gregorian::day_clock::local_day()); }
