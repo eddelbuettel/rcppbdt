@@ -70,7 +70,9 @@ namespace Rcpp {
 
 #include <Rcpp.h>
 
+#include <RcppBDTdt.h>
 #include <RcppBDTpt.h>
 #include <RcppBDTdu.h>
+#include <RcppBDTtz.h>
 
 #endif

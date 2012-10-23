@@ -1,15 +1,19 @@
 2012-10-22  Dirk Eddelbuettel  <edd@debian.org>
 
+	* inst/include/RcppBDTdt.h:
+
 	* src/RcppBDTpt.cpp: Comparison and arithmethic support for posix time
 	* R/zzz.R: associated S4 methods
 
-	* inst/include/RcppBDTpt.h: Put declaration for posix time class here
-	* inst/include/RcppBDTdu.h: Put declaration for duration class here
+	* inst/include/RcppBDTdt.h: New file for declaration of time zone class
+	* inst/include/RcppBDTpt.h: New file for declaration of posix time class
+	* inst/include/RcppBDTdu.h: New file for declaration of duration class
+	* inst/include/RcppBDTtz.h: New file for declaration of time zone class
 
 2012-10-22  Romain Francois  <romain@r-enthusiasts.com>
 
-	* src/RcppBDTdu.cpp: implementing functions hours, minutes, ... and operators
-	+,-(du, du) *,/(du,int)
+	* src/RcppBDTdu.cpp: implementing functions hours, minutes, ... and
+	operators +,-(du, du) *,/(du,int)
 	* R/zzz.R: associated S4 methods
 
 2012-10-21  Dirk Eddelbuettel  <edd@debian.org>

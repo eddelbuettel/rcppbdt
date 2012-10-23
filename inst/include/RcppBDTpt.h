@@ -2,7 +2,7 @@
 //
 // RcppBDTdu.h: Rcpp and Boost Date_Time posix time class 
 //
-// Copyright (C) 2010 - 2012  Dirk Eddelbuettel and Romain Francois
+// Copyright (C) 2012  Dirk Eddelbuettel and Romain Francois
 //
 // This file is part of RcppBDT.
 //
