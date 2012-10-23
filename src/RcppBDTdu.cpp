@@ -21,8 +21,6 @@
 
 #include <RcppBDT.h>
 
-//using namespace Rcpp ;
-
 Rcpp::object<bdtDu> hours(int h)		{ return new bdtDu( boost::posix_time::hours(h) ); }
 Rcpp::object<bdtDu> minutes(int m)		{ return new bdtDu( boost::posix_time::minutes(m) ); }
 Rcpp::object<bdtDu> seconds(int s)		{ return new bdtDu( boost::posix_time::seconds(s) ); }
