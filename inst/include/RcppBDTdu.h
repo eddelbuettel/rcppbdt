@@ -56,11 +56,10 @@ public:
 private:
     boost::posix_time::time_duration m_td;
 
-    friend bdtDu* arith_bdtDu_bdtDu(Rcpp::object<bdtDu>, Rcpp::object<bdtDu>, std::string);
-    friend bdtDu* arith_bdtDu_int(Rcpp::object<bdtDu>, int, std::string);
-    friend bool compare_bdtDu_bdtDu(Rcpp::object<bdtDu>, Rcpp::object<bdtDu>, std::string);
-
-    friend bdtPt* arith_bdtPt_bdtDu(Rcpp::object<bdtPt>, Rcpp::object<bdtDu>, std::string);
+    friend bdtDu* arith_bdtDu_bdtDu(const bdtDu& , const bdtDu& , std::string);
+    friend bdtDu* arith_bdtDu_int(const bdtDu&, int, std::string);
+    friend bool compare_bdtDu_bdtDu(const bdtDu&, const bdtDu&, std::string);
+    friend bdtPt* arith_bdtPt_bdtDu(const bdtPt&, const bdtDu&, std::string);
 };
 
 #endif

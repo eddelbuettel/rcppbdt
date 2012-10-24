@@ -9,13 +9,13 @@
 // RcppBDT is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 2 of the License, or
-// (at your option) any later version.
+// (at your option) any later version.  
 //                           
 // RcppBDT is distributed in the hope that it will be useful, but
 // WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
-//
+//                 
 // You should have received a copy of the GNU General Public License
 // along with RcppBDT.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -38,30 +38,30 @@ namespace Rcpp {
     }
 }
 
-bdtPt* arith_bdtPt_bdtDu(Rcpp::object<bdtPt> e1, Rcpp::object<bdtDu> e2, std::string op){
+bdtPt* arith_bdtPt_bdtDu(const bdtPt& e1, const bdtDu& e2, std::string op){
     if( ! op.compare("+") ){
-        return new bdtPt( e1->m_pt + e2->m_td ) ;   
+        return new bdtPt( e1.m_pt + e2.m_td ) ;   
     } else if( ! op.compare("-") ){
-        return new bdtPt( e1->m_pt - e2->m_td ) ;
+        return new bdtPt( e1.m_pt - e2.m_td ) ;
     }
     Rf_error( "operator not implemented" )  ;
     // not reached
     return new bdtPt();
 }
 
-bool compare_bdtPt_bdtPt(Rcpp::object<bdtPt> e1, Rcpp::object<bdtPt> e2, std::string op) {
+bool compare_bdtPt_bdtPt(const bdtPt& e1, const bdtPt& e2, std::string op) {
     if( !op.compare( "==" ) ){
-        return e1->m_pt == e2->m_pt ;   
+        return e1.m_pt == e2.m_pt ;   
     } else if( !op.compare( "!=" ) ){
-        return e1->m_pt != e2->m_pt ;
+        return e1.m_pt != e2.m_pt ;
     } else if( !op.compare( ">" ) ){
-        return e1->m_pt > e2->m_pt ;
+        return e1.m_pt > e2.m_pt ;
     } else if( !op.compare( "<" ) ){
-        return e1->m_pt < e2->m_pt ;
+        return e1.m_pt < e2.m_pt ;
     } else if( !op.compare( ">=" ) ){
-        return e1->m_pt >= e2->m_pt ;
+        return e1.m_pt >= e2.m_pt ;
     } else if( !op.compare( "<=" ) ){
-        return e1->m_pt <= e2->m_pt ;
+        return e1.m_pt <= e2.m_pt ;
     }
     Rf_error("unknown operator in bdtPt comparison");
     return R_NilValue ;

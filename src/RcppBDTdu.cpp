@@ -28,47 +28,47 @@ bdtDu* milliseconds(int ms)	{ return new bdtDu( boost::posix_time::milliseconds(
 bdtDu* microseconds(int ms)	{ return new bdtDu( boost::posix_time::microseconds(ms) ); }
 bdtDu* nanoseconds(int ms) 	{ return new bdtDu( boost::posix_time::nanoseconds(ms) ); }
   
-bdtDu* arith_bdtDu_bdtDu( Rcpp::object<bdtDu> e1, Rcpp::object<bdtDu> e2, std::string op ){
+bdtDu* arith_bdtDu_bdtDu( const bdtDu& e1, const bdtDu& e2, std::string op ){
     if( ! op.compare("+") ){
-        return new bdtDu( e1->m_td + e2->m_td ) ;   
+        return new bdtDu( e1.m_td + e2.m_td ) ;   
     } else if( ! op.compare("-") ){
-        return new bdtDu( e1->m_td - e2->m_td ) ;
+        return new bdtDu( e1.m_td - e2.m_td ) ;
     }
     Rf_error( "operator not implemented" )  ;
     // not reached
     return new bdtDu( 0,0,0,0 )  ;
 }
 
-bdtDu* arith_bdtDu_int( Rcpp::object<bdtDu> e1, int e2, std::string op ){
+bdtDu* arith_bdtDu_int( const bdtDu& e1, int e2, std::string op ){
     if( ! op.compare("*") ){
-        return new bdtDu( e1->m_td * e2 ) ;   
+        return new bdtDu( e1.m_td * e2 ) ;   
     } else if( ! op.compare("/") ){
-        return new bdtDu( e1->m_td / e2 ) ;
+        return new bdtDu( e1.m_td / e2 ) ;
     } else if( ! op.compare("+") ){
         //Rf_warning("Interpreting int as seconds");
-        return new bdtDu(e1->m_td + boost::posix_time::time_duration(0,0,e2,0));
+        return new bdtDu(e1.m_td + boost::posix_time::time_duration(0,0,e2,0));
     } else if( ! op.compare("-") ){
         //Rf_warning("Interpreting int as seconds");
-        return new bdtDu(e1->m_td - boost::posix_time::time_duration(0, 0, e2, 0));
+        return new bdtDu(e1.m_td - boost::posix_time::time_duration(0, 0, e2, 0));
     }
     Rf_error( "operator not implemented" )  ;
     // not reached
     return new bdtDu( 0,0,0,0 )  ;
 }
 
-bool compare_bdtDu_bdtDu( Rcpp::object<bdtDu> e1, Rcpp::object<bdtDu> e2, std::string op ){
+bool compare_bdtDu_bdtDu( const bdtDu& e1, const bdtDu& e2, std::string op ){
     if( !op.compare( "==" ) ){
-        return e1->m_td == e2->m_td ;   
+        return e1.m_td == e2.m_td ;   
     } else if( !op.compare( "!=" ) ){
-        return e1->m_td != e2->m_td ;
+        return e1.m_td != e2.m_td ;
     } else if( !op.compare( ">" ) ){
-        return e1->m_td > e2->m_td ;
+        return e1.m_td > e2.m_td ;
     } else if( !op.compare( "<" ) ){
-        return e1->m_td < e2->m_td ;
+        return e1.m_td < e2.m_td ;
     } else if( !op.compare( ">=" ) ){
-        return e1->m_td >= e2->m_td ;
+        return e1.m_td >= e2.m_td ;
     } else if( !op.compare( "<=" ) ){
-        return e1->m_td <= e2->m_td ;
+        return e1.m_td <= e2.m_td ;
     }
     Rf_error( "unknown operator" ) ;
     return R_NilValue ;

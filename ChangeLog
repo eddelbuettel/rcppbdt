@@ -1,3 +1,8 @@
+2012-10-24  Romain Francois  <romain@r-enthusiasts.com>
+
+    * inst/include/RcppBDTdu.h: using const bdtDu& instead of object<bdtDu>
+    * inst/include/RcppBDTpt.h: using const bdtPt& instead of object<bdtPt>
+    
 2012-10-23  Romain Francois  <romain@r-enthusiasts.com>
 
 	* src/RcppBDTdu.cpp: using bdtDu* instead of object<bdtDu> for function returns

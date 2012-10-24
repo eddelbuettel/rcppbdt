@@ -14,7 +14,7 @@ Description: This package provides R with access to Boost Date_Time
  provide supplementary date to/from strings conversion functions. 
 License: GPL (>= 2)
 LazyLoad: yes
-Depends: Rcpp (>= 0.9.15.2), methods
+Depends: Rcpp (>= 0.9.15.3), methods
 Imports: methods, Rcpp
 LinkingTo: Rcpp, BoostHeaders
 SystemRequirements: Boost (or the BoostHeaders package)
