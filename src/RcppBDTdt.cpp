@@ -40,7 +40,8 @@ Rcpp::Date getIMMDate(bdtDt *d, int mon, int year) { 				// does not use bdtDt p
 }
 
 Rcpp::Date getNthDayOfWeek(bdtDt *d, int nthday, int dow, int mon, int year) { 	// does not use bdtDt pointer, but need for RCPP_MODULE use
-    boost::gregorian::nth_day_of_the_week_in_month ans_generator(static_cast<boost::date_time::nth_kday_of_month<boost::gregorian::date>::week_num>(nthday), dow, mon);
+    boost::gregorian::nth_day_of_the_week_in_month 
+        ans_generator(static_cast<boost::date_time::nth_kday_of_month<boost::gregorian::date>::week_num>(nthday), dow, mon);
     return Rcpp::wrap(ans_generator.get_date(year));
 }
 

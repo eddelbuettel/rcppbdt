@@ -60,6 +60,8 @@ private:
     friend bdtDu* arith_bdtDu_int(const bdtDu&, int, std::string);
     friend bool compare_bdtDu_bdtDu(const bdtDu&, const bdtDu&, std::string);
     friend bdtPt* arith_bdtPt_bdtDu(const bdtPt&, const bdtDu&, std::string);
+    friend bdtPt* arith_bdtDu_bdtPt(const bdtDu&, const bdtPt&, std::string);
 };
 
 #endif
+

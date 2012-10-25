@@ -74,6 +74,7 @@ bool compare_bdtDu_bdtDu( const bdtDu& e1, const bdtDu& e2, std::string op ){
     return R_NilValue ;
 }
 
+
 RCPP_MODULE(bdtDuMod) {
     Rcpp::class_<bdtDu>("bdtDu")   
 	
@@ -108,7 +109,9 @@ RCPP_MODULE(bdtDuMod) {
     Rcpp::function( "nanoseconds", 	&nanoseconds ) ; 
     
     Rcpp::function( "arith_bdtDu_bdtDu", 	&arith_bdtDu_bdtDu ) ; 
-    Rcpp::function( "arith_bdtDu_int", 	&arith_bdtDu_int ) ; 
-    Rcpp::function( "compare_bdtDu_bdtDu",	&compare_bdtDu_bdtDu ) ;
+    Rcpp::function( "arith_bdtDu_int",          &arith_bdtDu_int ) ; 
+    Rcpp::function( "compare_bdtDu_bdtDu",	&compare_bdtDu_bdtDu );
+
 }
+
 

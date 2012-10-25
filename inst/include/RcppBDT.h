@@ -24,7 +24,7 @@
 
 #include <RcppCommon.h>
 
-/* forward declarations and helping module classes */
+// forward declarations and helping module classes 
 class bdtDu ;
 class bdtPt ;
 RCPP_EXPOSED_CLASS(bdtDu) ;

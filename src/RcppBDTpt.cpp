@@ -49,6 +49,16 @@ bdtPt* arith_bdtPt_bdtDu(const bdtPt& e1, const bdtDu& e2, std::string op){
     return new bdtPt();
 }
 
+bdtPt* arith_bdtDu_bdtPt(const bdtDu& e1, const bdtPt& e2, std::string op) {
+    if( ! op.compare("+") ){
+        return new bdtPt( e2.m_pt + e1.m_td ) ;   
+    }
+    // e1 - e2, ie duration - ptime, makes no sense 
+    Rf_error( "operator not implemented" )  ;
+    // not reached
+    return new bdtPt();
+}
+
 bool compare_bdtPt_bdtPt(const bdtPt& e1, const bdtPt& e2, std::string op) {
     if( !op.compare( "==" ) ){
         return e1.m_pt == e2.m_pt ;   
@@ -96,5 +106,7 @@ RCPP_MODULE(bdtPtMod) {
     ;
 
     Rcpp::function("arith_bdtPt_bdtDu", 	&arith_bdtPt_bdtDu); 
+    Rcpp::function("arith_bdtDu_bdtPt", 	&arith_bdtDu_bdtPt); 
     Rcpp::function("compare_bdtPt_bdtPt",	&compare_bdtPt_bdtPt);
 }
+
