@@ -25,53 +25,51 @@
 class bdtDt {
 
 public:
-    bdtDt()  				{ setFromLocalClock(); } 	// default empty constructor, using epoch
-    bdtDt(SEXP dt) 			{ setDate(dt); } 		// constructor from SEXP using R Date
+    bdtDt()  				 { setFromLocalClock(); } 	// default empty constructor, using epoch
+    bdtDt(SEXP dt) 			 { setDate(dt); } 		// constructor from SEXP using R Date
     bdtDt(int year, int month, int day) : m_dt(year, month, day) { } 	// constructor using year, month, day
     bdtDt(boost::gregorian::date dt) : m_dt(dt) {} 
     bdtDt(const bdtDt& other) : m_dt(other.m_dt) {}
 
     // these set the date from the clock, in local or universal time
-    void setFromLocalClock()		{ m_dt = boost::gregorian::date(boost::gregorian::day_clock::local_day()); }
-    void setFromUTCClock()        	{ m_dt = boost::gregorian::date(boost::gregorian::day_clock::universal_day()); }
-    Rcpp::Date getLocalDay() 		{ return Rcpp::wrap(boost::gregorian::date(boost::gregorian::day_clock::local_day())); }
-    Rcpp::Date getUTCDay() 		{ return Rcpp::wrap(boost::gregorian::date(boost::gregorian::day_clock::universal_day())); }
+    void setFromLocalClock()		 { m_dt = boost::gregorian::date(boost::gregorian::day_clock::local_day()); }
+    void setFromUTCClock()        	 { m_dt = boost::gregorian::date(boost::gregorian::day_clock::universal_day()); }
+    boost::gregorian::date getLocalDay() { return boost::gregorian::date(boost::gregorian::day_clock::local_day()); }
+    boost::gregorian::date getUTCDay() 	 { return boost::gregorian::date(boost::gregorian::day_clock::universal_day()); }
 
     // these extract the requested date portion or representation as an integer
-    int getYear() 			{ return static_cast<int>( m_dt.year() ); }
-    int getMonth() 			{ return static_cast<int>( m_dt.month() ); }
-    int getDay() 			{ return static_cast<int>( m_dt.day() ); }
-    int getDayOfWeek() 			{ return static_cast<int>( m_dt.day_of_week() ); }
-    int getDayOfYear() 			{ return static_cast<int>( m_dt.day_of_year() ); }
+    int getYear() 			 { return static_cast<int>( m_dt.year() ); }
+    int getMonth() 			 { return static_cast<int>( m_dt.month() ); }
+    int getDay() 			 { return static_cast<int>( m_dt.day() ); }
+    int getDayOfWeek() 			 { return static_cast<int>( m_dt.day_of_week() ); }
+    int getDayOfYear() 			 { return static_cast<int>( m_dt.day_of_year() ); }
 
-    void setDate(SEXP dt)		{ m_dt = Rcpp::as<boost::gregorian::date>(dt); }
-    void fromDate(SEXP dt)		{ m_dt = Rcpp::as<boost::gregorian::date>(dt); Rf_warning("'fromDate' is deprecated, use 'setDate'"); }
-    Rcpp::Date getDate()		{ return Rcpp::wrap(m_dt); }
+    void setDate(SEXP dt)		 { m_dt = Rcpp::as<boost::gregorian::date>(dt); }
+    void fromDate(SEXP dt)		 { m_dt = Rcpp::as<boost::gregorian::date>(dt); Rf_warning("'fromDate' is deprecated, use 'setDate'"); }
+    boost::gregorian::date getDate()	 { return m_dt; }
 
-    int getWeekNumber()			{ return m_dt.week_number(); }
-    long getModJulian()			{ return m_dt.week_number(); }
-    long getJulian()			{ return m_dt.week_number(); }
+    int getWeekNumber()			 { return m_dt.week_number(); }
+    long getModJulian()			 { return m_dt.week_number(); }
+    long getJulian()			 { return m_dt.week_number(); }
 
     // construct end-of-month and first-of-next-monthm returning a boost::gregorian::date object
-    void setEndOfMonth()		{ m_dt = m_dt.end_of_month(); } 
-    boost::gregorian::date getEndOfMonth() { 
-        				  return m_dt.end_of_month(); } 
-    void setFirstOfNextMonth()		{ m_dt = m_dt.end_of_month() + boost::gregorian::days(1); } 
-    boost::gregorian::date getFirstOfNextMonth() { 
-                                          return m_dt.end_of_month() + boost::gregorian::days(1); }
+    void setEndOfMonth()		 { m_dt = m_dt.end_of_month(); } 
+    boost::gregorian::date getEndOfMonth() { return m_dt.end_of_month(); } 
+    void setFirstOfNextMonth()		 { m_dt = m_dt.end_of_month() + boost::gregorian::days(1); } 
+    boost::gregorian::date getFirstOfNextMonth() { return m_dt.end_of_month() + boost::gregorian::days(1); }
 
-    void setEndOfBizWeek() 		{ 
+    void setEndOfBizWeek() 		 { 
         m_dt += boost::gregorian::days_until_weekday(m_dt, boost::gregorian::greg_weekday(boost::gregorian::Friday)); 
     }
-    Rcpp::Date getEndOfBizWeek() 	{ 
-        return Rcpp::wrap( m_dt += boost::gregorian::days_until_weekday(m_dt, boost::gregorian::greg_weekday(boost::gregorian::Friday) )); 
+    boost::gregorian::date getEndOfBizWeek() 	 { 
+        return m_dt += boost::gregorian::days_until_weekday(m_dt, boost::gregorian::greg_weekday(boost::gregorian::Friday) ); 
     }
 
-    void addDays(unsigned int len) 	{ m_dt += boost::gregorian::date_duration(len); }
-    void subtractDays(unsigned int len) { m_dt -= boost::gregorian::date_duration(len); }
+    void addDays(unsigned int len) 	 { m_dt += boost::gregorian::date_duration(len); }
+    void subtractDays(unsigned int len)  { m_dt -= boost::gregorian::date_duration(len); }
 
     // with thanks to Whit Armstong for doing this in his rboostdatetime
-    void setIMMDate(int mon, int year)  { 
+    void setIMMDate(int mon, int year)   { 
         m_dt = boost::gregorian::nth_day_of_the_week_in_month(boost::gregorian::nth_day_of_the_week_in_month::third, 
                                                               boost::gregorian::Wednesday, mon).get_date(year); 
     }

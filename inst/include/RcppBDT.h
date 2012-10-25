@@ -25,10 +25,10 @@
 #include <RcppCommon.h>
 
 // forward declarations and helping module classes 
-class bdtDu ;
-class bdtPt ;
-RCPP_EXPOSED_CLASS(bdtDu) ;
-RCPP_EXPOSED_CLASS(bdtPt) ;
+class bdtDu;
+class bdtPt;
+RCPP_EXPOSED_CLASS(bdtDu)
+RCPP_EXPOSED_CLASS(bdtPt)
 
 // Setting this variable enables use of nanoseconds (as opposed to microseconds)
 // for the maximum resolution; this comes at a cost of 96 bits as opposed to 64 bits

@@ -101,16 +101,16 @@ RCPP_MODULE(bdtDuMod) {
         .method("getAddedPosixtime",      &bdtDu::getAddedPosixtime,	  "adds duration to given posix time and returns posix time")
     ;
     
-    Rcpp::function( "hours", 		&hours ) ; 
-    Rcpp::function( "minutes", 	&minutes ) ; 
-    Rcpp::function( "seconds", 	&seconds ) ; 
-    Rcpp::function( "milliseconds", 	&milliseconds ) ; 
-    Rcpp::function( "microseconds", 	&microseconds ) ;
-    Rcpp::function( "nanoseconds", 	&nanoseconds ) ; 
+    Rcpp::function( "hours",            &hours ) ; 
+    Rcpp::function( "minutes",          &minutes ) ; 
+    Rcpp::function( "seconds",          &seconds ) ; 
+    Rcpp::function( "milliseconds",     &milliseconds ) ; 
+    Rcpp::function( "microseconds",     &microseconds ) ;
+    Rcpp::function( "nanoseconds",      &nanoseconds ) ; 
     
-    Rcpp::function( "arith_bdtDu_bdtDu", 	&arith_bdtDu_bdtDu ) ; 
+    Rcpp::function( "arith_bdtDu_bdtDu",        &arith_bdtDu_bdtDu ) ; 
     Rcpp::function( "arith_bdtDu_int",          &arith_bdtDu_int ) ; 
-    Rcpp::function( "compare_bdtDu_bdtDu",	&compare_bdtDu_bdtDu );
+    Rcpp::function( "compare_bdtDu_bdtDu",      &compare_bdtDu_bdtDu );
 
 }
 

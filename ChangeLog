@@ -1,8 +1,18 @@
+2012-10-24  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/include/RcppBDTdt.h: Altered several functions to use
+	boost::gregorian::date more frequently as basic return type and rely
+	on Rcpp::wrap() for conversion, rather than always directly converting
+	* src/RcppBDTdt.cpp: Idem
+
+	* man/bdtDu.Rd: Document new methods for Arithmetic and Comparison
+	* man/bdtPt.Rd: Idem
+
 2012-10-24  Romain Francois  <romain@r-enthusiasts.com>
 
-    * inst/include/RcppBDTdu.h: using const bdtDu& instead of object<bdtDu>
-    * inst/include/RcppBDTpt.h: using const bdtPt& instead of object<bdtPt>
-    
+	* inst/include/RcppBDTdu.h: using const bdtDu& instead of object<bdtDu>
+	* inst/include/RcppBDTpt.h: using const bdtPt& instead of object<bdtPt>
+
 2012-10-23  Romain Francois  <romain@r-enthusiasts.com>
 
 	* src/RcppBDTdu.cpp: using bdtDu* instead of object<bdtDu> for function returns

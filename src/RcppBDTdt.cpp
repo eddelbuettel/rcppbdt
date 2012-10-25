@@ -34,37 +34,37 @@ namespace Rcpp {
     }
 }
 
-Rcpp::Date getIMMDate(bdtDt *d, int mon, int year) { 				// does not use bdtDt pointer, but need for RCPP_MODULE use
-    return Rcpp::wrap( boost::gregorian::nth_day_of_the_week_in_month(boost::gregorian::nth_day_of_the_week_in_month::third, 
-                                                                      boost::gregorian::Wednesday, mon).get_date(year) );
+boost::gregorian::date getIMMDate(bdtDt *d, int mon, int year) { 				// does not use bdtDt pointer, but need for RCPP_MODULE use
+    return boost::gregorian::nth_day_of_the_week_in_month(boost::gregorian::nth_day_of_the_week_in_month::third, 
+                                                          boost::gregorian::Wednesday, mon).get_date(year);
 }
 
-Rcpp::Date getNthDayOfWeek(bdtDt *d, int nthday, int dow, int mon, int year) { 	// does not use bdtDt pointer, but need for RCPP_MODULE use
+boost::gregorian::date getNthDayOfWeek(bdtDt *d, int nthday, int dow, int mon, int year) { 	// does not use bdtDt pointer, but need for RCPP_MODULE use
     boost::gregorian::nth_day_of_the_week_in_month 
         ans_generator(static_cast<boost::date_time::nth_kday_of_month<boost::gregorian::date>::week_num>(nthday), dow, mon);
-    return Rcpp::wrap(ans_generator.get_date(year));
+    return ans_generator.get_date(year);
 }
 
-Rcpp::Date getLastDayOfWeekInMonth(bdtDt *d, int weekday, int mon, int year) {	// does not use bdtDt pointer, but need for RCPP_MODULE use
+boost::gregorian::date getLastDayOfWeekInMonth(bdtDt *d, int weekday, int mon, int year) {	// does not use bdtDt pointer, but need for RCPP_MODULE use
     boost::gregorian::last_day_of_the_week_in_month lwdm(weekday, mon);
-    return Rcpp::wrap(lwdm.get_date(year));
+    return lwdm.get_date(year);
 }
 
-Rcpp::Date getFirstDayOfWeekInMonth(bdtDt *d, int weekday, int mon, int year) {	// does not use bdtDt pointer, but need for RCPP_MODULE use
+boost::gregorian::date getFirstDayOfWeekInMonth(bdtDt *d, int weekday, int mon, int year) {	// does not use bdtDt pointer, but need for RCPP_MODULE use
     boost::gregorian::first_day_of_the_week_in_month fwdm(weekday, mon);
-    return Rcpp::wrap(fwdm.get_date(year));
+    return fwdm.get_date(year);
 }
 
-Rcpp::Date getFirstDayOfWeekAfter(bdtDt *d, int weekday, SEXP date) {		// does not use bdtDt pointer, but need for RCPP_MODULE use
+boost::gregorian::date getFirstDayOfWeekAfter(bdtDt *d, int weekday, SEXP date) {		// does not use bdtDt pointer, but need for RCPP_MODULE use
     boost::gregorian::first_day_of_the_week_after fdaf(weekday);
     boost::gregorian::date dt = Rcpp::as<boost::gregorian::date>(date);
-    return Rcpp::wrap(fdaf.get_date(dt));
+    return fdaf.get_date(dt);
 }
 
-Rcpp::Date getLastDayOfWeekBefore(bdtDt *d, int weekday, SEXP date) {		// does not use bdtDt pointer, but need for RCPP_MODULE use
+boost::gregorian::date getLastDayOfWeekBefore(bdtDt *d, int weekday, SEXP date) {		// does not use bdtDt pointer, but need for RCPP_MODULE use
     boost::gregorian::first_day_of_the_week_before fdab(weekday);
     boost::gregorian::date dt = Rcpp::as<boost::gregorian::date>(date);
-    return Rcpp::wrap(fdab.get_date(dt));
+    return fdab.get_date(dt);
 }
 
 RCPP_MODULE(bdtDtMod) {

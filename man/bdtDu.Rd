@@ -3,6 +3,16 @@
 \alias{Rcpp_bdtDu-class}
 \alias{show,Rcpp_bdtDu-method}
 \alias{format,Rcpp_bdtDu-method}
+\alias{arith_bdtDu_bdtDu}
+\alias{arith_bdtDu_bdtPt}
+\alias{arith_bdtDu_int}
+\alias{compare_bdtDu_bdtDu}
+\alias{hours}
+\alias{microseconds}
+\alias{milliseconds}
+\alias{minutes}
+\alias{nanoseconds}
+\alias{seconds}
 \docType{package}
 \title{Rcpp module bdtDu for binding of Boost Date_Time duration functionality}
 \description{
@@ -14,6 +24,17 @@
   minute, seconds and fractional seconds.  Fractional seconds ought to
   be at a nano-second granularity; there may be platforms not permitting
   this.
+}
+\usage{
+hours(...)
+microseconds(...)
+milliseconds(...)
+minutes(...)
+nanoseconds(...)
+seconds(...)
+}
+\arguments{
+  \item{...}{suitable argument, often an integer, denoting one unit of the reference duration component}
 }
 \section{Method}{
   \describe{

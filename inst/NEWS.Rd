@@ -34,7 +34,6 @@
     initialization easier and more streamlined.
   } 
 }
-
 \section{Changes in version 0.1.0 (2011-01-17)}{
   \itemize{
     \item First CRAN upload (and see ChangeLog for more granular

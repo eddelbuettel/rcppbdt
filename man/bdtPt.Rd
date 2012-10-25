@@ -3,6 +3,8 @@
 \alias{Rcpp_bdtPt-class}
 \alias{show,Rcpp_bdtPt-method}
 \alias{format,Rcpp_bdtPt-method}
+\alias{arith_bdtPt_bdtDu}
+\alias{compare_bdtPt_bdtPt}
 \docType{package}
 \title{Rcpp module bdtPt for binding of Boost Date_Time ptime functionality}
 \description{

@@ -16,22 +16,27 @@ print(dn)  ## converts to difftime
 today <- Sys.Date()    # base R, provides Date
 ## TODO  fails:   today + du
 
-now <- Sys.time()      # base R
+now <- Sys.time()       # base R
+pt <- new(bdtPt) 	# similar to Sys.time()
 ## TODO  fails as well now + du, but this works
-print(du$getAddedPosixtime(now))
+#print(du$getAddedPosixtime(now), tz="UTC")
 
 du$addSeconds(2.2)
 du$addMilliSeconds(3.3)
 du$addMicroSeconds(4.4)
 du$addNanoSeconds(5.5)
 du
+#print(du$getAddedPosixtime(now))
 
-print(du$getAddedPosixtime(now))
+print(pt)
+print(pt + du)
+
 
 # add 'du' to something and get a time object ?
 # convert posix time (from Boost) to POSIXct ?
 # more conversions ?
 
+#print(years(1) + months(2) + days(3))
 print(du + hours(2) + minutes(3) + seconds(4) + nanoseconds(42))
 
 ## use one of several bdtPt ctors
