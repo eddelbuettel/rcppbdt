@@ -25,9 +25,11 @@
 #include <RcppCommon.h>
 
 // forward declarations and helping module classes 
+class bdtDt;
 class bdtDu;
 class bdtPt;
 RCPP_EXPOSED_CLASS(bdtDu)
+RCPP_EXPOSED_CLASS(bdtDt)
 RCPP_EXPOSED_CLASS(bdtPt)
 
 // Setting this variable enables use of nanoseconds (as opposed to microseconds)

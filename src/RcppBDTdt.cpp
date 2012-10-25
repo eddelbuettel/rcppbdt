@@ -67,6 +67,25 @@ boost::gregorian::date getLastDayOfWeekBefore(bdtDt *d, int weekday, SEXP date) 
     return fdab.get_date(dt);
 }
 
+
+bool compare_bdtDt_bdtDt( const bdtDt& e1, const bdtDt& e2, std::string op ){
+    if( !op.compare( "==" ) ){
+        return e1.m_dt == e2.m_dt ;   
+    } else if( !op.compare( "!=" ) ){
+        return e1.m_dt != e2.m_dt ;
+    } else if( !op.compare( ">" ) ){
+        return e1.m_dt > e2.m_dt ;
+    } else if( !op.compare( "<" ) ){
+        return e1.m_dt < e2.m_dt ;
+    } else if( !op.compare( ">=" ) ){
+        return e1.m_dt >= e2.m_dt ;
+    } else if( !op.compare( "<=" ) ){
+        return e1.m_dt <= e2.m_dt ;
+    }
+    Rf_error( "unknown operator" ) ;
+    return R_NilValue ;
+}
+
 RCPP_MODULE(bdtDtMod) {
     Rcpp::class_<bdtDt>("bdtDt")   
 	
@@ -117,6 +136,8 @@ RCPP_MODULE(bdtDtMod) {
         .method("getLastDayOfWeekBefore", &getLastDayOfWeekBefore, 	"return date of last day-of-week before given date")
 
         ;
+
+    Rcpp::function("compare_bdtDt_bdtDt",     &compare_bdtDt_bdtDt);
 
 }
 
