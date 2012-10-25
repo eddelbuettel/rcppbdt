@@ -5,7 +5,7 @@
 	on Rcpp::wrap() for conversion, rather than always directly converting
 	* src/RcppBDTdt.cpp: Idem
 
-	* src/RcppBDTdt.cpp: Comparison support for bdtDt type
+	* src/RcppBDTdt.cpp: Comparison and (some) Arithmetic support for bdtDt type
 
 	* man/bdtDu.Rd: Document new methods for Arithmetic and Comparison
 	* man/bdtPt.Rd: Idem
