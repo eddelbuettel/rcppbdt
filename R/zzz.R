@@ -74,9 +74,13 @@ evalqOnLoad({
     setMethod("Arith", signature(e1 = "Rcpp_bdtDu", e2 = "integer" ),
               function(e1, e2) arith_bdtDu_int( e1, e2, .Generic ) )
     setMethod("Arith", signature(e1 = "Rcpp_bdtDu", e2 = "numeric" ),
-              function(e1, e2)  arith_bdtDu_int( e1, as.integer(e2), .Generic ) )
+              function(e1, e2) arith_bdtDu_int( e1, as.integer(e2), .Generic ) )
+    setMethod("Arith", signature(e1 = "integer", e2 = "Rcpp_bdtDu"),
+              function(e1, e2) arith_int_bdtDu( e1, e2, .Generic ) )
+    setMethod("Arith", signature(e1 = "numeric", e2 = "Rcpp_bdtDu"),
+              function(e1, e2) arith_int_bdtDu(as.integer(e1), e2, .Generic ) )
     setMethod("Compare", signature(e1 = "Rcpp_bdtDu", e2 = "Rcpp_bdtDu" ),
-              function(e1, e2) {compare_bdtDu_bdtDu( e1, e2, .Generic )} )
+              function(e1, e2) compare_bdtDu_bdtDu( e1, e2, .Generic ) )
 
     setMethod("Arith", signature(e1 = "Rcpp_bdtPt", e2 = "Rcpp_bdtDu" ),
               function(e1, e2) arith_bdtPt_bdtDu(e1, e2, .Generic ))
@@ -89,11 +93,15 @@ evalqOnLoad({
               function(e1, e2) compare_bdtDt_bdtDt(e1, e2, .Generic))
     setMethod("Compare", signature(e1 = "Rcpp_bdtDt", e2 = "Date"),
               function(e1, e2) compare_bdtDt_bdtDt(e1, new(bdtDt, e2), .Generic))
-#    setMethod("Compare", signature(e1 = "Date", e2 = "Rcpp_bdtDt"), ,
-#             function(e1, e2) compare_bdtDt_bdtDt(new(bdtDt, e1), e2, .Generic))
+    setMethod("Compare", signature(e1 = "Date", e2 = "Rcpp_bdtDt"),
+             function(e1, e2) compare_bdtDt_bdtDt(new(bdtDt, e1), e2, .Generic))
     setMethod("Arith", signature(e1 = "Rcpp_bdtDt", e2 = "integer"),
               function(e1, e2) arith_bdtDt_int(e1, e2, .Generic) )
     setMethod("Arith", signature(e1 = "Rcpp_bdtDt", e2 = "numeric"),
               function(e1, e2) arith_bdtDt_int(e1, as.integer(e2), .Generic) )
+    setMethod("Arith", signature(e1 = "integer", e2 = "Rcpp_bdtDt"),
+              function(e1, e2) arith_int_bdtDt(e1, e2, .Generic) )
+    setMethod("Arith", signature(e1 = "numeric", e2 = "Rcpp_bdtDt"),
+              function(e1, e2) arith_int_bdtDt(as.integer(e1), e2, .Generic) )
 
 })

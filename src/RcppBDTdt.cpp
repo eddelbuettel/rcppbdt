@@ -79,6 +79,17 @@ bdtDt* arith_bdtDt_int( const bdtDt& e1, const int& e2, std::string op ){
     return new bdtDt(0,0,0);
 }
 
+bdtDt* arith_int_bdtDt(const int& e1, const bdtDt& e2, std::string op) {
+    if( ! op.compare("+") ){
+        return new bdtDt(e2.m_dt + boost::gregorian::date_duration(e1));   
+        //} else if( ! op.compare("-") ){
+        //return new bdtDt( e1.m_dt - boost::gregorian::date_duration(e2) );
+    }
+    Rf_error( "operator not implemented" );
+    // not reached
+    return new bdtDt(0,0,0);
+}
+
 bool compare_bdtDt_bdtDt( const bdtDt& e1, const bdtDt& e2, std::string op ){
     if( !op.compare( "==" ) ){
         return e1.m_dt == e2.m_dt ;   
@@ -149,6 +160,7 @@ RCPP_MODULE(bdtDtMod) {
         ;
 
     Rcpp::function("arith_bdtDt_int",         &arith_bdtDt_int); 
+    Rcpp::function("arith_int_bdtDt",         &arith_int_bdtDt); 
     Rcpp::function("compare_bdtDt_bdtDt",     &compare_bdtDt_bdtDt);
 }
 

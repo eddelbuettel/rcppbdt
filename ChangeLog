@@ -1,3 +1,11 @@
+2012-10-25  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/include/RcppBDTdt.h: A few more methods for dates
+	* src/RcppBDTdt.cpp: Idem
+	* inst/include/RcppBDTdu.h: A few more methods for durations
+	* src/RcppBDTdu.cpp: Idem
+	* R/zzz.R: Dispatching to the new methods
+
 2012-10-24  Dirk Eddelbuettel  <edd@debian.org>
 
 	* inst/include/RcppBDTdt.h: Altered several functions to use

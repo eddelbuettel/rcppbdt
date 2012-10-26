@@ -78,6 +78,7 @@ private:
     boost::gregorian::date m_dt; 			// private Boost date instance
 
     friend bdtDt* arith_bdtDt_int(const bdtDt&, const int&, std::string);
+    friend bdtDt* arith_int_bdtDt(const int&, const bdtDt&, std::string);
     friend bool compare_bdtDt_bdtDt(const bdtDt&, const bdtDt&, std::string);
 };
 

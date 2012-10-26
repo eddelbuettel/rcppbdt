@@ -39,17 +39,30 @@ bdtDu* arith_bdtDu_bdtDu( const bdtDu& e1, const bdtDu& e2, std::string op ){
     return new bdtDu( 0,0,0,0 )  ;
 }
 
-bdtDu* arith_bdtDu_int( const bdtDu& e1, int e2, std::string op ){
+bdtDu* arith_bdtDu_int(const bdtDu& e1, const int e2, std::string op) {
     if( ! op.compare("*") ){
         return new bdtDu( e1.m_td * e2 ) ;   
     } else if( ! op.compare("/") ){
         return new bdtDu( e1.m_td / e2 ) ;
     } else if( ! op.compare("+") ){
-        //Rf_warning("Interpreting int as seconds");
         return new bdtDu(e1.m_td + boost::posix_time::time_duration(0,0,e2,0));
     } else if( ! op.compare("-") ){
-        //Rf_warning("Interpreting int as seconds");
         return new bdtDu(e1.m_td - boost::posix_time::time_duration(0, 0, e2, 0));
+    }
+    Rf_error( "operator not implemented" )  ;
+    // not reached
+    return new bdtDu( 0,0,0,0 )  ;
+}
+
+bdtDu* arith_int_bdtDu(const int e1, const bdtDu& e2, std::string op) {
+    if( ! op.compare("*") ){
+        return new bdtDu( e2.m_td * e1 ) ;   
+    // } else if( ! op.compare("/") ){
+    //     return new bdtDu( e1.m_td / e2 ) ;
+    } else if( ! op.compare("+") ){
+        return new bdtDu(e2.m_td + boost::posix_time::time_duration(0,0,e1,0));
+    // } else if( ! op.compare("-") ){
+    //     return new bdtDu(e1.m_td - boost::posix_time::time_duration(0, 0, e2, 0));
     }
     Rf_error( "operator not implemented" )  ;
     // not reached
@@ -110,6 +123,7 @@ RCPP_MODULE(bdtDuMod) {
     
     Rcpp::function( "arith_bdtDu_bdtDu",        &arith_bdtDu_bdtDu ) ; 
     Rcpp::function( "arith_bdtDu_int",          &arith_bdtDu_int ) ; 
+    Rcpp::function( "arith_int_bdtDu",          &arith_int_bdtDu ) ; 
     Rcpp::function( "compare_bdtDu_bdtDu",      &compare_bdtDu_bdtDu );
 
 }
