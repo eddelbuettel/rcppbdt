@@ -30,10 +30,11 @@
 ## }
 
 
+loadModule("bdtDdMod", TRUE)
 loadModule("bdtDtMod", TRUE)
-loadModule("bdtTzMod", TRUE)
 loadModule("bdtDuMod", TRUE)
 loadModule("bdtPtMod", TRUE)
+loadModule("bdtTzMod", TRUE)
 
 ## create a variable 'bdt' from the bdtDt Module (formerly: bdtMod)
 ## this variable is used as a package-global instance in some R access function
@@ -42,6 +43,9 @@ delayedAssign( "bdt", local( {
     x$setFromUTC()
     x
 }) )
+
+.format_dd <- function(x, ...) format(as.difftime( x$getDays(), units="days"))
+.show_dd   <- function(object) print(as.difftime( object$getDays(), units="days"))
 
 .format_dt <- function(x, ...) format(x$getDate(), ...)
 .show_dt   <- function(object) print(object$getDate())
@@ -62,12 +66,14 @@ evalqOnLoad({
     setMethod("show", "Rcpp_bdtTz", .show_tz)
     setMethod("show", "Rcpp_bdtPt", .show_pt)
     setMethod("show", "Rcpp_bdtDu", .show_du)
+    setMethod("show", "Rcpp_bdtDd", .show_dd)
 
     setGeneric("format", function(x,...) standardGeneric("format"))
     setMethod("format", "Rcpp_bdtDt", .format_dt)
     setMethod("format", "Rcpp_bdtTz", .format_tz)
     setMethod("format", "Rcpp_bdtPt", .format_pt)
     setMethod("format", "Rcpp_bdtDu", .format_du)
+    setMethod("format", "Rcpp_bdtDd", .format_dd)
 
     setMethod("Arith", signature(e1 = "Rcpp_bdtDu", e2 = "Rcpp_bdtDu" ),
               function(e1, e2) arith_bdtDu_bdtDu( e1, e2, .Generic ) )
@@ -104,4 +110,26 @@ evalqOnLoad({
     setMethod("Arith", signature(e1 = "numeric", e2 = "Rcpp_bdtDt"),
               function(e1, e2) arith_int_bdtDt(as.integer(e1), e2, .Generic) )
 
-})
+    setMethod("Arith", signature(e1 = "Rcpp_bdtDd", e2 = "Rcpp_bdtDd" ),
+              function(e1, e2) arith_bdtDd_bdtDd( e1, e2, .Generic ) )
+    setMethod("Arith", signature(e1 = "Rcpp_bdtDd", e2 = "integer" ),
+              function(e1, e2) arith_bdtDd_int( e1, e2, .Generic ) )
+    setMethod("Arith", signature(e1 = "Rcpp_bdtDd", e2 = "numeric" ),
+              function(e1, e2) arith_bdtDd_int( e1, as.integer(e2), .Generic ) )
+    setMethod("Arith", signature(e1 = "integer", e2 = "Rcpp_bdtDd"),
+              function(e1, e2) arith_int_bdtDd( e1, e2, .Generic ) )
+    setMethod("Arith", signature(e1 = "numeric", e2 = "Rcpp_bdtDd"),
+              function(e1, e2) arith_int_bdtDd(as.integer(e1), e2, .Generic ) )
+    setMethod("Compare", signature(e1 = "Rcpp_bdtDd", e2 = "Rcpp_bdtDd" ),
+              function(e1, e2) compare_bdtDd_bdtDd( e1, e2, .Generic ) )
+    setMethod("Arith", signature(e1 = "Rcpp_bdtDd", e2 = "Rcpp_bdtDt" ),
+              function(e1, e2) arith_bdtDd_bdtDt( e1, e2, .Generic ) )
+    setMethod("Arith", signature(e1 = "Rcpp_bdtDt", e2 = "Rcpp_bdtDd" ),
+              function(e1, e2) arith_bdtDt_bdtDd( e1, e2, .Generic ) )
+  })
+
+
+
+
+
+

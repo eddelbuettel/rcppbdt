@@ -80,6 +80,8 @@ private:
     friend bdtDt* arith_bdtDt_int(const bdtDt&, const int&, std::string);
     friend bdtDt* arith_int_bdtDt(const int&, const bdtDt&, std::string);
     friend bool compare_bdtDt_bdtDt(const bdtDt&, const bdtDt&, std::string);
+    friend bdtDt* arith_bdtDd_bdtDt(const bdtDd&, const bdtDt&, std::string);
+    friend bdtDt* arith_bdtDt_bdtDd(const bdtDt&, const bdtDd&, std::string);
 };
 
 #endif

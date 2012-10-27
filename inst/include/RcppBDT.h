@@ -25,9 +25,11 @@
 #include <RcppCommon.h>
 
 // forward declarations and helping module classes 
+class bdtDd;
 class bdtDt;
 class bdtDu;
 class bdtPt;
+RCPP_EXPOSED_CLASS(bdtDd)
 RCPP_EXPOSED_CLASS(bdtDu)
 RCPP_EXPOSED_CLASS(bdtDt)
 RCPP_EXPOSED_CLASS(bdtPt)
@@ -78,6 +80,7 @@ namespace Rcpp {
 
 #include <Rcpp.h>
 
+#include <RcppBDTdd.h>
 #include <RcppBDTdt.h>
 #include <RcppBDTpt.h>
 #include <RcppBDTdu.h>

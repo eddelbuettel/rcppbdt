@@ -7,6 +7,8 @@
     \item New module 'bdtDt' replacing the old 'bdtDate' module in a
     more transparent stule using a local class which is wrapped, just like
     the three other new classes do
+    \item New module 'bdtTd' providing date durations which can be added
+    to dates.
     \item New module 'bdtTz' providing time zone information such as offset to
     UTC, amount of DST, abbreviated and full timezone names.
     \item New module 'bdtDu' using 'posix_time::duration' for time durations types

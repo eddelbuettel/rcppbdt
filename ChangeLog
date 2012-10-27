@@ -1,3 +1,9 @@
+2012-10-26  Dirk Eddelbuettel  <edd@dexter>
+
+	* inst/include/RcppBDTdd.h: New class date_duration
+	* src/RcppBDTdd.cpp: Implementation
+	* R/zzz.R: Dispatching new methods for new class
+
 2012-10-25  Dirk Eddelbuettel  <edd@debian.org>
 
 	* inst/include/RcppBDTdt.h: A few more methods for dates

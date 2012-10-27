@@ -108,6 +108,26 @@ bool compare_bdtDt_bdtDt( const bdtDt& e1, const bdtDt& e2, std::string op ){
     return R_NilValue ;
 }
 
+bdtDt* arith_bdtDd_bdtDt(const bdtDd& e1, const bdtDt& e2, std::string op) {
+    if ( ! op.compare("+") ) {
+        return new bdtDt(e2.m_dt + e1.m_dd);
+    }
+    Rf_error( "operator not implemented" )  ;
+    // not reached
+    return new bdtDt(0);
+}
+
+bdtDt* arith_bdtDt_bdtDd(const bdtDt& e1, const bdtDd& e2, std::string op) {
+    if ( ! op.compare("+") ) {
+        return new bdtDt(e1.m_dt + e2.m_dd);
+    } else if( ! op.compare("-") ) {
+        return new bdtDt(e1.m_dt - e2.m_dd);
+    }
+    Rf_error( "operator not implemented" )  ;
+    // not reached
+    return new bdtDt(0);
+}
+
 RCPP_MODULE(bdtDtMod) {
     Rcpp::class_<bdtDt>("bdtDt")   
 	
@@ -162,6 +182,8 @@ RCPP_MODULE(bdtDtMod) {
     Rcpp::function("arith_bdtDt_int",         &arith_bdtDt_int); 
     Rcpp::function("arith_int_bdtDt",         &arith_int_bdtDt); 
     Rcpp::function("compare_bdtDt_bdtDt",     &compare_bdtDt_bdtDt);
+    Rcpp::function("arith_bdtDd_bdtDt",       &arith_bdtDd_bdtDt); 
+    Rcpp::function("arith_bdtDt_bdtDd",       &arith_bdtDt_bdtDd); 
 }
 
 
