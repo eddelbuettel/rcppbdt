@@ -116,10 +116,10 @@ evalqOnLoad({
               function(e1, e2) arith_bdtDd_int( e1, e2, .Generic ) )
     setMethod("Arith", signature(e1 = "Rcpp_bdtDd", e2 = "numeric" ),
               function(e1, e2) arith_bdtDd_int( e1, as.integer(e2), .Generic ) )
-    setMethod("Arith", signature(e1 = "integer", e2 = "Rcpp_bdtDd"),
-              function(e1, e2) arith_int_bdtDd( e1, e2, .Generic ) )
-    setMethod("Arith", signature(e1 = "numeric", e2 = "Rcpp_bdtDd"),
-              function(e1, e2) arith_int_bdtDd(as.integer(e1), e2, .Generic ) )
+    #setMethod("Arith", signature(e1 = "integer", e2 = "Rcpp_bdtDd"),
+    #          function(e1, e2) arith_int_bdtDd(e1, e2, .Generic ) )
+    #setMethod("Arith", signature(e1 = "numeric", e2 = "Rcpp_bdtDd"),
+    #          function(e1, e2) arith_int_bdtDd(as.integer(e1), e2, .Generic ) )
     setMethod("Compare", signature(e1 = "Rcpp_bdtDd", e2 = "Rcpp_bdtDd" ),
               function(e1, e2) compare_bdtDd_bdtDd( e1, e2, .Generic ) )
     setMethod("Arith", signature(e1 = "Rcpp_bdtDd", e2 = "Rcpp_bdtDt" ),

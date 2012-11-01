@@ -25,10 +25,6 @@
 #include <RcppCommon.h>
 
 // forward declarations and helping module classes 
-class bdtDd;
-class bdtDt;
-class bdtDu;
-class bdtPt;
 RCPP_EXPOSED_CLASS(bdtDd)
 RCPP_EXPOSED_CLASS(bdtDu)
 RCPP_EXPOSED_CLASS(bdtDt)

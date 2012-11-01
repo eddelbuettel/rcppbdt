@@ -1,4 +1,14 @@
-2012-10-26  Dirk Eddelbuettel  <edd@dexter>
+2012-10-31  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/bdt.R: switch from fromDate() to setDate()
+
+	* inst/include/RcppBDTdt.h: addMonth(), addYears() added which can't
+	be done via date_duration as they need a date for context
+	* src/RcppBDTdt.cpp: idem 
+
+	* src/RcppBDTdd.cpp: added weeks()
+
+2012-10-26  Dirk Eddelbuettel  <edd@debian.org>
 
 	* inst/include/RcppBDTdd.h: New class date_duration
 	* src/RcppBDTdd.cpp: Implementation
@@ -101,7 +111,7 @@
 	can represents hours, minutes, seconds, down to milli, micro and
 	nanoseconds (where the last part may be OS-dependent, see Boost docs)
 
-2012-08-24  Dirk Eddelbuettel  <edd@dexter>
+2012-08-24  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/RcppBDTtz.cpp: Use Language evaluation to get location of zone
 	db file, reducing constructor to single argument for region; also
@@ -109,13 +119,13 @@
 
 	* R/zzz.R: add default display methods for bdtTz objects
 
-2012-08-22  Dirk Eddelbuettel  <edd@dexter>
+2012-08-22  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/RcppBDTtz.cpp: Rewrote bdtTz to be based on small class
 	wrapping tz_db object plus one pointer both of which are initialized
 	from the constructor
 
-2012-08-20  Dirk Eddelbuettel  <edd@dexter>
+2012-08-20  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/RcppBDTtz.cpp: New module 'bdtTz' for time zone functionality
 	* R/zzz.R: Load bdtTzMod module on startup

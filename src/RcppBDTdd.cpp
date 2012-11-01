@@ -22,6 +22,7 @@
 #include <RcppBDT.h>
 
 bdtDd* days(int d)		{ return new bdtDd(boost::gregorian::date_duration(d)); }
+bdtDd* weeks(int w)		{ return new bdtDd(boost::gregorian::weeks(w)); }
 
 bdtDd* arith_bdtDd_bdtDd( const bdtDd& e1, const bdtDd& e2, std::string op) {
     if( ! op.compare("+") ){
@@ -80,7 +81,8 @@ RCPP_MODULE(bdtDdMod) {
 
     ;
     
-    Rcpp::function( "days",              &days ) ; 
+    Rcpp::function( "days",              &days); 
+    Rcpp::function( "weeks",             &weeks); 
     
     Rcpp::function( "arith_bdtDd_bdtDd",        &arith_bdtDd_bdtDd); 
     Rcpp::function( "arith_bdtDd_int",          &arith_bdtDd_int); 

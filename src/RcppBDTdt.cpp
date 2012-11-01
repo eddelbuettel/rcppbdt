@@ -164,6 +164,8 @@ RCPP_MODULE(bdtDtMod) {
 
         .method("addDays", 		&bdtDt::addDays, 		"adds days to given date")
         .method("subtractDays", 	&bdtDt::subtractDays, 		"subtract days from given date")
+        .method("addMonths",            &bdtDt::addMonths,              "adds months to given date")
+        .method("addYears",             &bdtDt::addYears, 	        "add years to given date")
 
         .method("setIMMDate", 		&bdtDt::setIMMDate, 		"sets third Wednesday in given month and year")
 

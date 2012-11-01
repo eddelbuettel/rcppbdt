@@ -25,13 +25,12 @@
 class bdtDd {
 
 public:
-    bdtDd() : m_dd(0)			 {} 				// default empty constructor, zero length 
-    //bdtDd(SEXP dd) 			 { m_dd = Rcpp::as<int>(dd); } 	// constructor from SEXP using int
-    bdtDd(long dd) : m_dd(dd)		 {} 	// constructor from day count
+    bdtDd() : m_dd(0)			 {} 			// default empty constructor, zero length 
+    bdtDd(long dd) : m_dd(dd)		 {} 			// constructor from day count
     bdtDd(boost::gregorian::date_duration dd) : m_dd(dd) {} 
     bdtDd(const bdtDd& other) : m_dd(other.m_dd) {}
 
-    long getDays()             { return m_dd.days(); }
+    long getDays()                    { return m_dd.days(); }
 
 private:
     boost::gregorian::date_duration m_dd; 				// private Boost date duration instance

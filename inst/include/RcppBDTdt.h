@@ -67,6 +67,8 @@ public:
 
     void addDays(unsigned int len) 	 { m_dt += boost::gregorian::date_duration(len); }
     void subtractDays(unsigned int len)  { m_dt -= boost::gregorian::date_duration(len); }
+    void addMonths(int m)                { m_dt += boost::gregorian::months(m); }
+    void addYears(int y) 	         { m_dt += boost::gregorian::years(y); }
 
     // with thanks to Whit Armstong for doing this in his rboostdatetime
     void setIMMDate(int mon, int year)   { 
