@@ -6,6 +6,7 @@
 \alias{arith_bdtDu_bdtDu}
 \alias{arith_bdtDu_bdtPt}
 \alias{arith_bdtDu_int}
+\alias{arith_int_bdtDu}
 \alias{compare_bdtDu_bdtDu}
 \alias{hours}
 \alias{microseconds}

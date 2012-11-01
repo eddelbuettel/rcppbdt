@@ -3,6 +3,10 @@
 \alias{bdtDt}
 \alias{show,Rcpp_bdtDt-method}
 \alias{format,Rcpp_bdtDt-method}
+\alias{arith_bdtDt_bdtDd}
+\alias{arith_bdtDt_int}
+\alias{arith_int_bdtDt}
+\alias{compare_bdtDt_bdtDt}
 \alias{Rcpp_bdtDt-class}
 \docType{package}
 \title{Rcpp module bdtDt for binding of Boost Date_Time Date functionality}
