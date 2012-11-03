@@ -5,6 +5,8 @@ require(utils, quiet=TRUE, warn=FALSE)
 require(Rcpp, quiet=TRUE, warn=FALSE)
 require(RcppBDT, quiet=TRUE, warn=FALSE)
 
+op <- options("digits.secs"=6)          # to make sure R display microseconds
+
 ## use one of several bdtPt ctors
 pt <- new(bdtPt, ISOdatetime(2012,1,1,00,30,0,tz="UTC"))
 
@@ -14,5 +16,13 @@ print(pt + du)
 print(du + pt)
 
 print(pt + hours(3) + minutes(4))
-#print(pt + 5)
-print(5 + pt)
+print(pt + 5.5)
+print(pt + 5.005)
+print(pt + 5.005005)
+print(pt + 5.005005005)
+print(5.5 + pt)
+
+print(pt + c(5.5, 5.5005))
+
+options(op)
+

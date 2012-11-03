@@ -79,6 +79,10 @@ evalqOnLoad({
               function(e1, e2) arith_bdtDu_bdtPt(e1, e2, .Generic ))
     setMethod("Compare", signature(e1 = "Rcpp_bdtPt", e2 = "Rcpp_bdtPt"),
               function(e1, e2) compare_bdtPt_bdtPt(e1, e2, .Generic))
+    setMethod("Arith", signature(e1 = "Rcpp_bdtPt", e2 = "numeric" ),
+              function(e1, e2) arith_bdtPt_double(e1, e2, .Generic ))
+    setMethod("Arith", signature(e1 = "numeric", e2 = "Rcpp_bdtPt"),
+              function(e1, e2) arith_double_bdtPt(e1, e2, .Generic ))
 
     setMethod("Compare", signature(e1 = "Rcpp_bdtDt", e2 = "Rcpp_bdtDt"),
               function(e1, e2) compare_bdtDt_bdtDt(e1, e2, .Generic))

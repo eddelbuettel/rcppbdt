@@ -66,9 +66,11 @@ public:
 private:
     boost::posix_time::ptime m_pt; 		// private ptime instace
 
-    friend bdtPt* arith_bdtPt_bdtDu(const bdtPt&, const bdtDu&, std::string);
-    friend bdtPt* arith_bdtDu_bdtPt(const bdtDu&, const bdtPt&, std::string);
-    friend bool compare_bdtPt_bdtPt(const bdtPt&, const bdtPt&, std::string);
+    friend bdtPt* arith_bdtPt_bdtDu(const bdtPt&,   const bdtDu&,  std::string);
+    friend bdtPt* arith_bdtDu_bdtPt(const bdtDu&,   const bdtPt&,  std::string);
+    friend bool   compare_bdtPt_bdtPt(const bdtPt&, const bdtPt&,  std::string);
+    friend bdtPt* arith_bdtPt_double(const bdtPt&,  const double&, std::string);
+    friend bdtPt* arith_double_bdtPt(const double&, const bdtPt&,  std::string);
 };
 
 #endif

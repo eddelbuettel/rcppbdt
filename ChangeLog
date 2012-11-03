@@ -1,10 +1,15 @@
+2012-11-03  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/RcppBDTpt.cpp: Added support for adding seconds (converted to
+	duration) to pt objects
+
 2012-10-31  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/bdt.R: switch from fromDate() to setDate()
 
 	* inst/include/RcppBDTdt.h: addMonth(), addYears() added which can't
 	be done via date_duration as they need a date for context
-	* src/RcppBDTdt.cpp: idem 
+	* src/RcppBDTdt.cpp: idem
 
 	* src/RcppBDTdd.cpp: added weeks()
 

@@ -77,6 +77,35 @@ bool compare_bdtPt_bdtPt(const bdtPt& e1, const bdtPt& e2, std::string op) {
     return R_NilValue ;
 }
 
+bdtPt* arith_bdtPt_double(const bdtPt& e1, const double& d, std::string op){
+    int secs = static_cast<int>(d);
+    int fracs = (d - secs) *  boost::posix_time::time_duration::ticks_per_second();
+    //REprintf("%f -> %d %d\n", d, secs, fracs);
+    boost::posix_time::time_duration td(0, 0, secs, fracs);
+    if( ! op.compare("+") ){
+        return new bdtPt(e1.m_pt + td);   
+    } else if( ! op.compare("-") ) {
+        return new bdtPt(e1.m_pt - td);
+    }
+    Rf_error("operator not implemented");
+    // not reached
+    return new bdtPt();
+}
+
+bdtPt* arith_double_bdtPt(const double& d, const bdtPt& e1, std::string op){
+    int secs = static_cast<int>(d);
+    int fracs = (d - secs) *  boost::posix_time::time_duration::ticks_per_second();
+    boost::posix_time::time_duration td(0, 0, secs, fracs);
+    if( ! op.compare("+") ){
+        return new bdtPt(e1.m_pt + td);   
+    } else if( ! op.compare("-") ) {
+        return new bdtPt(e1.m_pt - td);
+    }
+    Rf_error("operator not implemented");
+    // not reached
+    return new bdtPt();
+}
+
 
 RCPP_MODULE(bdtPtMod) {
     Rcpp::class_<bdtPt>("bdtPt")   
@@ -108,5 +137,7 @@ RCPP_MODULE(bdtPtMod) {
     Rcpp::function("arith_bdtPt_bdtDu", 	&arith_bdtPt_bdtDu); 
     Rcpp::function("arith_bdtDu_bdtPt", 	&arith_bdtDu_bdtPt); 
     Rcpp::function("compare_bdtPt_bdtPt",	&compare_bdtPt_bdtPt);
+    Rcpp::function("arith_bdtPt_double", 	&arith_bdtPt_double); 
+    Rcpp::function("arith_double_bdtPt", 	&arith_double_bdtPt); 
 }
 
