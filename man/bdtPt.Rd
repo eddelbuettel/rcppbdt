@@ -5,6 +5,8 @@
 \alias{format,Rcpp_bdtPt-method}
 \alias{arith_bdtPt_bdtDu}
 \alias{compare_bdtPt_bdtPt}
+\alias{arith_bdtPt_double}
+\alias{arith_double_bdtPt}
 \docType{package}
 \title{Rcpp module bdtPt for binding of Boost Date_Time ptime functionality}
 \description{
