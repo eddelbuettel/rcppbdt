@@ -22,6 +22,7 @@ print(pt + 5.005005)
 print(pt + 5.005005005)
 print(5.5 + pt)
 
+## Need to make this work too -- second argument is ignored right now
 print(pt + c(5.5, 5.5005))
 
 options(op)

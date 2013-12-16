@@ -77,9 +77,30 @@ bool compare_bdtPt_bdtPt(const bdtPt& e1, const bdtPt& e2, std::string op) {
     return R_NilValue ;
 }
 
+#if 0
+// scalar case
 bdtPt* arith_bdtPt_double(const bdtPt& e1, const double& d, std::string op){
     int secs = static_cast<int>(d);
     int fracs = (d - secs) *  boost::posix_time::time_duration::ticks_per_second();
+    //REprintf("%f -> %d %d\n", d, secs, fracs);
+    boost::posix_time::time_duration td(0, 0, secs, fracs);
+    if( ! op.compare("+") ){
+        return new bdtPt(e1.m_pt + td);   
+    } else if( ! op.compare("-") ) {
+        return new bdtPt(e1.m_pt - td);
+    }
+    Rf_error("operator not implemented");
+    // not reached
+    return new bdtPt();
+}
+#endif
+// vector case: e1 could be vector, d could be vector, need to check
+// a) both are vector: same length?
+// b) either one is vector, other is scalar
+// c) both are scalar
+bdtPt* arith_bdtPt_double(const bdtPt& e1, const std::vector<double>& d, std::string op){
+    int secs = static_cast<int>(d[0]);
+    int fracs = (d[0] - secs) *  boost::posix_time::time_duration::ticks_per_second();
     //REprintf("%f -> %d %d\n", d, secs, fracs);
     boost::posix_time::time_duration td(0, 0, secs, fracs);
     if( ! op.compare("+") ){
