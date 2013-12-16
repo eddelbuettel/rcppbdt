@@ -15,5 +15,5 @@ Description: This package provides R with access to Boost Date_Time
 License: GPL (>= 2)
 LazyLoad: yes
 Imports: Rcpp, methods
-LinkingTo: Rcpp
+LinkingTo: Rcpp, BH
 SystemRequirements: Boost (or the BoostHeaders package)
