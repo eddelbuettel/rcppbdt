@@ -1,7 +1,7 @@
-##
+
 ## zzz.R: Loading Rcpp and Boost Date_Time glue
 ##
-## Copyright (C) 2010 - 2012  Dirk Eddelbuettel and Romain Francois
+## Copyright (C) 2010 - 2013  Dirk Eddelbuettel and Romain Francois
 ##
 ## This file is part of RcppBDT.
 ##
@@ -17,17 +17,6 @@
 ##
 ## You should have received a copy of the GNU General Public License
 ## along with RcppBDT.  If not, see <http://www.gnu.org/licenses/>.
-
-
-## .onLoad <- function (lib, pkg) {
-##     req <- get(paste("req", "uire", sep=""))	# we already Imports: methods, but there may
-##     req("methods")  	        		# be a race condition lurking
-##     loadRcppModules(direct=FALSE)
-
-##     setMethod("show", "Rcpp_date", .show_date)
-##     setGeneric("format", function(x,...) standardGeneric("format") )
-##     setMethod("format", "Rcpp_date", .format_date )
-## }
 
 
 loadModule("bdtDdMod", TRUE)

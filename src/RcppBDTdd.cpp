@@ -24,23 +24,23 @@
 bdtDd* days(int d)		{ return new bdtDd(boost::gregorian::date_duration(d)); }
 bdtDd* weeks(int w)		{ return new bdtDd(boost::gregorian::weeks(w)); }
 
-bdtDd* arith_bdtDd_bdtDd( const bdtDd& e1, const bdtDd& e2, std::string op) {
-    if( ! op.compare("+") ){
-        return new bdtDd(e1.m_dd + e2.m_dd );   
-    } else if( ! op.compare("-") ){
+bdtDd* arith_bdtDd_bdtDd(const bdtDd& e1, const bdtDd& e2, std::string op) {
+    if (!op.compare("+")) {
+        return new bdtDd(e1.m_dd + e2.m_dd);   
+    } else if (!op.compare("-")) {
         return new bdtDd(e1.m_dd - e2.m_dd);
     }
-    Rcpp::stop("Only operators '+' and '-' supported between two durations");
+    Rcpp::stop("Only operators '+' and '-' supported between two date durations");
     return new bdtDd(0);	// not reached
 }
 
 bdtDd* arith_bdtDd_int(const bdtDd& e1, const int& e2, std::string op) {
-    if (! op.compare("+")) {
+    if (!op.compare("+")) {
         return new bdtDd(e1.m_dd + boost::gregorian::date_duration(e2));
     } else if (! op.compare("-")) {
         return new bdtDd(e1.m_dd - boost::gregorian::date_duration(e2));
     }
-    Rcpp::stop("Only operators '+' and '-' supported between duration and int");
+    Rcpp::stop("Only operators '+' and '-' supported between date duration and int");
     return new bdtDd(0);    	// not reached
 }
 
@@ -48,26 +48,26 @@ bdtDd* arith_int_bdtDd(const int& e1, const bdtDd& e2, std::string op) {
     if (! op.compare("+")) {
         return new bdtDd(e2.m_dd + boost::gregorian::date_duration(e1));
     }
-    Rcpp::stop("Only operator '+' supported between int and duration");
+    Rcpp::stop("Only operator '+' supported between int and date duration");
     return new bdtDd(0);    	// not reached
 }
 
 bool compare_bdtDd_bdtDd( const bdtDd& e1, const bdtDd& e2, std::string op ){
-    if( !op.compare( "==" ) ){
+    if (!op.compare( "==" ) ){
         return e1.m_dd == e2.m_dd;   
-    } else if( !op.compare( "!=" ) ){
+    } else if (!op.compare("!=")) {
         return e1.m_dd != e2.m_dd;
-    } else if( !op.compare( ">" ) ){
+    } else if (!op.compare(">")) {
         return e1.m_dd > e2.m_dd;
-    } else if( !op.compare( "<" ) ){
+    } else if (!op.compare("<")) {
         return e1.m_dd < e2.m_dd;
-    } else if( !op.compare( ">=" ) ){
+    } else if (!op.compare(">=")) {
         return e1.m_dd >= e2.m_dd;
-    } else if( !op.compare( "<=" ) ){
+    } else if (!op.compare("<=")) {
         return e1.m_dd <= e2.m_dd;
     }
-    Rf_error("unknown operator");
-    return R_NilValue ;
+    Rcpp::stop("unknown operator between durations");
+    return R_NilValue;
 }
 
 RCPP_MODULE(bdtDdMod) {

@@ -2,7 +2,7 @@
 //
 // RcppBDTdu.cpp: Rcpp and Boost Date_Time glue for durations
 //
-// Copyright (C) 2012        Dirk Eddelbuettel and Romain Francois
+// Copyright (C) 2012 - 2013  Dirk Eddelbuettel and Romain Francois
 //
 // This file is part of RcppBDT.
 //
@@ -21,69 +21,67 @@
 
 #include <RcppBDT.h>
 
-bdtDu* hours(int h)		{ return new bdtDu( boost::posix_time::hours(h) ); }
-bdtDu* minutes(int m)		{ return new bdtDu( boost::posix_time::minutes(m) ); }
-bdtDu* seconds(int s)		{ return new bdtDu( boost::posix_time::seconds(s) ); }
-bdtDu* milliseconds(int ms)	{ return new bdtDu( boost::posix_time::milliseconds(ms) ); }
-bdtDu* microseconds(int ms)	{ return new bdtDu( boost::posix_time::microseconds(ms) ); }
-bdtDu* nanoseconds(int ms) 	{ return new bdtDu( boost::posix_time::nanoseconds(ms) ); }
+bdtDu* hours(int h)		{ return new bdtDu(boost::posix_time::hours(h)); }
+bdtDu* minutes(int m)		{ return new bdtDu(boost::posix_time::minutes(m)); }
+bdtDu* seconds(int s)		{ return new bdtDu(boost::posix_time::seconds(s)); }
+bdtDu* milliseconds(int ms)	{ return new bdtDu(boost::posix_time::milliseconds(ms)); }
+bdtDu* microseconds(int ms)	{ return new bdtDu(boost::posix_time::microseconds(ms)); }
+bdtDu* nanoseconds(int ms) 	{ return new bdtDu(boost::posix_time::nanoseconds(ms)); }
   
-bdtDu* arith_bdtDu_bdtDu( const bdtDu& e1, const bdtDu& e2, std::string op ){
-    if( ! op.compare("+") ){
-        return new bdtDu( e1.m_td + e2.m_td ) ;   
-    } else if( ! op.compare("-") ){
-        return new bdtDu( e1.m_td - e2.m_td ) ;
+bdtDu* arith_bdtDu_bdtDu(const bdtDu& e1, const bdtDu& e2, std::string op) {
+    if (!op.compare("+")) {
+        return new bdtDu(e1.m_td + e2.m_td);   
+    } else if (!op.compare("-")) {
+        return new bdtDu(e1.m_td - e2.m_td);
     }
-    Rf_error( "operator not implemented" )  ;
-    // not reached
-    return new bdtDu( 0,0,0,0 )  ;
+    Rcpp::stop("Only operators '+' and '-' supported between durations");
+    return new bdtDu(0,0,0,0);		// not reached
 }
 
 bdtDu* arith_bdtDu_int(const bdtDu& e1, const int e2, std::string op) {
-    if( ! op.compare("*") ){
-        return new bdtDu( e1.m_td * e2 ) ;   
-    } else if( ! op.compare("/") ){
-        return new bdtDu( e1.m_td / e2 ) ;
-    } else if( ! op.compare("+") ){
+    if (!op.compare("*")) {
+        return new bdtDu(e1.m_td * e2);   
+    } else if(!op.compare("/")) {
+        return new bdtDu(e1.m_td / e2);
+    } else if(!op.compare("+")) {
         return new bdtDu(e1.m_td + boost::posix_time::time_duration(0,0,e2,0));
-    } else if( ! op.compare("-") ){
+    } else if(!op.compare("-")) {
         return new bdtDu(e1.m_td - boost::posix_time::time_duration(0, 0, e2, 0));
     }
-    Rf_error( "operator not implemented" )  ;
-    // not reached
-    return new bdtDu( 0,0,0,0 )  ;
+    Rcpp::stop("operator not implemented between duration and int");
+    return new bdtDu(0,0,0,0);		// not reached
+
 }
 
 bdtDu* arith_int_bdtDu(const int e1, const bdtDu& e2, std::string op) {
-    if( ! op.compare("*") ){
+    if (!op.compare("*")) {
         return new bdtDu( e2.m_td * e1 ) ;   
     // } else if( ! op.compare("/") ){
     //     return new bdtDu( e1.m_td / e2 ) ;
-    } else if( ! op.compare("+") ){
+    } else if (!op.compare("+")) {
         return new bdtDu(e2.m_td + boost::posix_time::time_duration(0,0,e1,0));
     // } else if( ! op.compare("-") ){
     //     return new bdtDu(e1.m_td - boost::posix_time::time_duration(0, 0, e2, 0));
     }
-    Rf_error( "operator not implemented" )  ;
-    // not reached
-    return new bdtDu( 0,0,0,0 )  ;
+    Rcpp::stop("operator not implemented between int and duration");
+    return new bdtDu(0,0,0,0);		// not reached
 }
 
 bool compare_bdtDu_bdtDu( const bdtDu& e1, const bdtDu& e2, std::string op ){
-    if( !op.compare( "==" ) ){
-        return e1.m_td == e2.m_td ;   
-    } else if( !op.compare( "!=" ) ){
-        return e1.m_td != e2.m_td ;
-    } else if( !op.compare( ">" ) ){
-        return e1.m_td > e2.m_td ;
-    } else if( !op.compare( "<" ) ){
+    if (!op.compare("==")) {
+        return e1.m_td == e2.m_td;   
+    } else if(!op.compare("!=")) {
+        return e1.m_td != e2.m_td;
+    } else if(!op.compare(">")) {
+        return e1.m_td > e2.m_td;
+    } else if(!op.compare("<")) {
         return e1.m_td < e2.m_td ;
-    } else if( !op.compare( ">=" ) ){
+    } else if(!op.compare(">=")) {
         return e1.m_td >= e2.m_td ;
-    } else if( !op.compare( "<=" ) ){
+    } else if(!op.compare("<=")) {
         return e1.m_td <= e2.m_td ;
     }
-    Rf_error( "unknown operator" ) ;
+    Rcpp::stop("unknown operator betweeb two durations");
     return R_NilValue ;
 }
 

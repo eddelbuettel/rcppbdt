@@ -2,7 +2,7 @@
 //
 // RcppBDTpt.cpp: Rcpp and Boost Date_Time glue for posix time
 //
-// Copyright (C) 2012        Dirk Eddelbuettel and Romain Francois
+// Copyright (C) 2012 - 2013  Dirk Eddelbuettel and Romain Francois
 //
 // This file is part of RcppBDT.
 //
@@ -39,41 +39,39 @@ namespace Rcpp {
 }
 
 bdtPt* arith_bdtPt_bdtDu(const bdtPt& e1, const bdtDu& e2, std::string op){
-    if( ! op.compare("+") ){
-        return new bdtPt( e1.m_pt + e2.m_td ) ;   
-    } else if( ! op.compare("-") ){
-        return new bdtPt( e1.m_pt - e2.m_td ) ;
+    if (!op.compare("+")) {
+        return new bdtPt(e1.m_pt + e2.m_td);   
+    } else if(!op.compare("-")) {
+        return new bdtPt(e1.m_pt - e2.m_td);
     }
-    Rf_error( "operator not implemented" )  ;
-    // not reached
-    return new bdtPt();
+    Rcpp::stop("only operators '+' and '-' supported betweeb posix time and duration");
+    return new bdtPt();    // not reached
 }
 
 bdtPt* arith_bdtDu_bdtPt(const bdtDu& e1, const bdtPt& e2, std::string op) {
-    if( ! op.compare("+") ){
+    if (!op.compare("+")) {
         return new bdtPt( e2.m_pt + e1.m_td ) ;   
     }
     // e1 - e2, ie duration - ptime, makes no sense 
-    Rf_error( "operator not implemented" )  ;
-    // not reached
-    return new bdtPt();
+    Rcpp::stop("only operator '+' permitted between duration and posix time");
+    return new bdtPt();    // not reached
 }
 
 bool compare_bdtPt_bdtPt(const bdtPt& e1, const bdtPt& e2, std::string op) {
-    if( !op.compare( "==" ) ){
-        return e1.m_pt == e2.m_pt ;   
-    } else if( !op.compare( "!=" ) ){
+    if (!op.compare("==")) {
+        return e1.m_pt == e2.m_pt;   
+    } else if(!op.compare("!=")) {
         return e1.m_pt != e2.m_pt ;
-    } else if( !op.compare( ">" ) ){
+    } else if(!op.compare(">")) {
         return e1.m_pt > e2.m_pt ;
-    } else if( !op.compare( "<" ) ){
+    } else if(!op.compare("<")) {
         return e1.m_pt < e2.m_pt ;
-    } else if( !op.compare( ">=" ) ){
+    } else if(!op.compare(">=")) {
         return e1.m_pt >= e2.m_pt ;
-    } else if( !op.compare( "<=" ) ){
+    } else if(!op.compare("<=")) {
         return e1.m_pt <= e2.m_pt ;
     }
-    Rf_error("unknown operator in bdtPt comparison");
+    Rcpp::stop("unknown operator between posix time objects");
     return R_NilValue ;
 }
 
@@ -84,16 +82,16 @@ bdtPt* arith_bdtPt_double(const bdtPt& e1, const double& d, std::string op){
     int fracs = (d - secs) *  boost::posix_time::time_duration::ticks_per_second();
     //REprintf("%f -> %d %d\n", d, secs, fracs);
     boost::posix_time::time_duration td(0, 0, secs, fracs);
-    if( ! op.compare("+") ){
+    if (! op.compare("+")) {
         return new bdtPt(e1.m_pt + td);   
-    } else if( ! op.compare("-") ) {
+    } else if(!op.compare("-")) {
         return new bdtPt(e1.m_pt - td);
     }
-    Rf_error("operator not implemented");
-    // not reached
-    return new bdtPt();
+    Rcpp::stop("operator not implemented between posix time and double");
+    return new bdtPt();    // not reached
 }
 #endif
+
 // vector case: e1 could be vector, d could be vector, need to check
 // a) both are vector: same length?
 // b) either one is vector, other is scalar
@@ -103,14 +101,13 @@ bdtPt* arith_bdtPt_double(const bdtPt& e1, const std::vector<double>& d, std::st
     int fracs = (d[0] - secs) *  boost::posix_time::time_duration::ticks_per_second();
     //REprintf("%f -> %d %d\n", d, secs, fracs);
     boost::posix_time::time_duration td(0, 0, secs, fracs);
-    if( ! op.compare("+") ){
+    if (!op.compare("+")) {
         return new bdtPt(e1.m_pt + td);   
-    } else if( ! op.compare("-") ) {
+    } else if(!op.compare("-")) {
         return new bdtPt(e1.m_pt - td);
     }
-    Rf_error("operator not implemented");
-    // not reached
-    return new bdtPt();
+    Rcpp::stop("operator not implemented between posix time and double");
+    return new bdtPt();    // not reached
 }
 
 bdtPt* arith_double_bdtPt(const double& d, const bdtPt& e1, std::string op){
@@ -123,8 +120,7 @@ bdtPt* arith_double_bdtPt(const double& d, const bdtPt& e1, std::string op){
         return new bdtPt(e1.m_pt - td);
     }
     Rf_error("operator not implemented");
-    // not reached
-    return new bdtPt();
+    return new bdtPt();    // not reached
 }
 
 

@@ -2,7 +2,7 @@
 //
 // RcppBDTtz.cpp: Rcpp and Boost Date_Time glue for timezones
 //
-// Copyright (C) 2012        Dirk Eddelbuettel and Romain Francois
+// Copyright (C) 2012   Dirk Eddelbuettel and Romain Francois
 //
 // This file is part of RcppBDT.
 //
