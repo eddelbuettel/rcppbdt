@@ -2,7 +2,7 @@
 //
 // RcppBDTdd.cpp: Rcpp and Boost Date_Time date duration ("days") class 
 //
-// Copyright (C) 2012  Dirk Eddelbuettel and Romain Francois
+// Copyright (C) 2013  Dirk Eddelbuettel and Romain Francois
 //
 // This file is part of RcppBDT.
 //
@@ -30,9 +30,8 @@ bdtDd* arith_bdtDd_bdtDd( const bdtDd& e1, const bdtDd& e2, std::string op) {
     } else if( ! op.compare("-") ){
         return new bdtDd(e1.m_dd - e2.m_dd);
     }
-    Rf_error("operator not implemented");
-    // not reached
-    return new bdtDd(0);
+    Rcpp::stop("Only operators '+' and '-' supported between two durations");
+    return new bdtDd(0);	// not reached
 }
 
 bdtDd* arith_bdtDd_int(const bdtDd& e1, const int& e2, std::string op) {
@@ -41,16 +40,16 @@ bdtDd* arith_bdtDd_int(const bdtDd& e1, const int& e2, std::string op) {
     } else if (! op.compare("-")) {
         return new bdtDd(e1.m_dd - boost::gregorian::date_duration(e2));
     }
-    Rf_error("operator not implemented");
-    return new bdtDd(0);    // not reached
+    Rcpp::stop("Only operators '+' and '-' supported between duration and int");
+    return new bdtDd(0);    	// not reached
 }
 
 bdtDd* arith_int_bdtDd(const int& e1, const bdtDd& e2, std::string op) {
     if (! op.compare("+")) {
         return new bdtDd(e2.m_dd + boost::gregorian::date_duration(e1));
     }
-    Rf_error("operator not implemented");
-    return new bdtDd(0);    // not reached
+    Rcpp::stop("Only operator '+' supported between int and duration");
+    return new bdtDd(0);    	// not reached
 }
 
 bool compare_bdtDd_bdtDd( const bdtDd& e1, const bdtDd& e2, std::string op ){
@@ -73,19 +72,16 @@ bool compare_bdtDd_bdtDd( const bdtDd& e1, const bdtDd& e2, std::string op ){
 
 RCPP_MODULE(bdtDdMod) {
     Rcpp::class_<bdtDd>("bdtDd")   
-	
         .constructor<int>("constructor with days")  
         // ?  .constructor<SEXP>("constructor with days")  
-
-        .method("getDays",               &bdtDd::getDays,               "get hours of the time duration")
-
+        .method("getDays",                   &bdtDd::getDays,               "get hours of the time duration")
     ;
     
-    Rcpp::function( "days",              &days); 
-    Rcpp::function( "weeks",             &weeks); 
+    Rcpp::function( "days",                  &days); 
+    Rcpp::function( "weeks",                 &weeks); 
     
-    Rcpp::function( "arith_bdtDd_bdtDd",        &arith_bdtDd_bdtDd); 
-    Rcpp::function( "arith_bdtDd_int",          &arith_bdtDd_int); 
-    Rcpp::function( "arith_int_bdtDd",          &arith_int_bdtDd); 
-    Rcpp::function( "compare_bdtDd_bdtDd",      &compare_bdtDd_bdtDd);
+    Rcpp::function( "arith_bdtDd_bdtDd",     &arith_bdtDd_bdtDd); 
+    Rcpp::function( "arith_bdtDd_int",       &arith_bdtDd_int); 
+    Rcpp::function( "arith_int_bdtDd",       &arith_int_bdtDd); 
+    Rcpp::function( "compare_bdtDd_bdtDd",   &compare_bdtDd_bdtDd);
 }

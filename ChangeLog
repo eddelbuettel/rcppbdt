@@ -1,3 +1,9 @@
+2013-12-21  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/zzz.R: Some edits, and extensions for date durations
+	* src/RcppBDTdd.cpp: Use Rcpp::stop in case of error, also reworded
+	some error messages
+
 2012-11-03  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/RcppBDTpt.cpp: Added support for adding seconds (converted to
