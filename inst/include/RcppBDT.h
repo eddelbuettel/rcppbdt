@@ -2,7 +2,7 @@
 //
 // RcppBDT.h: Rcpp and Boost Date_Time glue
 //
-// Copyright (C) 2010 - 2012  Dirk Eddelbuettel and Romain Francois
+// Copyright (C) 2010 - 2014  Dirk Eddelbuettel and Romain Francois
 //
 // This file is part of RcppBDT.
 //
@@ -33,6 +33,9 @@ RCPP_EXPOSED_CLASS(bdtPt)
 // Setting this variable enables use of nanoseconds (as opposed to microseconds)
 // for the maximum resolution; this comes at a cost of 96 bits as opposed to 64 bits
 // We enable it to experiement with it knowing that R already has a 64 bit resolution
+// 
+// Note that this fails on Windows (per R's win-builder.r-project.org) for lack of a
+// long long int type, so we make this conditional on not being on Windows
 #define BOOST_DATE_TIME_POSIX_TIME_STD_CONFIG 1
 
 // Setting this variable governs whether we need to link against the
