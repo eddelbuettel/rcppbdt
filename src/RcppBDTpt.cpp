@@ -2,7 +2,7 @@
 //
 // RcppBDTpt.cpp: Rcpp and Boost Date_Time glue for posix time
 //
-// Copyright (C) 2012 - 2013  Dirk Eddelbuettel and Romain Francois
+// Copyright (C) 2012 - 2014  Dirk Eddelbuettel and Romain Francois
 //
 // This file is part of RcppBDT.
 //
@@ -23,10 +23,11 @@
 
 // define template specialisations for as and wrap
 namespace Rcpp {
-    template <> boost::posix_time::ptime as( SEXP dtsexp ) {
+    template <> boost::posix_time::ptime as(SEXP dtsexp) {
         Rcpp::Datetime dt(dtsexp);
         boost::posix_time::ptime pt(boost::gregorian::date(dt.getYear(), dt.getMonth(), dt.getDay()), 
-                                    boost::posix_time::time_duration(dt.getHours(), dt.getMinutes(), dt.getSeconds(), dt.getMicroSeconds()/1000.0));
+                                    boost::posix_time::time_duration(dt.getHours(), dt.getMinutes(), 
+                                                                     dt.getSeconds(), dt.getMicroSeconds()/1000.0));
         return pt;
     }
 
@@ -96,6 +97,7 @@ bdtPt* arith_bdtPt_double(const bdtPt& e1, const double& d, std::string op){
 // a) both are vector: same length?
 // b) either one is vector, other is scalar
 // c) both are scalar
+// all three could be generalized if we assumed vector on vector returning vector
 bdtPt* arith_bdtPt_double(const bdtPt& e1, const std::vector<double>& d, std::string op){
     int secs = static_cast<int>(d[0]);
     int fracs = (d[0] - secs) *  boost::posix_time::time_duration::ticks_per_second();
