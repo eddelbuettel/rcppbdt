@@ -2,6 +2,18 @@
 \title{News for Package \pkg{RcppBDT}}
 \newcommand{\cpkg}{\href{http://CRAN.R-project.org/package=#1}{\pkg{#1}}}
 
+\section{Changes in version 0.2.2 (2014-02-21)}{
+  \itemize{
+    \item Updates to current CRAN Policy standards for \code{Depends:} and \code{Imports:}
+    in DESCRIPTION
+    \item Also take advantage of new \cpkg{Rcpp} 0.11.0 build options
+    \item New code remains in GitHub repo master branch until R 3.1.0 is
+    release so that we can use C++11 in order to get the \code{long long
+      int} support without which the package does not build on Windows
+    (whereas Linux is fine)
+  }
+}
+
 \section{Changes in version 0.2.1 (2012-08-08)}{
   \itemize{
     \item Bug for getEndOfBizWeek() and getEndOfMonth() who were lacking
