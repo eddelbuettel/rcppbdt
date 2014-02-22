@@ -1,5 +1,1 @@
-RcppBDT	     Boost Date.Time date functionality demo
-RcppBDTtz    Boost Date.Time timezone functionality demo
-RcppBDTdu    Boost Date.Time duration object demo
-RcppBDTpt    Boost Date.Time posix time object demo
-RcppBDTdd    Boost Date.Time date duration object demo
+RcppBDT	 Boost Date.Time functionality accessible via Rcpp

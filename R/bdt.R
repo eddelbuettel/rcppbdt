@@ -20,43 +20,43 @@
 
 getEndOfBizWeek <- function(date = Sys.Date()) {
     stopifnot(inherits(date, "Date"))
-    bdt$setDate(date)
-    bdt$getEndOfBizWeek()
+    bdt$fromDate(date)
+    bdt$getEndOfBizWeek(date)
 }
 
 getEndOfMonth <- function(date = Sys.Date()) {
     stopifnot(inherits(date, "Date"))
-    bdt$setDate(date)
-    bdt$getEndOfMonth()
+    bdt$fromDate(date)
+    bdt$getEndOfMonth(date)
 }
 
 getYear <- function(date = Sys.Date()) {
     stopifnot(inherits(date, "Date"))
-    bdt$setDate(date)
+    bdt$fromDate(date)
     bdt$getYear()
 }
 
 getMonth <- function(date = Sys.Date()) {
     stopifnot(inherits(date, "Date"))
-    bdt$setDate(date)
+    bdt$fromDate(date)
     bdt$getMonth()
 }
 
 getDay <- function(date = Sys.Date()) {
     stopifnot(inherits(date, "Date"))
-    bdt$setDate(date)
+    bdt$fromDate(date)
     bdt$getDay()
 }
 
 getDayOfWeek <- function(date = Sys.Date()) {
     stopifnot(inherits(date, "Date"))
-    bdt$setDate(date)
+    bdt$fromDate(date)
     bdt$getDayOfWeek()
 }
 
 getDayOfYear <- function(date = Sys.Date()) {
     stopifnot(inherits(date, "Date"))
-    bdt$setDate(date)
+    bdt$fromDate(date)
     bdt$getDayOfYear()
 }
 

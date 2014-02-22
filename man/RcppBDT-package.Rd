@@ -7,7 +7,7 @@
   This package provides R with access to Boost Date_Time
   functonality by using Rcpp modules.
 
-  Date, Local time, duration and time zone functionality is covered.
+  Currently only Date functionality is covered.
 }
 \details{
   Please consult the Boost documentation for (copious) details on the

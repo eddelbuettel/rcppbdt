@@ -2,7 +2,7 @@
 //
 // RcppBDT.h: Rcpp and Boost Date_Time glue
 //
-// Copyright (C) 2010 - 2014  Dirk Eddelbuettel and Romain Francois
+// Copyright (C) 2010 - 2012  Dirk Eddelbuettel and Romain Francois
 //
 // This file is part of RcppBDT.
 //
@@ -24,20 +24,6 @@
 
 #include <RcppCommon.h>
 
-// forward declarations and helping module classes 
-RCPP_EXPOSED_CLASS(bdtDd)
-RCPP_EXPOSED_CLASS(bdtDu)
-RCPP_EXPOSED_CLASS(bdtDt)
-RCPP_EXPOSED_CLASS(bdtPt)
-
-// Setting this variable enables use of nanoseconds (as opposed to microseconds)
-// for the maximum resolution; this comes at a cost of 96 bits as opposed to 64 bits
-// We enable it to experiement with it knowing that R already has a 64 bit resolution
-// 
-// Note that this fails on Windows (per R's win-builder.r-project.org) for lack of a
-// long long int type, so we make this conditional on not being on Windows
-#define BOOST_DATE_TIME_POSIX_TIME_STD_CONFIG 1
-
 // Setting this variable governs whether we need to link against the
 // Boost Date.Time library (eg -lboost_date_time on Debian/Ubuntu) or
 // not The functions not involving string parsing or conversion are
@@ -48,41 +34,19 @@ RCPP_EXPOSED_CLASS(bdtPt)
 #define RcppBDT_UseWithStrings 0
 
 #if RcppBDT_UseWithString
-  #include <boost/date_time/gregorian/gregorian.hpp> 		// Gregorian calendar types, with I/O
+  #include <boost/date_time/gregorian/gregorian.hpp> 	// Gregorian calendar types, including I/O
 #else
   #include <boost/date_time/gregorian/gregorian_types.hpp> 	// Gregorian calendar types, no I/O
 #endif
 
-#include <boost/date_time/local_time/local_time.hpp> 	 
-
-
 namespace Rcpp {
-
-    // First the 'date' class boost::gregorian::date
-    //
     // non-intrusive extension via template specialisation
-    template <> boost::gregorian::date as(SEXP dt);
-    //
+    template <> boost::gregorian::date as( SEXP dt );
+
     // non-intrusive extension via template specialisation
     template <> SEXP wrap(const boost::gregorian::date &d);
-
-
-    // Second the 'datetime' class boost::posix_time::ptime
-    //
-    // non-intrusive extension via template specialisation
-    template <> boost::posix_time::ptime as(SEXP dt);
-    //
-    // non-intrusive extension via template specialisation
-    template <> SEXP wrap(const boost::posix_time::ptime &dt);
-
 }
 
 #include <Rcpp.h>
-
-#include <RcppBDTdd.h>
-#include <RcppBDTdt.h>
-#include <RcppBDTpt.h>
-#include <RcppBDTdu.h>
-#include <RcppBDTtz.h>
 
 #endif
