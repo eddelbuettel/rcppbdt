@@ -3,6 +3,11 @@
 	* src/Makevars: Simplified for use with Rcpp (>= 0.11.0)
 	* src/Makevars.win: Ditto
 
+	* src/Makevars: Define 'USE_CXX11=' for use with R-devel as we need
+	C++11 for the 'long long int' type used on 64-bit machines for int64
+	(or else the build fails on Windows / win-builder)
+	* src/Makevars.win: Ditto
+
 2014-02-20  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION: Updated Description text
