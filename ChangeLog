@@ -1,8 +1,22 @@
+2014-02-21  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/Makevars: Simplified for use with Rcpp (>= 0.11.0)
+	* src/Makevars.win: Ditto
+
+2014-02-20  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: Updated Description text
+	* DESCRIPTION: Updated Import: of Rcpp to 'Rcpp (>= 0.11.0)'
+
 2013-12-21  Dirk Eddelbuettel  <edd@debian.org>
 
 	* R/zzz.R: Some edits, and extensions for date durations
 	* src/RcppBDTdd.cpp: Use Rcpp::stop in case of error, also reworded
 	some error messages
+
+2013-12-15  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: Use 'LinkingTo: BH' to simplify builds
 
 2012-11-03  Dirk Eddelbuettel  <edd@debian.org>
 
