@@ -1,3 +1,8 @@
+2014-03-08  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/RcppBDTpt.cpp (Rcpp): Bug fix for fractional seconds component
+	of RcppBDTpt as<>() method (with thanks to Castedo Ellerman)
+
 2014-02-21  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/Makevars: Simplified for use with Rcpp (>= 0.11.0)

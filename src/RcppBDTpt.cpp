@@ -26,8 +26,10 @@ namespace Rcpp {
     template <> boost::posix_time::ptime as(SEXP dtsexp) {
         Rcpp::Datetime dt(dtsexp);
         boost::posix_time::ptime pt(boost::gregorian::date(dt.getYear(), dt.getMonth(), dt.getDay()), 
-                                    boost::posix_time::time_duration(dt.getHours(), dt.getMinutes(), 
-                                                                     dt.getSeconds(), dt.getMicroSeconds()/1000.0));
+                                    boost::posix_time::time_duration(dt.getHours(), 
+                                                                     dt.getMinutes(), 
+                                                                     dt.getSeconds(), 
+                                                                     dt.getMicroSeconds()*1000.0));
         return pt;
     }
 
