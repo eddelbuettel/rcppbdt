@@ -2,7 +2,7 @@
 \title{News for Package \pkg{RcppBDT}}
 \newcommand{\cpkg}{\href{http://CRAN.R-project.org/package=#1}{\pkg{#1}}}
 
-\section{Changes in [unreleased] version 0.2.3 (2014-04-15)}{
+\section{Changes in [unreleased] version 0.2.3 (2014-04-11)}{
   \itemize{
     \item New module 'bdtDt' replacing the old 'bdtDate' module in a
     more transparent stule using a local class which is wrapped, just like
@@ -14,16 +14,20 @@
     \item New module 'bdtDu' using 'posix_time::duration' for time durations types
     \item New module 'bdtPt' using 'posix_time::ptime' for posix time,
     down to nanosecond granularity (where hardware and OS permit it)
+    \item Select C++11 compilation by setting \code{CXX_STD = CXX11} in
+    src/Makevars* and hence depend on R 3.1.0 or later -- this finally
+    gives us \code{long long int} needed to Python integer file support
+    across all builds
   }
 }
 
 \section{Changes in version 0.2.2 (2014-02-21)}{
   \itemize{
-    \item Updates to current CRAN Policy standards for \code{Depends:} and \code{Imports:}
-    in DESCRIPTION
+    \item Updates to current CRAN Policy standards for \code{Depends:}
+    and \code{Imports:} in DESCRIPTION
     \item Also take advantage of new \cpkg{Rcpp} 0.11.0 build options
     \item New code remains in GitHub repo master branch until R 3.1.0 is
-    release so that we can use C++11 in order to get the \code{long long
+    released so that we can use C++11 in order to get the \code{long long
       int} support without which the package does not build on Windows
     (whereas Linux is fine)
   }

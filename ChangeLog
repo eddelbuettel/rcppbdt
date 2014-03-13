@@ -1,3 +1,9 @@
+2014-03-12  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/Makevars: Updated to current standard of enabling C++11 with
+	R-devel (ie R 3.1.0 with expected release in less than four weeks)
+	* src/Makevars.win: Ditto
+
 2014-03-08  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/RcppBDTpt.cpp (Rcpp): Bug fix for fractional seconds component
