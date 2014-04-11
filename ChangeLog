@@ -1,3 +1,13 @@
+2014-04-11  Dirk Eddelbuettel  <edd@debian.org>
+
+	* inst/include/RcppBDT.h: Turn off explicit smart pointer conversion
+	via #define BOOST_NO_CXX11_EXPLICIT_CONVERSION_OPERATORS, see
+	http://stackoverflow.com/a/15234757/143305 for more
+
+2014-03-24  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/Makevars{,.win} (PKG_CPPFLAGS): Use '=' instead of '+='
+
 2014-03-12  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/Makevars: Updated to current standard of enabling C++11 with

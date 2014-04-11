@@ -30,6 +30,9 @@ RCPP_EXPOSED_CLASS(bdtDu)
 RCPP_EXPOSED_CLASS(bdtDt)
 RCPP_EXPOSED_CLASS(bdtPt)
 
+// cf http://stackoverflow.com/a/15234757/143305
+#define BOOST_NO_CXX11_EXPLICIT_CONVERSION_OPERATORS 1
+
 // Setting this variable enables use of nanoseconds (as opposed to microseconds)
 // for the maximum resolution; this comes at a cost of 96 bits as opposed to 64 bits
 // We enable it to experiement with it knowing that R already has a 64 bit resolution
