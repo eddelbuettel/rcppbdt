@@ -25,8 +25,10 @@ platforms.
 
 All calculations work as implemented, but the package still has a "proof of
 concept" flavour as they are not vectorised at the R level. All the relevant operators
-would have to be defined. That is mostly tedious which I have not gotten
-around to yet.  Get in touch if you are interested.
+operators would have to be defined. That is mostly tedious which is one of
+the reasons I have not gotten around to it yet.  Get in touch if you are
+interested.
+
 
 ### License
 
