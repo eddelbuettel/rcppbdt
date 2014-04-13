@@ -2,7 +2,7 @@
 \title{News for Package \pkg{RcppBDT}}
 \newcommand{\cpkg}{\href{http://CRAN.R-project.org/package=#1}{\pkg{#1}}}
 
-\section{Changes in [unreleased] version 0.2.3 (2014-04-11)}{
+\section{Changes in version 0.2.3 (2014-04-13)}{
   \itemize{
     \item New module 'bdtDt' replacing the old 'bdtDate' module in a
     more transparent stule using a local class which is wrapped, just like
@@ -14,10 +14,10 @@
     \item New module 'bdtDu' using 'posix_time::duration' for time durations types
     \item New module 'bdtPt' using 'posix_time::ptime' for posix time,
     down to nanosecond granularity (where hardware and OS permit it)
-    \item Select C++11 compilation by setting \code{CXX_STD = CXX11} in
-    src/Makevars* and hence depend on R 3.1.0 or later -- this finally
-    gives us \code{long long int} needed to Python integer file support
-    across all builds
+    \item Now selects C++11 compilation by setting \code{CXX_STD = CXX11} in
+    \code{src/Makevars*} and hence depend on R 3.1.0 or later -- this gives
+    gives us \code{long long} needed for the nano-second high-resolution time 
+    calculations across all builds and platforms.
   }
 }
 

@@ -1,3 +1,9 @@
+2014-04-13  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: Version 0.2.3
+
+	* DESCRIPTION: Depends on R (>= 3.1.0) for C++11 and long long
+
 2014-04-11  Dirk Eddelbuettel  <edd@debian.org>
 
 	* inst/include/RcppBDT.h: Turn off explicit smart pointer conversion
