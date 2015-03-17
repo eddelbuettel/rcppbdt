@@ -7,6 +7,8 @@
 
 	* demo/parsePOSIXt.R: Simple demo
 
+	* .travis.yml: Now use ppa:edd/misc for r-cran-rcpp
+
 2014-04-13  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION: Version 0.2.3
