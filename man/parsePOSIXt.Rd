@@ -4,13 +4,10 @@
 \alias{parsePOSIXt}
 \title{Parse POSIXct objects from character variables}
 \usage{
-parsePOSIXt(sv, tz = "UTC")
+parsePOSIXt(sv)
 }
 \arguments{
 \item{sv}{A character vector with date(time) expressions}
-
-\item{tz}{An optional character variable with a timezone expression,
-default is \sQuote{UTC}}
 }
 \value{
 A vector of \code{Datetime} objects with \sQuote{POSIXct} elements.

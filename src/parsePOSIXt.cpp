@@ -72,8 +72,6 @@ double pt_to_double(const bt::ptime& pt) {
 //'
 //' @title Parse POSIXct objects from character variables
 //' @param sv A character vector with date(time) expressions
-//' @param tz An optional character variable with a timezone expression, 
-//' default is \sQuote{UTC}
 //' @return A vector of \code{Datetime} objects with \sQuote{POSIXct} elements.
 //' @author Dirk Eddelbuettel
 //' @examples
@@ -90,7 +88,7 @@ double pt_to_double(const bt::ptime& pt) {
 //' parsePOSIXt(times)
 //' format(parsePOSIXt(times), tz="UTC")
 // [[Rcpp::export]]
-Rcpp::DatetimeVector parsePOSIXt(Rcpp::CharacterVector sv, const std::string tz="UTC") {
+Rcpp::DatetimeVector parsePOSIXt(Rcpp::CharacterVector sv) {
 
     int n = sv.size();
     Rcpp::DatetimeVector pv(n);

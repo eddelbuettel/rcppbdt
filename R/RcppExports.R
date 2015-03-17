@@ -19,8 +19,6 @@
 #'
 #' @title Parse POSIXct objects from character variables
 #' @param sv A character vector with date(time) expressions
-#' @param tz An optional character variable with a timezone expression, 
-#' default is \sQuote{UTC}
 #' @return A vector of \code{Datetime} objects with \sQuote{POSIXct} elements.
 #' @author Dirk Eddelbuettel
 #' @examples
@@ -36,7 +34,7 @@
 #'           "03-21-2004")
 #' parsePOSIXt(times)
 #' format(parsePOSIXt(times), tz="UTC")
-parsePOSIXt <- function(sv, tz = "UTC") {
-    .Call('RcppBDT_parsePOSIXt', PACKAGE = 'RcppBDT', sv, tz)
+parsePOSIXt <- function(sv) {
+    .Call('RcppBDT_parsePOSIXt', PACKAGE = 'RcppBDT', sv)
 }
 
