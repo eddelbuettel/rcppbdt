@@ -55,7 +55,6 @@ double pt_to_double(const bt::ptime& pt) {
 #endif
 }
 
-
 double stringToTime(const std::string s) {
 
     bt::ptime pt, ptbase;
@@ -124,7 +123,8 @@ Rcpp::DatetimeVector parsePOSIXt_impl(const Rcpp::Vector<RTYPE>& sv) {
 //'           "2004-03-21",
 //'           "20040321",
 //'           "03/21/2004",
-//'           "03-21-2004")
+//'           "03-21-2004",
+//'           "20010101")   ## bug on the Boost side -- gets parsed as 2001-10-01
 //' parsePOSIXt(times)
 //' format(parsePOSIXt(times), tz="UTC")
 // [[Rcpp::export]]

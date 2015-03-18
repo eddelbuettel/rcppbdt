@@ -32,7 +32,8 @@
 #'           "2004-03-21",
 #'           "20040321",
 #'           "03/21/2004",
-#'           "03-21-2004")
+#'           "03-21-2004",
+#'           "20010101")   ## bug -- gets parsed as 2001-10-01
 #' parsePOSIXt(times)
 #' format(parsePOSIXt(times), tz="UTC")
 parsePOSIXt <- function(x) {
