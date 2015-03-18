@@ -39,22 +39,6 @@ const std::locale formats[] = {
 };
 const size_t nformats = sizeof(formats)/sizeof(formats[0]);
 
-std::time_t pt_to_time_t(const bt::ptime& pt) {
-    bt::ptime timet_start(boost::gregorian::date(1970,1,1));
-    bt::time_duration diff = pt - timet_start;
-    return diff.ticks()/bt::time_duration::rep_type::ticks_per_second;
-}
-
-double pt_to_double(const bt::ptime& pt) {
-    bt::ptime timet_start(boost::gregorian::date(1970,1,1));
-    bt::time_duration diff = pt - timet_start;
-#if defined(BOOST_DATE_TIME_POSIX_TIME_STD_CONFIG)
-    return diff.total_nanoseconds()/1.0e9;
-#else
-    return diff.total_microseconds()/1.0e6;
-#endif
-}
-
 double stringToTime(const std::string s) {
 
     bt::ptime pt, ptbase;
