@@ -7,7 +7,8 @@
 parsePOSIXt(x)
 }
 \arguments{
-\item{sv}{A character vector with date(time) expressions}
+\item{x}{A vector of type character, integer or numeric with
+date(time) expressions to be parsed and converted.}
 }
 \value{
 A vector of \code{Datetime} objects with \sQuote{POSIXct} elements.
@@ -43,7 +44,6 @@ times <- c("2004-03-21 12:45:33.123456",
           "03-21-2004")
 parsePOSIXt(times)
 format(parsePOSIXt(times), tz="UTC")
-parsePOSIXt(20150101L + seq(1L, 10L)
 }
 \author{
 Dirk Eddelbuettel

@@ -110,7 +110,8 @@ Rcpp::DatetimeVector parsePOSIXt_impl(const Rcpp::Vector<RTYPE>& sv) {
 //' has not been enabled.
 //'
 //' @title Parse POSIXct objects from character variables
-//' @param sv A character vector with date(time) expressions
+//' @param x A vector of type character, integer or numeric with 
+//' date(time) expressions to be parsed and converted. 
 //' @return A vector of \code{Datetime} objects with \sQuote{POSIXct} elements.
 //' @author Dirk Eddelbuettel
 //' @examples
@@ -126,7 +127,6 @@ Rcpp::DatetimeVector parsePOSIXt_impl(const Rcpp::Vector<RTYPE>& sv) {
 //'           "03-21-2004")
 //' parsePOSIXt(times)
 //' format(parsePOSIXt(times), tz="UTC")
-//' parsePOSIXt(20150101L + seq(1L, 10L)
 // [[Rcpp::export]]
 Rcpp::DatetimeVector parsePOSIXt(SEXP x) {
     if (Rcpp::is<Rcpp::CharacterVector>(x)) {
