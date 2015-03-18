@@ -1,6 +1,7 @@
 2015-03-18  Dirk Eddelbuettel  <edd@debian.org>
 
-	* src/parsePOSIXt.cpp: Remove some no-longer-used code
+	* src/parsePOSIXt.cpp: Remove some no-longer-used code,
+	add explicit from conversion from YYYYMMDD to YYYY/MM/DD
 
 2015-03-17  Dirk Eddelbuettel  <edd@debian.org>
 

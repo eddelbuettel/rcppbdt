@@ -33,7 +33,7 @@ const std::locale formats[] = {
     std::locale(std::locale::classic(), new bt::time_input_facet("%m-%d-%Y %H:%M:%S%f")),
     std::locale(std::locale::classic(), new bt::time_input_facet("%d.%m.%Y %H:%M:%S%f")),
     std::locale(std::locale::classic(), new bt::time_input_facet("%Y-%m-%d")),
-    std::locale(std::locale::classic(), new bt::time_input_facet("%Y%m%d")),
+    // will not work std::locale(std::locale::classic(), new bt::time_input_facet("%Y%m%d")),
     std::locale(std::locale::classic(), new bt::time_input_facet("%m/%d/%Y")),
     std::locale(std::locale::classic(), new bt::time_input_facet("%m-%d-%Y"))
 };
@@ -71,6 +71,17 @@ Rcpp::DatetimeVector parsePOSIXt_impl(const Rcpp::Vector<RTYPE>& sv) {
     for (int i=0; i<n; i++) {
         std::string s = boost::lexical_cast<std::string>(sv[i]);
         //Rcpp::Rcout << sv[i] << " -- " << s << std::endl;
+
+        // Boost Date_Time gets the 'YYYYMMDD' format wrong, even
+        // when given as an explicit argument. So we need to test here.
+        // While we're at it, may as well test for obviously wrong data.
+        int l = s.size();
+        if ((l < 8) ||          // impossibly short
+            (l == 9)) {         // 8 or 10 works, 9 cannot
+            Rcpp::stop("Inadmissable input: %s", s);
+        } else if (l == 8) {    // turn YYYYMMDD into YYYY/MM/DD
+            s = s.substr(0, 4) + "/" + s.substr(4, 2) + "/" + s.substr(6,2);
+        }
         pv[i] = stringToTime(s);
     }
     return pv;
