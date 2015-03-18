@@ -34,7 +34,8 @@
 #'           "03-21-2004")
 #' parsePOSIXt(times)
 #' format(parsePOSIXt(times), tz="UTC")
-parsePOSIXt <- function(sv) {
-    .Call('RcppBDT_parsePOSIXt', PACKAGE = 'RcppBDT', sv)
+#' parsePOSIXt(20150101L + seq(1L, 10L)
+parsePOSIXt <- function(x) {
+    .Call('RcppBDT_parsePOSIXt', PACKAGE = 'RcppBDT', x)
 }
 

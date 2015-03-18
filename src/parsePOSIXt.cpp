@@ -20,6 +20,7 @@
 // along with RcppBDT.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/date_time.hpp>
+#include <boost/lexical_cast.hpp>
 #include <Rcpp.h>
 
 namespace bt = boost::posix_time;
@@ -52,6 +53,44 @@ double pt_to_double(const bt::ptime& pt) {
 #else
     return diff.total_microseconds()/1.0e6;
 #endif
+}
+
+
+double stringToTime(const std::string s) {
+
+    bt::ptime pt, ptbase;
+
+    // loop over formats and try them til one fits
+    for (size_t i=0; pt == ptbase && i < nformats; ++i) {
+        std::istringstream is(s);
+        is.imbue(formats[i]);
+        is >> pt;
+    }
+    
+    if (pt == ptbase) {
+        return NAN;
+    } else { 
+        const bt::ptime timet_start(boost::gregorian::date(1970,1,1));
+        bt::time_duration diff = pt - timet_start;
+
+        // Define BOOST_DATE_TIME_POSIX_TIME_STD_CONFIG to use nanoseconds
+        // (and then use diff.total_nanoseconds()/1.0e9;  instead)
+        return diff.total_microseconds()/1.0e6;
+    }
+}
+
+template <int RTYPE>
+Rcpp::DatetimeVector parsePOSIXt_impl(const Rcpp::Vector<RTYPE>& sv) {
+
+    int n = sv.size();
+    Rcpp::DatetimeVector pv(n);
+    
+    for (int i=0; i<n; i++) {
+        std::string s = boost::lexical_cast<std::string>(sv[i]);
+        //Rcpp::Rcout << sv[i] << " -- " << s << std::endl;
+        pv[i] = stringToTime(s);
+    }
+    return pv;
 }
 
 //' This function uses the Boost Date_Time library to parse 
@@ -87,30 +126,17 @@ double pt_to_double(const bt::ptime& pt) {
 //'           "03-21-2004")
 //' parsePOSIXt(times)
 //' format(parsePOSIXt(times), tz="UTC")
+//' parsePOSIXt(20150101L + seq(1L, 10L)
 // [[Rcpp::export]]
-Rcpp::DatetimeVector parsePOSIXt(Rcpp::CharacterVector sv) {
-
-    int n = sv.size();
-    Rcpp::DatetimeVector pv(n);
-    
-    for (int j=0; j<n; j++) {
-        bt::ptime pt, ptbase;
-        std::string s(sv[j]);
-
-        // loop over formats and try them til one fits
-        for (size_t i=0; pt == ptbase && i < nformats; ++i) {
-            std::istringstream is(s);
-            is.imbue(formats[i]);
-            is >> pt;
-        }
-
-        if (pt == ptbase) {
-            pv[j] = NAN;
-        } else { 
-            pv[j] = pt_to_double(pt);
-        }
+Rcpp::DatetimeVector parsePOSIXt(SEXP x) {
+    if (Rcpp::is<Rcpp::CharacterVector>(x)) {
+        return parsePOSIXt_impl<STRSXP>(x);
+    } else if (Rcpp::is<Rcpp::IntegerVector>(x)) {
+        return parsePOSIXt_impl<INTSXP>(x); 
+    } else if (Rcpp::is<Rcpp::NumericVector>(x)) {
+        return parsePOSIXt_impl<REALSXP>(x);
+    } else {
+        Rcpp::stop("Unsupported Type");
+        return R_NilValue;//not reached
     }
-    //pv.attr("class") = Rcpp::CharacterVector::create("POSIXct", "POSIXt");
-    //pv.attr("tzone") = tz;
-    return pv;
 }

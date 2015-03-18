@@ -7,13 +7,13 @@
 using namespace Rcpp;
 
 // parsePOSIXt
-Rcpp::DatetimeVector parsePOSIXt(Rcpp::CharacterVector sv);
-RcppExport SEXP RcppBDT_parsePOSIXt(SEXP svSEXP) {
+Rcpp::DatetimeVector parsePOSIXt(SEXP x);
+RcppExport SEXP RcppBDT_parsePOSIXt(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type sv(svSEXP);
-    __result = Rcpp::wrap(parsePOSIXt(sv));
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    __result = Rcpp::wrap(parsePOSIXt(x));
     return __result;
 END_RCPP
 }

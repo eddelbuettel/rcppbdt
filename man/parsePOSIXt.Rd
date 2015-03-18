@@ -4,7 +4,7 @@
 \alias{parsePOSIXt}
 \title{Parse POSIXct objects from character variables}
 \usage{
-parsePOSIXt(sv)
+parsePOSIXt(x)
 }
 \arguments{
 \item{sv}{A character vector with date(time) expressions}
@@ -43,6 +43,7 @@ times <- c("2004-03-21 12:45:33.123456",
           "03-21-2004")
 parsePOSIXt(times)
 format(parsePOSIXt(times), tz="UTC")
+parsePOSIXt(20150101L + seq(1L, 10L)
 }
 \author{
 Dirk Eddelbuettel
