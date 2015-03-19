@@ -3,4 +3,4 @@ RcppBDTtz    Boost Date.Time timezone functionality demo
 RcppBDTdu    Boost Date.Time duration object demo
 RcppBDTpt    Boost Date.Time posix time object demo
 RcppBDTdd    Boost Date.Time date duration object demo
-parsePOSIXt  Time parsing examples
+parsePOSIXt  (Date)time parsing demo

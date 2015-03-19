@@ -4,6 +4,8 @@
 	add explicit from conversion from YYYYMMDD to YYYY/MM/DD,
 	finer distinction between integer and numeric
 
+	* demo/parsePOSIXt.R: Extended demo file with more examples
+
 2015-03-17  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/parsePOSIXt.cpp: Added two more formats; also added
