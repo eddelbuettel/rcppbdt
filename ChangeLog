@@ -1,3 +1,10 @@
+2015-03-19  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/toPOSIXct.cpp: Now provides toPOSIXct() function, so source
+	file renamed as well from parsePOSIXt.cpp
+	* man/toPOSIXct.Rd: Renamed from parsePOSIXt.Rd
+	* demo/toPOSIXct.R: Renamed from parsePOSIXt.R; uses toPOSIXct()
+
 2015-03-18  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/parsePOSIXt.cpp: Remove some no-longer-used code,

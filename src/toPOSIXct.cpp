@@ -1,6 +1,6 @@
 // -*- mode: C++; c-indent-level: 4; c-basic-offset: 4; indent-tabs-mode: nil; -*-
 //
-// parsePOSIXt: Use Boost Date_Time to convert date(time) string to POSIXt
+// toPOSIXct: Use Boost Date_Time to convert date(time) data to POSIXt
 //
 // Copyright (C) 2015  Dirk Eddelbuettel
 //
@@ -63,7 +63,7 @@ double stringToTime(const std::string s) {
 }
 
 template <int RTYPE>
-Rcpp::DatetimeVector parsePOSIXt_impl(const Rcpp::Vector<RTYPE>& sv) {
+Rcpp::DatetimeVector toPOSIXct_impl(const Rcpp::Vector<RTYPE>& sv) {
 
     int n = sv.size();
     Rcpp::DatetimeVector pv(n);
@@ -120,14 +120,14 @@ Rcpp::DatetimeVector parsePOSIXt_impl(const Rcpp::Vector<RTYPE>& sv) {
 //'           "03/21/2004",
 //'           "03-21-2004",
 //'           "20010101")   ## bug on the Boost side -- gets parsed as 2001-10-01
-//' parsePOSIXt(times)
-//' format(parsePOSIXt(times), tz="UTC")
+//' toPOSIXct(times)
+//' format(toPOSIXct(times), tz="UTC")
 // [[Rcpp::export]]
-Rcpp::DatetimeVector parsePOSIXt(SEXP x) {
+Rcpp::DatetimeVector toPOSIXct(SEXP x) {
     if (Rcpp::is<Rcpp::CharacterVector>(x)) {
-        return parsePOSIXt_impl<STRSXP>(x);
+        return toPOSIXct_impl<STRSXP>(x);
     } else if (Rcpp::is<Rcpp::IntegerVector>(x)) {
-        return parsePOSIXt_impl<INTSXP>(x); 
+        return toPOSIXct_impl<INTSXP>(x); 
     } else if (Rcpp::is<Rcpp::NumericVector>(x)) {
         // here we have two cases: either we are an int like
         // 200150315 'mistakenly' cast to numeric, or we actually
@@ -135,7 +135,7 @@ Rcpp::DatetimeVector parsePOSIXt(SEXP x) {
         Rcpp::NumericVector v(x);
         if (v[0] < 21990101) {  // somewhat arbitrary cuttoff
             // actual integer date notation: convert to string and parse
-            return parsePOSIXt_impl<REALSXP>(x);
+            return toPOSIXct_impl<REALSXP>(x);
         } else {
             // we think it is a numeric time, so treat it as one
             return Rcpp::DatetimeVector(x);

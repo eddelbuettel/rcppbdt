@@ -6,14 +6,14 @@
 
 using namespace Rcpp;
 
-// parsePOSIXt
-Rcpp::DatetimeVector parsePOSIXt(SEXP x);
-RcppExport SEXP RcppBDT_parsePOSIXt(SEXP xSEXP) {
+// toPOSIXct
+Rcpp::DatetimeVector toPOSIXct(SEXP x);
+RcppExport SEXP RcppBDT_toPOSIXct(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
     Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
-    __result = Rcpp::wrap(parsePOSIXt(x));
+    __result = Rcpp::wrap(toPOSIXct(x));
     return __result;
 END_RCPP
 }

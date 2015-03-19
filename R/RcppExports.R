@@ -33,10 +33,10 @@
 #'           "20040321",
 #'           "03/21/2004",
 #'           "03-21-2004",
-#'           "20010101")   ## bug -- gets parsed as 2001-10-01
-#' parsePOSIXt(times)
-#' format(parsePOSIXt(times), tz="UTC")
-parsePOSIXt <- function(x) {
-    .Call('RcppBDT_parsePOSIXt', PACKAGE = 'RcppBDT', x)
+#'           "20010101")   ## bug on the Boost side -- gets parsed as 2001-10-01
+#' toPOSIXct(times)
+#' format(toPOSIXct(times), tz="UTC")
+toPOSIXct <- function(x) {
+    .Call('RcppBDT_toPOSIXct', PACKAGE = 'RcppBDT', x)
 }
 
