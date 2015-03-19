@@ -129,7 +129,17 @@ Rcpp::DatetimeVector parsePOSIXt(SEXP x) {
     } else if (Rcpp::is<Rcpp::IntegerVector>(x)) {
         return parsePOSIXt_impl<INTSXP>(x); 
     } else if (Rcpp::is<Rcpp::NumericVector>(x)) {
-        return parsePOSIXt_impl<REALSXP>(x);
+        // here we have two cases: either we are an int like
+        // 200150315 'mistakenly' cast to numeric, or we actually
+        // are a proper large numeric (ie as.numeric(Sys.time())
+        Rcpp::NumericVector v(x);
+        if (v[0] < 21990101) {  // somewhat arbitrary cuttoff
+            // actual integer date notation: convert to string and parse
+            return parsePOSIXt_impl<REALSXP>(x);
+        } else {
+            // we think it is a numeric time, so treat it as one
+            return Rcpp::DatetimeVector(x);
+        }
     } else {
         Rcpp::stop("Unsupported Type");
         return R_NilValue;//not reached
