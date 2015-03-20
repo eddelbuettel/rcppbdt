@@ -1,3 +1,7 @@
+2015-03-20  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/toPOSIXct.cpp: Also support %b and %B formats for month
+
 2015-03-19  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/toPOSIXct.cpp: Now provides toPOSIXct() function, so source
