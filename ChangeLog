@@ -1,5 +1,7 @@
 2015-03-20  Dirk Eddelbuettel  <edd@debian.org>
 
+	* demo/toPOSIXct.R: Expanded demo with more examples
+
 	* src/toPOSIXct.cpp: Also support %b and %B formats for month
 
 2015-03-19  Dirk Eddelbuettel  <edd@debian.org>
