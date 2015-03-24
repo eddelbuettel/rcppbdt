@@ -68,6 +68,7 @@ const size_t nformats = sizeof(formats)/sizeof(formats[0]);
 double stringToTime(const std::string s) {
 
     bt::ptime pt, ptbase;
+    const bt::ptime timet_start(boost::gregorian::date(1970,1,1));
 
     // loop over formats and try them til one fits
     for (size_t i=0; pt == ptbase && i < nformats; ++i) {
@@ -79,7 +80,6 @@ double stringToTime(const std::string s) {
     if (pt == ptbase) {
         return NAN;
     } else { 
-        const bt::ptime timet_start(boost::gregorian::date(1970,1,1));
         bt::time_duration diff = pt - timet_start;
 
         // Define BOOST_DATE_TIME_POSIX_TIME_STD_CONFIG to use nanoseconds
@@ -171,3 +171,26 @@ Rcpp::DatetimeVector toPOSIXct(SEXP x) {
         return R_NilValue;//not reached
     }
 }
+
+
+// [[Rcpp::export]]
+Rcpp::DatetimeVector charToPOSIXct(Rcpp::CharacterVector sv) {
+    int n = sv.size();
+    Rcpp::DatetimeVector pv(n);
+
+    const bt::ptime timet_start(boost::gregorian::date(1970,1,1));
+    bt::ptime pt;
+    std::locale fmt = std::locale(std::locale::classic(), 
+                                  new bt::time_input_facet("%Y-%m-%d %H:%M:%S%f"));
+
+    for (int i=0; i<n; i++) {
+        std::istringstream is(std::string(sv[i]));
+        is.imbue(fmt);
+        is >> pt;
+        bt::time_duration diff = pt - timet_start;
+
+        pv[i] = diff.total_microseconds()/1.0e6;
+    }
+    return pv;
+}
+

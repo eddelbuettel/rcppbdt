@@ -17,3 +17,14 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
+// charToPOSIXct
+Rcpp::DatetimeVector charToPOSIXct(Rcpp::CharacterVector sv);
+RcppExport SEXP RcppBDT_charToPOSIXct(SEXP svSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type sv(svSEXP);
+    __result = Rcpp::wrap(charToPOSIXct(sv));
+    return __result;
+END_RCPP
+}

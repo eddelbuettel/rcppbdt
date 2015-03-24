@@ -40,3 +40,7 @@ toPOSIXct <- function(x) {
     .Call('RcppBDT_toPOSIXct', PACKAGE = 'RcppBDT', x)
 }
 
+charToPOSIXct <- function(sv) {
+    .Call('RcppBDT_charToPOSIXct', PACKAGE = 'RcppBDT', sv)
+}
+
