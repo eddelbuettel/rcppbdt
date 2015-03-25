@@ -23,9 +23,12 @@ rftime <- ftime(v)
 #rparse <- parset(v)
 rbdt   <- toPOSIXct(v)
 cbdt   <- charToPOSIXct(v)
-all.equal(rbase, rftime, rbdt, cbdt)
+#cbdtns   <- charToPOSIXctNS(v)
+ccbdt <- cToPOSIXct(v)
+all.equal(rbase, rftime, rbdt, cbdt, rcppbdt)
 
 res <- microbenchmark(base(v), ftime(v), #parset(v),
-                      toPOSIXct(v), charToPOSIXct(v),
+                      toPOSIXct(v), charToPOSIXct(v), #charToPOSIXctNS(v),
+                      cToPOSIXct(v),
                       times=100)
 print(res)
