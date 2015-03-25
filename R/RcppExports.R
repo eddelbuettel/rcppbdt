@@ -3,8 +3,10 @@
 
 #' This function uses the Boost Date_Time library to parse 
 #' datetimes (and dates) from strings. It returns a 
-#' \code{DatetimeVector} ie a vector of \sQuote{POSIXct} 
-#' objects. 
+#' \code{DatetimeVector},  i.e. a vector of \sQuote{POSIXct} 
+#' objects. These represent dates and time as (possibly fractional) 
+#' seconds since the \sQuote{epoch} of January 1, 1970. The default
+#' timezone of \sQuote{UTC} is set.
 #'
 #' A numer of fixed formats are tried in succession. These include
 #' the standard ISO format \sQuote{YYYY-MM-DD HH:MM:SS} as well as
@@ -23,6 +25,7 @@
 #' @return A vector of \code{Datetime} objects with \sQuote{POSIXct} elements.
 #' @author Dirk Eddelbuettel
 #' @examples
+#' ## See the source code (hah!) for a full list of formats
 #' times <- c("2004-03-21 12:45:33.123456",
 #'           "2004/03/21 12:45:33.123456",
 #'           "20040321 124533.123456",
@@ -33,7 +36,7 @@
 #'           "20040321",
 #'           "03/21/2004",
 #'           "03-21-2004",
-#'           "20010101")   ## bug on the Boost side -- gets parsed as 2001-10-01
+#'           "20010101")   
 #' toPOSIXct(times)
 #' format(toPOSIXct(times), tz="UTC")
 toPOSIXct <- function(x) {
@@ -42,5 +45,9 @@ toPOSIXct <- function(x) {
 
 charToPOSIXct <- function(sv) {
     .Call('RcppBDT_charToPOSIXct', PACKAGE = 'RcppBDT', sv)
+}
+
+cToPOSIXct <- function(sv) {
+    .Call('RcppBDT_cToPOSIXct', PACKAGE = 'RcppBDT', sv)
 }
 

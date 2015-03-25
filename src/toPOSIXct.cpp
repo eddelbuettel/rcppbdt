@@ -115,8 +115,10 @@ Rcpp::DatetimeVector toPOSIXct_impl(const Rcpp::Vector<RTYPE>& sv) {
 
 //' This function uses the Boost Date_Time library to parse 
 //' datetimes (and dates) from strings. It returns a 
-//' \code{DatetimeVector} ie a vector of \sQuote{POSIXct} 
-//' objects. 
+//' \code{DatetimeVector},  i.e. a vector of \sQuote{POSIXct} 
+//' objects. These represent dates and time as (possibly fractional) 
+//' seconds since the \sQuote{epoch} of January 1, 1970. The default
+//' timezone of \sQuote{UTC} is set.
 //'
 //' A numer of fixed formats are tried in succession. These include
 //' the standard ISO format \sQuote{YYYY-MM-DD HH:MM:SS} as well as
@@ -135,6 +137,7 @@ Rcpp::DatetimeVector toPOSIXct_impl(const Rcpp::Vector<RTYPE>& sv) {
 //' @return A vector of \code{Datetime} objects with \sQuote{POSIXct} elements.
 //' @author Dirk Eddelbuettel
 //' @examples
+//' ## See the source code (hah!) for a full list of formats
 //' times <- c("2004-03-21 12:45:33.123456",
 //'           "2004/03/21 12:45:33.123456",
 //'           "20040321 124533.123456",
@@ -145,7 +148,7 @@ Rcpp::DatetimeVector toPOSIXct_impl(const Rcpp::Vector<RTYPE>& sv) {
 //'           "20040321",
 //'           "03/21/2004",
 //'           "03-21-2004",
-//'           "20010101")   ## bug on the Boost side -- gets parsed as 2001-10-01
+//'           "20010101")   
 //' toPOSIXct(times)
 //' format(toPOSIXct(times), tz="UTC")
 // [[Rcpp::export]]
@@ -190,6 +193,42 @@ Rcpp::DatetimeVector charToPOSIXct(Rcpp::CharacterVector sv) {
         bt::time_duration diff = pt - timet_start;
 
         pv[i] = diff.total_microseconds()/1.0e6;
+    }
+    return pv;
+}
+
+// The next function uses the non-stream-based parsing in Boost Date_Time
+// and requires _linking_ with -lboost_date_time which makes the (otherwise
+// header-only) build more complicate
+// // [ [ Rcpp::export ] ]
+// Rcpp::DatetimeVector charToPOSIXctNS(Rcpp::CharacterVector sv) {
+//     int n = sv.size();
+//     Rcpp::DatetimeVector pv(n);
+
+//     const bt::ptime timet_start(boost::gregorian::date(1970,1,1));
+//     for (int i=0; i<n; i++) {
+//         bt::ptime pt = bt::time_from_string(std::string(sv[i]));
+//         bt::time_duration diff = pt - timet_start;
+//         pv[i] = diff.total_microseconds()/1.0e6;
+//     }
+//     return pv;
+// }
+
+
+// The next version if for comparison only and uses the C library strptime
+// Not that this does NOT work for sub-second entries
+// TODO: make the R-internal strptime accessible
+// [[Rcpp::export]]
+Rcpp::DatetimeVector cToPOSIXct(Rcpp::CharacterVector sv) {
+    int n = sv.size();
+    Rcpp::DatetimeVector pv(n);
+
+    for (int i=0; i<n; i++) {
+        const char *s = sv[i];
+        struct tm tm;
+        strptime(s, "%Y-%d-%m %H:%M:%S", &tm);
+        time_t t = mktime(&tm);
+        pv[i] = t;
     }
     return pv;
 }

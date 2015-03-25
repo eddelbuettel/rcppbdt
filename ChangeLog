@@ -1,6 +1,12 @@
+2015-03-25  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/toPOSIXct.cpp:(cToPOSIXct): C library strptime for timimg
+	comparison
+
 2015-03-24  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/toPOSIXct.cpp (charToPOSIXct): Smaller version to test timing
+	but commented out as it needs to link with libboost_date_time
 
 	* demo/toPOSIXctTiming.R: Simple timing benchmark
 
