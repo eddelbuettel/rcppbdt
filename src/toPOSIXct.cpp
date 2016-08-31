@@ -2,7 +2,7 @@
 //
 // toPOSIXct: Use Boost Date_Time to convert date(time) data to POSIXt
 //
-// Copyright (C) 2015  Dirk Eddelbuettel
+// Copyright (C) 2015 - 2016  Dirk Eddelbuettel
 //
 // This file is part of RcppBDT.
 //
@@ -47,6 +47,9 @@ const std::locale formats[] = {
     std::locale(std::locale::classic(), new bt::time_input_facet("%B-%d-%Y %H:%M:%S%f")),
     std::locale(std::locale::classic(), new bt::time_input_facet("%d.%B.%Y %H:%M:%S%f")),
 
+    // see http://stackoverflow.com/questions/39259184/formatting-dates-with-r for next one
+    std::locale(std::locale::classic(), new bt::time_input_facet("%a %b %d %H:%M:%S %Y")), 
+    
     std::locale(std::locale::classic(), new bt::time_input_facet("%Y-%m-%d")),
     // will not work std::locale(std::locale::classic(), new bt::time_input_facet("%Y%m%d")),
     std::locale(std::locale::classic(), new bt::time_input_facet("%m/%d/%Y")),

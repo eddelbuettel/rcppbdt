@@ -1,3 +1,7 @@
+2016-08-31  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/toPOSIXct.cpp: Additional format using '%a %b %d'
+
 2015-03-25  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/toPOSIXct.cpp:(cToPOSIXct): C library strptime for timimg
