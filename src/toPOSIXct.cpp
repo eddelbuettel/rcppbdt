@@ -48,7 +48,7 @@ const std::locale formats[] = {
     std::locale(std::locale::classic(), new bt::time_input_facet("%d.%B.%Y %H:%M:%S%f")),
 
     // see http://stackoverflow.com/questions/39259184/formatting-dates-with-r for next one
-    std::locale(std::locale::classic(), new bt::time_input_facet("%a %b %d %H:%M:%S %Y")), 
+    std::locale(std::locale::classic(), new bt::time_input_facet("%a %b %d %H:%M:%S%F %Y")), 
     
     std::locale(std::locale::classic(), new bt::time_input_facet("%Y-%m-%d")),
     // will not work std::locale(std::locale::classic(), new bt::time_input_facet("%Y%m%d")),
