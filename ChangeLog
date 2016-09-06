@@ -9,6 +9,8 @@
 
 	* demo/00Index: Updated
 
+	* .travis.yml: Switch to using run.sh for Travis CI
+
 2016-08-31  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/toPOSIXct.cpp: Additional format using '%a %b %d'

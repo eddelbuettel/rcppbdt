@@ -2,6 +2,19 @@
 \title{News for Package \pkg{RcppBDT}}
 \newcommand{\cpkg}{\href{http://CRAN.R-project.org/package=#1}{\pkg{#1}}}
 
+\section{Changes in version 0.2.4 (2016-09-xx)}{
+  \itemize{
+    \item New utility function \code{toPOSIXct} which can take multitple
+    input format (integer, floating point or character) vectors and can
+    convert by relying on a wide variety of standard formats.
+    \item New demo 'toPOSIXct' illustrating the feaure
+    \item New demo 'toPOSIXctTiming' benchmarking it
+    \item Travis CI uses \code{run.sh} from the maintained Travis R repo
+    \item Use of Travis CI has been updated and switched to the maintained
+    fork of the deprecated mainline.
+  }
+}
+
 \section{Changes in version 0.2.3 (2014-04-13)}{
   \itemize{
     \item New module 'bdtDt' replacing the old 'bdtDate' module in a
