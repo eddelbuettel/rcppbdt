@@ -1,3 +1,14 @@
+2016-09-05  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/toPOSIXct.cpp: All functions returns NumericVector types and
+	deal with input timezone; (comparison) functions charToPOSIXct and
+	cToPOSIXct have documentation too
+	* man/toPOSIXct.Rd: Updated
+	* man/cToPOSIXct.Rd: Added
+	* man/charToPOSIXct.Rd: Added
+
+	* demo/00Index: Updated
+
 2016-08-31  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/toPOSIXct.cpp: Additional format using '%a %b %d'

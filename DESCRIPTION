@@ -1,19 +1,20 @@
 Package: RcppBDT
 Type: Package
-Title: Rcpp bindings for the Boost Date_Time library 
-Version: 0.2.3.2
-Date: 2015-03-19
+Title: 'Rcpp' Bindings for the Boost Date_Time Library
+Version: 0.2.3.3
+Date: 2016-09-05
 Author: Dirk Eddelbuettel and Romain Francois
 Maintainer: Dirk Eddelbuettel <edd@debian.org>
-Description: This package provides R with access to Boost Date_Time
- functionality by using Rcpp modules. 
- .
- Functionality from Boost Date_Time for dates, durations (both for days 
- and datetimes), timezones, and posix time ("ptime") is provided. The posix
- time implementation can support high-resolution of up to nano-second
- precision by using 96 bits (instead of R's 64) to present a ptime object.
+Description: Access to Boost Date_Time functionality for dates,
+ durations (both for days and date time objects), time zones, and 
+ posix time ('ptime') is provided by using 'Rcpp modules'. The 
+ posix time implementation can support high-resolution of up to 
+ nano-second  precision by using 96 bits (instead of R's 64)
+ to present a 'ptime' object (but this needs recompilation with
+ a #define set).
 License: GPL (>= 2)
 LazyLoad: yes
 Depends: R (>= 3.1.0)
 Imports: Rcpp (>= 0.11.0), methods
 LinkingTo: Rcpp, BH
+RoxygenNote: 5.0.1
