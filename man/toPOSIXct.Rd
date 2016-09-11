@@ -7,7 +7,7 @@
 toPOSIXct(x, tz = "UTC")
 }
 \arguments{
-\item{x}{A vector (or list) of type character, integer or numeric with 
+\item{x}{A vector of type character, integer or numeric with 
 date(time) expressions to be parsed and converted.}
 
 \item{tz}{A string with the timezone, defaults to \sQuote{UTC} if unset}
@@ -52,5 +52,10 @@ toPOSIXct(times)
 }
 \author{
 Dirk Eddelbuettel
+}
+\seealso{
+The \code{\link[anytime]{anytime}} function is a more finished
+variant which is based on the initial work with function, and taken into
+its own package.
 }
 

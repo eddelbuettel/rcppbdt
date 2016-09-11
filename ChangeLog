@@ -1,3 +1,9 @@
+2016-09-11  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/toPOSIXct.cpp: Added 'seealso' reference to anytime which
+	was developed based on the initial work here
+	* man/toPOSIXct.Rd: Ditto
+
 2016-09-05  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/toPOSIXct.cpp: All functions returns NumericVector types and

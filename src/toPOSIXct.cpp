@@ -155,6 +155,9 @@ Rcpp::NumericVector toPOSIXct_impl(const Rcpp::Vector<RTYPE>& sv,
 //' date(time) expressions to be parsed and converted. 
 //' @param tz A string with the timezone, defaults to \sQuote{UTC} if unset
 //' @return A vector of \sQuote{POSIXct} elements.
+//' @seealso The \code{\link[anytime]{anytime}} function is a more finished
+//' variant which is based on the initial work with function, and taken into
+//' its own package.
 //' @author Dirk Eddelbuettel
 //' @examples
 //' ## See the source code (hah!) for a full list of formats
