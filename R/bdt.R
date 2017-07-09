@@ -68,12 +68,12 @@ getNthDayOfWeek <- function(nthday, dow, mon, year) {
     bdt$getNthDayOfWeek(nthday, dow, mon, year)
 }
 
-getLastDayOfWeekInMonth <- function(nthday, mon, year) {
-    bdt$getLastDayOfWeekInMonth(nthday, mon, year)
+getLastDayOfWeekInMonth <- function(dow, mon, year) {
+    bdt$getLastDayOfWeekInMonth(dow, mon, year)
 }
 
-getFirstDayOfWeekInMonth <- function(nthday, mon, year) {
-    bdt$getFirstDayOfWeekInMonth(nthday, mon, year)
+getFirstDayOfWeekInMonth <- function(dow, mon, year) {
+    bdt$getFirstDayOfWeekInMonth(dow, mon, year)
 }
 
 getFirstDayOfWeekAfter <- function(dow, date) {

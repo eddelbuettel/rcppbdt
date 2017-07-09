@@ -1,3 +1,9 @@
+2017-07-09  Dirk Eddelbuettel  <edd@debian.org>
+
+	* R/bdt.R (getLastDayOfWeekInMonth, getFirstDayOfWeekInMonth): Use
+	dow instead of nthday for first argument
+	* man/dateFuntions.Rd: Corresponding change
+
 2016-09-18  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/toPOSIXct.cpp: Added seealso reference to anytime
