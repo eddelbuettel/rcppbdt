@@ -35,7 +35,9 @@ times <- c("2004-03-21 12:45:33.123456",
           "2004-03-21 12:45:34")
 cToPOSIXct(times)
 }
+\seealso{
+\code{\link[anytime]{anytime-package}}
+}
 \author{
 Dirk Eddelbuettel
 }
-

@@ -1,3 +1,7 @@
+2016-09-18  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/toPOSIXct.cpp: Added seealso reference to anytime
+
 2016-09-11  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/toPOSIXct.cpp: Added 'seealso' reference to anytime which

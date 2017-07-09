@@ -17,4 +17,4 @@ LazyLoad: yes
 Depends: R (>= 3.1.0)
 Imports: Rcpp (>= 0.11.0), methods
 LinkingTo: Rcpp, BH
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

@@ -29,7 +29,7 @@ namespace Rcpp {
                                     boost::posix_time::time_duration(dt.getHours(), 
                                                                      dt.getMinutes(), 
                                                                      dt.getSeconds(), 
-                                                                     dt.getMicroSeconds()*1000.0));
+                                                                     dt.getMicroSeconds()/1000.0));
         return pt;
     }
 

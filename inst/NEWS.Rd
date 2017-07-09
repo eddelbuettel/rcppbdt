@@ -1,12 +1,12 @@
 \name{NEWS}
 \title{News for Package \pkg{RcppBDT}}
-\newcommand{\cpkg}{\href{http://CRAN.R-project.org/package=#1}{\pkg{#1}}}
 
 \section{Changes in version 0.2.4 (2016-09-xx)}{
   \itemize{
     \item New utility function \code{toPOSIXct} which can take multitple
     input format (integer, floating point or character) vectors and can
-    convert by relying on a wide variety of standard formats.
+    convert by relying on a wide variety of standard formats. This has now
+    been split off into a new package \CRANpkg{anytime} which has more updates.
     \item New demo 'toPOSIXct' illustrating the feaure
     \item New demo 'toPOSIXctTiming' benchmarking it
     \item Travis CI uses \code{run.sh} from the maintained Travis R repo
@@ -38,7 +38,7 @@
   \itemize{
     \item Updates to current CRAN Policy standards for \code{Depends:}
     and \code{Imports:} in DESCRIPTION
-    \item Also take advantage of new \cpkg{Rcpp} 0.11.0 build options
+    \item Also take advantage of new \CRANpkg{Rcpp} 0.11.0 build options
     \item New code remains in GitHub repo master branch until R 3.1.0 is
     released so that we can use C++11 in order to get the \code{long long
       int} support without which the package does not build on Windows

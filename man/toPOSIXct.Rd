@@ -50,12 +50,11 @@ times <- c("2004-03-21 12:45:33.123456",
           "20010101")   
 toPOSIXct(times)
 }
-\author{
-Dirk Eddelbuettel
-}
 \seealso{
-The \code{\link[anytime]{anytime}} function is a more finished
+The \code{\link[anytime]{anytime-package}} function is a more finished
 variant which is based on the initial work with function, and taken into
 its own package.
 }
-
+\author{
+Dirk Eddelbuettel
+}
