@@ -1,9 +1,8 @@
 
 import(Rcpp,methods)                    # packages we require
 
-useDynLib(RcppBDT)                      # this package's shared library
+useDynLib(RcppBDT, .registration=TRUE)  # this package's shared library
 
 exportPattern("^[[:alpha:]]+")          # export all identifier (eg the convenience function and consts)
 exportMethods("format",                 # all modules have format and show methods defined
               "show")
-
