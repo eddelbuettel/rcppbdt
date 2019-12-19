@@ -2,6 +2,8 @@
 
 	* src/Makevars (PKG_CPPFLAGS): Add -DBOOST_NO_AUTO_PTR for quieter build
 
+	* src/init.c: Added, based on pnrrs.r plus post-processing for Modules
+
 2018-12-23  Dirk Eddelbuettel  <edd@debian.org>
 
 	* NAMESPACE: Add .registration=TRUE to useDynLib()
