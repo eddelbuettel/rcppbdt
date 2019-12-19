@@ -8,9 +8,9 @@
 */
 
 /* .Call calls */
-extern SEXP RcppBDT_charToPOSIXct(SEXP, SEXP);
-extern SEXP RcppBDT_cToPOSIXct(SEXP, SEXP);
-extern SEXP RcppBDT_toPOSIXct(SEXP, SEXP);
+extern SEXP _RcppBDT_charToPOSIXct(SEXP, SEXP);
+extern SEXP _RcppBDT_cToPOSIXct(SEXP, SEXP);
+extern SEXP _RcppBDT_toPOSIXct(SEXP, SEXP);
 
 extern SEXP _rcpp_module_boot_bdtDdMod();
 extern SEXP _rcpp_module_boot_bdtDtMod();
@@ -19,9 +19,9 @@ extern SEXP _rcpp_module_boot_bdtPtMod();
 extern SEXP _rcpp_module_boot_bdtTzMod();
 
 static const R_CallMethodDef CallEntries[] = {
-    {"RcppBDT_charToPOSIXct", (DL_FUNC) &RcppBDT_charToPOSIXct, 2},
-    {"RcppBDT_cToPOSIXct",    (DL_FUNC) &RcppBDT_cToPOSIXct,    2},
-    {"RcppBDT_toPOSIXct",     (DL_FUNC) &RcppBDT_toPOSIXct,     2},
+    {"_RcppBDT_charToPOSIXct", (DL_FUNC) &_RcppBDT_charToPOSIXct, 2},
+    {"_RcppBDT_cToPOSIXct",    (DL_FUNC) &_RcppBDT_cToPOSIXct,    2},
+    {"_RcppBDT_toPOSIXct",     (DL_FUNC) &_RcppBDT_toPOSIXct,     2},
     {"_rcpp_module_boot_bdtDdMod", (DL_FUNC) &_rcpp_module_boot_bdtDdMod, 0},
     {"_rcpp_module_boot_bdtDtMod", (DL_FUNC) &_rcpp_module_boot_bdtDtMod, 0},
     {"_rcpp_module_boot_bdtDuMod", (DL_FUNC) &_rcpp_module_boot_bdtDuMod, 0},

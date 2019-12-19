@@ -43,7 +43,7 @@
 #'           "20010101")   
 #' toPOSIXct(times)
 toPOSIXct <- function(x, tz = "UTC") {
-    .Call('RcppBDT_toPOSIXct', PACKAGE = 'RcppBDT', x, tz)
+    .Call(`_RcppBDT_toPOSIXct`, x, tz)
 }
 
 #' This function uses the Boost Date_Time library to parse 
@@ -73,7 +73,7 @@ toPOSIXct <- function(x, tz = "UTC") {
 #'           "2004-03-21 12:45:34")
 #' charToPOSIXct(times)
 charToPOSIXct <- function(sv, tz = "UTC") {
-    .Call('RcppBDT_charToPOSIXct', PACKAGE = 'RcppBDT', sv, tz)
+    .Call(`_RcppBDT_charToPOSIXct`, sv, tz)
 }
 
 #' This function uses the Boost Date_Time library to parse 
@@ -101,6 +101,6 @@ charToPOSIXct <- function(sv, tz = "UTC") {
 #'           "2004-03-21 12:45:34")
 #' cToPOSIXct(times)
 cToPOSIXct <- function(sv, tz = "UTC") {
-    .Call('RcppBDT_cToPOSIXct', PACKAGE = 'RcppBDT', sv, tz)
+    .Call(`_RcppBDT_cToPOSIXct`, sv, tz)
 }
 

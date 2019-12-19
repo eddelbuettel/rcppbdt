@@ -8,7 +8,7 @@ using namespace Rcpp;
 
 // toPOSIXct
 Rcpp::NumericVector toPOSIXct(SEXP x, std::string tz);
-RcppExport SEXP RcppBDT_toPOSIXct(SEXP xSEXP, SEXP tzSEXP) {
+RcppExport SEXP _RcppBDT_toPOSIXct(SEXP xSEXP, SEXP tzSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -20,7 +20,7 @@ END_RCPP
 }
 // charToPOSIXct
 Rcpp::NumericVector charToPOSIXct(Rcpp::CharacterVector sv, std::string tz);
-RcppExport SEXP RcppBDT_charToPOSIXct(SEXP svSEXP, SEXP tzSEXP) {
+RcppExport SEXP _RcppBDT_charToPOSIXct(SEXP svSEXP, SEXP tzSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -32,7 +32,7 @@ END_RCPP
 }
 // cToPOSIXct
 Rcpp::NumericVector cToPOSIXct(Rcpp::CharacterVector sv, std::string tz);
-RcppExport SEXP RcppBDT_cToPOSIXct(SEXP svSEXP, SEXP tzSEXP) {
+RcppExport SEXP _RcppBDT_cToPOSIXct(SEXP svSEXP, SEXP tzSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
