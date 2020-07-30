@@ -1,10 +1,19 @@
+
 ## RcppBDT: R bindings for Boost Date.Time
 
 [![Build Status](https://travis-ci.org/eddelbuettel/rcppbdt.png)](https://travis-ci.org/eddelbuettel/rcppbdt)
+[![License](https://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-2.0.html)
+[![CRAN](https://www.r-pkg.org/badges/version/RcppBDT)](https://cran.r-project.org/package=RcppBDT)
+[![Downloads](https://cranlogs.r-pkg.org/badges/RcppBDT?color=brightgreen)](https://www.r-pkg.org/pkg/RcppBDT)
+[![Last Commit](https://img.shields.io/github/last-commit/eddelbuettel/rcppbdt)](https://github.com/eddelbuettel/rcppbdt)
 
-This package provides R with access to 
-[Boost Date_Time](http://www.boost.org/doc/libs/1_55_0/doc/html/date_time.html)
-functionality by using Rcpp modules. 
+### About
+
+This package provides R with access to [Boost
+Date_Time](http://www.boost.org/doc/libs/1_55_0/doc/html/date_time.html)
+functionality by using Rcpp modules.
+
+It is effectively a precursor to the newer and more polished packages [anytime](https://github.com/eddelbuettel/anytime).
 
 ### Core Features available via [Boost Date_Time](http://www.boost.org/doc/libs/1_55_0/doc/html/date_time.html) 
 
