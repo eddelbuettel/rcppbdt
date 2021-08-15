@@ -1,5 +1,7 @@
 2021-08-15  Dirk Eddelbuettel  <edd@debian.org>
 
+	* DESCRIPTION (Version, Date): Roll minor version and date
+
 	* src/toPOSIXct.cpp (cToPOSIXct): Now uses Rcpp::Datetime and
 	optional format
 	* man/cToPOSIXct.Rd: Updated documentation
