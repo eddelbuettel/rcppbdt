@@ -51,7 +51,7 @@ times <- c("2004-03-21 12:45:33.123456",
 toPOSIXct(times)
 }
 \seealso{
-The \code{\link[anytime]{anytime-package}} function is a more finished
+The funtion in the anytime package which is a more finished.
 variant which is based on the initial work with function, and taken into
 its own package.
 }

@@ -1,11 +1,13 @@
 2021-08-15  Dirk Eddelbuettel  <edd@debian.org>
 
-	* DESCRIPTION (Version, Date): Roll minor version and date
+ 	* DESCRIPTION (Version, Date): Roll minor version and date
 
-	* src/toPOSIXct.cpp (cToPOSIXct): Now uses Rcpp::Datetime and
-	optional format; disambuigated one assignment to please clang
+	* src/toPOSIXct.cpp: Now uses Rcpp::Datetime and optional format
+	disambiguated one assignment to please clang; removed explicit cross
+	reference to anytime package
 
-	* man/cToPOSIXct.Rd: Updated documentation
+	* man/toPOSIXct.Rd: Updated documentation
+	* man/charToPOSIXct.Rd: Idem
 
 2021-04-19  Dirk Eddelbuettel  <edd@debian.org>
 
