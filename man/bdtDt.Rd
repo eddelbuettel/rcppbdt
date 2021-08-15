@@ -36,5 +36,5 @@
   modules. 
 }
 \author{Dirk Eddelbuettel \email{edd@debian.org}}
-\references{Boost Date_Time: \url{http://www.boost.org/doc/html/date_time.html}}
+\references{Boost Date_Time: \url{https://www.boost.org/doc/libs/release/doc/html/date_time.html}}
 \keyword{package}

@@ -11,17 +11,17 @@
 ### About
 
 This package provides R with access to [Boost
-Date_Time](http://www.boost.org/doc/libs/1_55_0/doc/html/date_time.html)
+Date_Time](https://www.boost.org/doc/libs/release/doc/html/date_time.html)
 functionality by using Rcpp modules.
 
 It is effectively a precursor to the newer and more polished packages [anytime](https://github.com/eddelbuettel/anytime).
 
-### Core Features available via [Boost Date_Time](http://www.boost.org/doc/libs/1_55_0/doc/html/date_time.html) 
+### Core Features available via [Boost Date_Time](https://www.boost.org/doc/libs/release/doc/html/date_time.html) 
 
-* [Posix time ("Ptime")](http://www.boost.org/doc/libs/1_55_0/doc/html/date_time/posix_time.html): Nano-second precision calculations and datetime calculations
-* [Date](http://www.boost.org/doc/libs/1_55_0/doc/html/date_time/gregorian.html): basic date calculation support 
-* [Date duration](http://www.boost.org/doc/libs/1_55_0/doc/html/date_time/gregorian.html#date_time.gregorian.date_duration): Calculations on intervals ("days") 
-* [Local time](http://www.boost.org/doc/libs/1_55_0/doc/html/date_time/local_time.html): Portable time zone support
+* [Posix time ("Ptime")](https://www.boost.org/doc/libs/release/doc/html/date_time/posix_time.html): Nano-second precision calculations and datetime calculations
+* [Date](https://www.boost.org/doc/libs/release/doc/html/date_time/gregorian.html): basic date calculation support 
+* [Date duration](https://www.boost.org/doc/libs/release/doc/html/date_time/gregorian.html#date_time.gregorian.date_duration): Calculations on intervals ("days") 
+* [Local time](https://www.boost.org/doc/libs/release/doc/html/date_time/local_time.html): Portable time zone support
 
 Each of these has an individual demo file.
 

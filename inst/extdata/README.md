@@ -13,5 +13,5 @@ for problems with this csv file, and the following quote
 > year, political issues and many other things.
 
 attributed to the
-[Boost locale](http://www.boost.org/doc/libs/1_57_0/libs/locale/doc/html/dates_times_timezones.html)
+[Boost locale](https://www.boost.org/doc/libs/release/libs/locale/doc/html/dates_times_timezones.html)
 documentation.
