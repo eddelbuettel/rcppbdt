@@ -265,44 +265,41 @@ Rcpp::NumericVector charToPOSIXct(Rcpp::CharacterVector sv, std::string tz = "UT
 // }
 
 
-//' This function uses the Boost Date_Time library to parse 
+//' This function uses Rcpp to parse
 //' datetimes from strings. It returns a vector of \code{POSIXct}
 //' objects. These represent dates and time as (possibly
-//' fractional) seconds since the \sQuote{epoch} of January 1, 1970. 
+//' fractional) seconds since the \sQuote{epoch} of January 1, 1970.
 //' A timezone can be set, if none is supplied \sQuote{UTC} is set.
 //'
-//' A single standard ISO format \sQuote{YYYY-MM-DD HH:MM:SS} is tried.
-//' See the function //' \code{\link{toPOSIXct}} for more general input format,
-//' and \code{\link{charToPOSIXct}} for character conversion.
+//' The default standard ISO format \sQuote{YYYY-MM-DD HH:MM:SS.FFFFFFF} is
+//' is used by default along with the UTC time zone.
 //'
-//' This function is for comparison only and uses the C library function
-//' \code{strptime} which does \emph{not} work for sub-second entries.
+//' This function is for comparison only.
 //'
 //' @title Parse POSIXct objects from character variables
 //' @param sv A vector of type character with datetime expressions
-//' in ISO format to be parsed and converted. 
+//' in ISO format to be parsed and converted.
+//' @param fmt A format, defaults to the ISO format if unset
 //' @param tz A string with the timezone, defaults to \sQuote{UTC} if unset
 //' @return A vector of \sQuote{POSIXct} elements.
-//' @seealso \code{\link[anytime]{anytime-package}}
+//' @seealso \code{\link{Rcpp}}
 //' @author Dirk Eddelbuettel
 //' @examples
 //' times <- c("2004-03-21 12:45:33.123456",
 //'           "2004-03-21 12:45:34")
 //' cToPOSIXct(times)
 // [[Rcpp::export]]
-Rcpp::NumericVector cToPOSIXct(Rcpp::CharacterVector sv, std::string tz = "UTC") {
-    // TODO: make the R-internal strptime accessible
+Rcpp::NumericVector cToPOSIXct(Rcpp::CharacterVector sv,
+                               std::string fmt = "%Y-%m-%d %H:%M:%OS",
+                               std::string tz = "UTC") {
     int n = sv.size();
     Rcpp::NumericVector pv(n);
     pv.attr("class") = Rcpp::CharacterVector::create("POSIXct", "POSIXt");
     pv.attr("tzone") = tz;
-
     for (int i=0; i<n; i++) {
-        const char *s = sv[i];
-        struct tm tm;
-        strptime(s, "%Y-%d-%m %H:%M:%S", &tm);
-        time_t t = mktime(&tm);
-        pv[i] = t;
+        std::string s(sv[i]);
+        Rcpp::Datetime d(s);
+        pv[i] = d.getFractionalTimestamp();
     }
     return pv;
 }

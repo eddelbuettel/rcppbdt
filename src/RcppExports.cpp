@@ -6,6 +6,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // toPOSIXct
 Rcpp::NumericVector toPOSIXct(SEXP x, std::string tz);
 RcppExport SEXP _RcppBDT_toPOSIXct(SEXP xSEXP, SEXP tzSEXP) {
@@ -31,14 +36,15 @@ BEGIN_RCPP
 END_RCPP
 }
 // cToPOSIXct
-Rcpp::NumericVector cToPOSIXct(Rcpp::CharacterVector sv, std::string tz);
-RcppExport SEXP _RcppBDT_cToPOSIXct(SEXP svSEXP, SEXP tzSEXP) {
+Rcpp::NumericVector cToPOSIXct(Rcpp::CharacterVector sv, std::string fmt, std::string tz);
+RcppExport SEXP _RcppBDT_cToPOSIXct(SEXP svSEXP, SEXP fmtSEXP, SEXP tzSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type sv(svSEXP);
+    Rcpp::traits::input_parameter< std::string >::type fmt(fmtSEXP);
     Rcpp::traits::input_parameter< std::string >::type tz(tzSEXP);
-    rcpp_result_gen = Rcpp::wrap(cToPOSIXct(sv, tz));
+    rcpp_result_gen = Rcpp::wrap(cToPOSIXct(sv, fmt, tz));
     return rcpp_result_gen;
 END_RCPP
 }

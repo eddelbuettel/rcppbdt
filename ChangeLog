@@ -1,3 +1,9 @@
+2021-08-15  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/toPOSIXct.cpp (cToPOSIXct): Now uses Rcpp::Datetime and
+	optional format
+	* man/cToPOSIXct.Rd: Updated documentation
+
 2021-04-19  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (URL, BugRreports): Added to DESCRIPTION file
