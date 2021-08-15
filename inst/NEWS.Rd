@@ -1,17 +1,27 @@
 \name{NEWS}
 \title{News for Package \pkg{RcppBDT}}
 
-\section{Changes in version 0.2.4 (2016-09-xx)}{
+\section{Changes in version 0.2.4 (2021-08-15)}{
   \itemize{
     \item New utility function \code{toPOSIXct} which can take multitple
     input format (integer, floating point or character) vectors and can
-    convert by relying on a wide variety of standard formats. This has now
-    been split off into a new package \CRANpkg{anytime} which has more updates.
-    \item New demo 'toPOSIXct' illustrating the feaure
-    \item New demo 'toPOSIXctTiming' benchmarking it
-    \item Travis CI uses \code{run.sh} from the maintained Travis R repo
-    \item Use of Travis CI has been updated and switched to the maintained
-    fork of the deprecated mainline.
+    convert by relying on a wide variety of standard formats. This
+    predates what has long been split off into a new package
+    \CRANpkg{anytime} which is more functional and feaureful.
+    \item New demo 'toPOSIXct' illustrating the feaure.
+    \item New demo 'toPOSIXctTiming' benchmarking it.
+    \item Documentation for new functions was added as well.
+    \item CI now uses \code{run.sh} from
+    \href{https://eddelbuettel.github.io/r-ci/}{r-ci}.
+    \item Functions \code{getLastDayOfWeekInMonth} and
+    \code{getFirstDayOfWeekInMonth} now use \code{dow} argument.
+    \item The shared library is now registered when loaded from
+    \code{NAMESPACE}.
+    \item C level entry points are now registered as R now recommends.
+    \item Several badges were added to the README.md file.
+    \item Several fields were added to the DESCRIPTION file, and/or updated.
+    \item Documentation URLs where both updated as needed and converted
+    to https.
   }
 }
 

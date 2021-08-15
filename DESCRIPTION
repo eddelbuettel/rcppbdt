@@ -1,7 +1,7 @@
 Package: RcppBDT
 Type: Package
 Title: 'Rcpp' Bindings for the Boost Date_Time Library
-Version: 0.2.3.6
+Version: 0.2.4
 Date: 2021-08-15
 Author: Dirk Eddelbuettel and Romain Francois
 Maintainer: Dirk Eddelbuettel <edd@debian.org>

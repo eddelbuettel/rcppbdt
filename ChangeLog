@@ -5,11 +5,13 @@
 	* DESCRIPTION: Removed two dated versioned Depends
 
 	* src/toPOSIXct.cpp: Now uses Rcpp::Datetime and optional format
-	disambiguated one assignment to please clang; removed explicit cross
-	reference to anytime package
+	instead of strptime which is not always available; disambiguated one
+	assignment to please clang; removed explicit cross reference to
+	anytime package
 	* src/init.c (CallEntries): Updated for new format argument
 
-	* man/toPOSIXct.Rd: Updated documentation
+	* man/toPOSIXct.Rd: Removed explicit cross-references and updated
+	documentation
 	* man/charToPOSIXct.Rd: Idem
 
 	* README.md: Updated URLs for Boost
@@ -66,7 +68,7 @@
 
 2016-09-05  Dirk Eddelbuettel  <edd@debian.org>
 
-	* src/toPOSIXct.cpp: All functions returns NumericVector types and
+	* src/toPOSIXct.cpp: All functions return NumericVector types and
 	deal with input timezone; (comparison) functions charToPOSIXct and
 	cToPOSIXct have documentation too
 	* man/toPOSIXct.Rd: Updated
@@ -108,7 +110,7 @@
 
 2015-03-18  Dirk Eddelbuettel  <edd@debian.org>
 
-	* src/parsePOSIXt.cpp: Remove some no-longer-used code,
+	* src/parsePOSIXt.cpp: Removed some no-longer-used code,
 	add explicit from conversion from YYYYMMDD to YYYY/MM/DD,
 	finer distinction between integer and numeric
 
