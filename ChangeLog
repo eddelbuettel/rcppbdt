@@ -2,12 +2,18 @@
 
  	* DESCRIPTION (Version, Date): Roll minor version and date
 
+	* DESCRIPTION: Removed two dated versioned Depends
+
 	* src/toPOSIXct.cpp: Now uses Rcpp::Datetime and optional format
 	disambiguated one assignment to please clang; removed explicit cross
 	reference to anytime package
+	* src/init.c (CallEntries): Updated for new format argument
 
 	* man/toPOSIXct.Rd: Updated documentation
 	* man/charToPOSIXct.Rd: Idem
+
+	* README.md: Updated URLs for Boost
+	* man/*: Idem
 
 2021-04-19  Dirk Eddelbuettel  <edd@debian.org>
 
