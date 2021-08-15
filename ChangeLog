@@ -3,7 +3,8 @@
 	* DESCRIPTION (Version, Date): Roll minor version and date
 
 	* src/toPOSIXct.cpp (cToPOSIXct): Now uses Rcpp::Datetime and
-	optional format
+	optional format; disambuigated one assignment to please clang
+
 	* man/cToPOSIXct.Rd: Updated documentation
 
 2021-04-19  Dirk Eddelbuettel  <edd@debian.org>
