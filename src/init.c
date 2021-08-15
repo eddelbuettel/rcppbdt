@@ -20,7 +20,7 @@ extern SEXP _rcpp_module_boot_bdtTzMod();
 
 static const R_CallMethodDef CallEntries[] = {
     {"_RcppBDT_charToPOSIXct", (DL_FUNC) &_RcppBDT_charToPOSIXct, 2},
-    {"_RcppBDT_cToPOSIXct",    (DL_FUNC) &_RcppBDT_cToPOSIXct,    2},
+    {"_RcppBDT_cToPOSIXct",    (DL_FUNC) &_RcppBDT_cToPOSIXct,    3},
     {"_RcppBDT_toPOSIXct",     (DL_FUNC) &_RcppBDT_toPOSIXct,     2},
     {"_rcpp_module_boot_bdtDdMod", (DL_FUNC) &_rcpp_module_boot_bdtDdMod, 0},
     {"_rcpp_module_boot_bdtDtMod", (DL_FUNC) &_rcpp_module_boot_bdtDtMod, 0},
