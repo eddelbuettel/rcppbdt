@@ -8,7 +8,7 @@
     convert by relying on a wide variety of standard formats. This
     predates what has long been split off into a new package
     \CRANpkg{anytime} which is more functional and feaureful.
-    \item New demo 'toPOSIXct' illustrating the feaure.
+    \item New demo 'toPOSIXct' illustrating the feature.
     \item New demo 'toPOSIXctTiming' benchmarking it.
     \item Documentation for new functions was added as well.
     \item CI now uses \code{run.sh} from
