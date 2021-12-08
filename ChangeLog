@@ -4,7 +4,7 @@
 
 2021-08-15  Dirk Eddelbuettel  <edd@debian.org>
 
- 	* DESCRIPTION (Version, Date): Roll minor version and date
+ 	* DESCRIPTION (Version, Date): Release 0.2.4
 
 	* DESCRIPTION: Removed two dated versioned Depends
 
