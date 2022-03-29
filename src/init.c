@@ -9,7 +9,7 @@
 
 /* .Call calls */
 extern SEXP _RcppBDT_charToPOSIXct(SEXP, SEXP);
-extern SEXP _RcppBDT_cToPOSIXct(SEXP, SEXP);
+extern SEXP _RcppBDT_cToPOSIXct(SEXP, SEXP, SEXP);
 extern SEXP _RcppBDT_toPOSIXct(SEXP, SEXP);
 
 extern SEXP _rcpp_module_boot_bdtDdMod();
