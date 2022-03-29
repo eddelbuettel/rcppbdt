@@ -19,11 +19,8 @@
 // You should have received a copy of the GNU General Public License
 // along with RcppBDT.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <boost/date_time.hpp>
-#include <boost/date_time/local_time_adjustor.hpp>
 #include <boost/date_time/c_local_time_adjustor.hpp>
-#include <boost/lexical_cast.hpp>
-#include <Rcpp.h>
+#include <RcppBDT.h>
 
 namespace bt = boost::posix_time;
 
