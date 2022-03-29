@@ -1,3 +1,18 @@
+2022-03-29  Dirk Eddelbuettel  <edd@debian.org>
+
+ 	* DESCRIPTION (Version, Date): Release 0.2.5
+
+2022-03-27  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/toPOSIXct.cpp: Switch to including RcppBDT.h to ensure
+	consistent compilation settings across compilation units
+
+2022-03-26  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/init.c: Correct signature of one declaration
+	* src/Makevars: Minor cleanup
+	* src/Makevars.win: Idem
+
 2021-12-08  Dirk Eddelbuettel  <edd@debian.org>
 
 	* README.md: Remove unused continuous integration artifact and badge

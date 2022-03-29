@@ -1,6 +1,15 @@
 \name{NEWS}
 \title{News for Package \pkg{RcppBDT}}
 
+\section{Changes in version 0.2.5 (2022-03-29)}{
+  \itemize{
+    \item Ensure consistent compilation by ensuring \code{RcppBDT.h} is
+    included in all files, this addresses an LTO/ODR issue
+    \item Correct one declaration in \code{init.c}
+    \item Minor additional cleanups
+  }
+}
+
 \section{Changes in version 0.2.4 (2021-08-15)}{
   \itemize{
     \item New utility function \code{toPOSIXct} which can take multitple
