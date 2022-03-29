@@ -1,7 +1,4 @@
-## We want C++11 as it gets us 'long long' as well
 CXX_STD = CXX11
-
-## We need the headers exported via inst/include
 PKG_CPPFLAGS = -I../inst/include/ -DBOOST_NO_AUTO_PTR
 
 ## Needed for the 'non-streams' variant charToPOSIXctNS
