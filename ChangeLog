@@ -1,3 +1,7 @@
+2022-10-28  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/init.c: Add 'void' for proper prototypes pleasing clang-15
+
 2022-03-29  Dirk Eddelbuettel  <edd@debian.org>
 
  	* DESCRIPTION (Version, Date): Release 0.2.5

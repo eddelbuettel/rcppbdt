@@ -12,11 +12,11 @@ extern SEXP _RcppBDT_charToPOSIXct(SEXP, SEXP);
 extern SEXP _RcppBDT_cToPOSIXct(SEXP, SEXP, SEXP);
 extern SEXP _RcppBDT_toPOSIXct(SEXP, SEXP);
 
-extern SEXP _rcpp_module_boot_bdtDdMod();
-extern SEXP _rcpp_module_boot_bdtDtMod();
-extern SEXP _rcpp_module_boot_bdtDuMod();
-extern SEXP _rcpp_module_boot_bdtPtMod();
-extern SEXP _rcpp_module_boot_bdtTzMod();
+extern SEXP _rcpp_module_boot_bdtDdMod(void);
+extern SEXP _rcpp_module_boot_bdtDtMod(void);
+extern SEXP _rcpp_module_boot_bdtDuMod(void);
+extern SEXP _rcpp_module_boot_bdtPtMod(void);
+extern SEXP _rcpp_module_boot_bdtTzMod(void);
 
 static const R_CallMethodDef CallEntries[] = {
     {"_RcppBDT_charToPOSIXct", (DL_FUNC) &_RcppBDT_charToPOSIXct, 2},
