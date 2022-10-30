@@ -1,6 +1,13 @@
 \name{NEWS}
 \title{News for Package \pkg{RcppBDT}}
 
+\section{Changes in version 0.2.6 (2022-10-30)}{
+  \itemize{
+    \item A function prototype was updated for \code{clang-15}.
+    \item GitHub Actions were updated to checkout version 3.
+  }
+}
+
 \section{Changes in version 0.2.5 (2022-03-29)}{
   \itemize{
     \item Ensure consistent compilation by ensuring \code{RcppBDT.h} is
