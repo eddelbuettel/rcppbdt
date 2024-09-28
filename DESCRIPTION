@@ -3,13 +3,15 @@ Type: Package
 Title: 'Rcpp' Bindings for the Boost Date_Time Library
 Version: 0.2.6.1
 Date: 2023-03-30
-Author: Dirk Eddelbuettel and Romain Francois
-Maintainer: Dirk Eddelbuettel <edd@debian.org>
+Authors@R: c(person("Dirk", "Eddelbuettel", role = c("aut", "cre"), email = "edd@debian.org",
+                    comment = c(ORCID = "0000-0001-6419-907X")),
+             person("Romain", "Francois", role = "aut",
+                    comment = c(ORCID = "0000-0002-2444-4226")))
 Description: Access to Boost Date_Time functionality for dates,
  durations (both for days and date time objects), time zones, and 
  posix time ('ptime') is provided by using 'Rcpp modules'. The 
  posix time implementation can support high-resolution of up to 
- nano-second  precision by using 96 bits (instead of R's 64)
+ nano-second  precision by using 96 bits (instead of 64 with R)
  to present a 'ptime' object (but this needs recompilation with
  a #define set).
 License: GPL (>= 2)
