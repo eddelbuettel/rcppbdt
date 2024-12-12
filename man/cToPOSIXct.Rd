@@ -36,7 +36,7 @@ times <- c("2004-03-21 12:45:33.123456",
 cToPOSIXct(times)
 }
 \seealso{
-\code{\link{Rcpp}}
+\code{\link[Rcpp]{Rcpp}}
 }
 \author{
 Dirk Eddelbuettel

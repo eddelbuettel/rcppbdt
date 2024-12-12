@@ -1,3 +1,9 @@
+2024-12-11  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/toPOSIXct.cpp: Correct missing link anchor
+	* src/RcppExports.cpp: Regenerated
+	* man/cToPOSIXct.Rd: Regenerated
+
 2024-09-28  Dirk Eddelbuettel  <edd@debian.org>
 
 	* DESCRIPTION (Authors@R): Added
@@ -13,6 +19,10 @@
 
 	* src/Makevars: No longer set CXX_STD
 	* src/Makevars.win: Idem
+
+2022-10-30  Dirk Eddelbuettel  <edd@debian.org>
+
+ 	* DESCRIPTION (Version, Date): Release 0.2.6
 
 2022-10-28  Dirk Eddelbuettel  <edd@debian.org>
 

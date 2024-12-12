@@ -92,7 +92,7 @@ charToPOSIXct <- function(sv, tz = "UTC") {
 #' @param fmt A format, defaults to the ISO format if unset
 #' @param tz A string with the timezone, defaults to \sQuote{UTC} if unset
 #' @return A vector of \sQuote{POSIXct} elements.
-#' @seealso \code{\link{Rcpp}}
+#' @seealso \code{\link[Rcpp]{Rcpp}}
 #' @author Dirk Eddelbuettel
 #' @examples
 #' times <- c("2004-03-21 12:45:33.123456",
