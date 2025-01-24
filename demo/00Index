@@ -4,4 +4,3 @@ RcppBDTdu          Boost Date.Time duration object demo
 RcppBDTpt          Boost Date.Time posix time object demo
 RcppBDTdd          Boost Date.Time date duration object demo
 toPOSIXct          (Date)time parsing and conversion demo
-toPOSIXctTiming    Benchmarking (Date)time parsing and conversion demo
