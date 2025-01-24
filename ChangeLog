@@ -5,6 +5,8 @@
 	* inst/examples/toPOSIXctTiming.R: Moved from demo/
 	* demo/00Index: Adjusted
 
+	* README.md: Add r-universe badge
+
 2024-12-11  Dirk Eddelbuettel  <edd@debian.org>
 
 	* src/toPOSIXct.cpp: Correct missing link anchor
