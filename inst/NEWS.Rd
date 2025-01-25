@@ -1,6 +1,16 @@
 \name{NEWS}
 \title{News for Package \pkg{RcppBDT}}
 
+\section{Changes in version 0.2.7 (2025-01-25)}{
+  \itemize{
+    \item The package no longer sets a C++ compilation standard
+    \item Package infrastructure, documentation and continuous integration
+    support have been updated
+    \item Several manual pages now have package anchors for the code link
+    \item A \code{demo/} file has been move to \code{inst/examples/}
+  }
+}
+
 \section{Changes in version 0.2.6 (2022-10-30)}{
   \itemize{
     \item A function prototype was updated for \code{clang-15}.

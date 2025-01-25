@@ -1,8 +1,8 @@
 Package: RcppBDT
 Type: Package
 Title: 'Rcpp' Bindings for the Boost Date_Time Library
-Version: 0.2.6.2
-Date: 2025-01-24
+Version: 0.2.7
+Date: 2025-01-25
 Authors@R: c(person("Dirk", "Eddelbuettel", role = c("aut", "cre"), email = "edd@debian.org",
                     comment = c(ORCID = "0000-0001-6419-907X")),
              person("Romain", "Francois", role = "aut",
