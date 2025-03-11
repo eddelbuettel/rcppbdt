@@ -1,3 +1,7 @@
+2025-03-10  Dirk Eddelbuettel  <edd@debian.org>
+
+	* .github/workflows/ci.yaml: Switch to r-ci with implicit bootstrap
+
 2025-01-25  Dirk Eddelbuettel  <edd@debian.org>
 
  	* DESCRIPTION (Version, Date): Release 0.2.7
