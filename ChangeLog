@@ -6,6 +6,8 @@
 	* src/RcppBDTdt.cpp: Idem
 	* src/RcppBDTpt.cpp: Idem
 
+	* .github/workflows/ci.yaml: Use dev version with rapt
+
 2026-01-07  Dirk Eddelbuettel  <edd@debian.org>
 
 	* .github/workflows/ci.yaml: Switch to actions/checkout@v6

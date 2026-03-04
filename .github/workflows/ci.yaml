@@ -8,6 +8,8 @@ on:
 
 env:
   _R_CHECK_FORCE_SUGGESTS_: "false"
+  USE_BSPM: "FALSE"
+  USE_RAPT: "TRUE"
 
 jobs:
   ci:
@@ -25,6 +27,8 @@ jobs:
 
       - name: Setup
         uses: eddelbuettel/github-actions/r-ci@master
+        with:
+          dev_version: 'TRUE'
 
       - name: Dependencies
         run: ./run.sh install_deps
