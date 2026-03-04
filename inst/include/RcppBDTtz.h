@@ -1,8 +1,7 @@
-// -*- mode: C++; c-indent-level: 4; c-basic-offset: 4; indent-tabs-mode: nil; -*-
+
+// RcppBDTtz.h: Rcpp and Boost Date_Time time zone class
 //
-// RcppBDTtz.h: Rcpp and Boost Date_Time time zone class 
-//
-// Copyright (C) 2012  Dirk Eddelbuettel and Romain Francois
+// Copyright (C) 2012-2026  Dirk Eddelbuettel and Romain Francois
 //
 // This file is part of RcppBDT.
 //
@@ -36,7 +35,7 @@ public:
     	m_tz.load_from_file(zonefile); 			// load db from csv zonefile
     	m_tzp = m_tz.time_zone_from_region(region);	// init with given region
         if (m_tzp == NULL) 
-            ::Rf_error("Unknown region supplied, no tz object created");
+            Rcpp::stop("Unknown region supplied, no tz object created");
     }
 
     std::vector<std::string> getAllRegions() { return( m_tz.region_list() ); }

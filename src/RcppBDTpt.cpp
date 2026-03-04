@@ -1,8 +1,7 @@
-// -*- mode: C++; c-indent-level: 4; c-basic-offset: 4; indent-tabs-mode: nil; -*-
-//
+
 // RcppBDTpt.cpp: Rcpp and Boost Date_Time glue for posix time
 //
-// Copyright (C) 2012 - 2014  Dirk Eddelbuettel and Romain Francois
+// Copyright (C) 2012-2026  Dirk Eddelbuettel and Romain Francois
 //
 // This file is part of RcppBDT.
 //
@@ -123,7 +122,7 @@ bdtPt* arith_double_bdtPt(const double& d, const bdtPt& e1, std::string op){
     } else if( ! op.compare("-") ) {
         return new bdtPt(e1.m_pt - td);
     }
-    Rf_error("operator not implemented");
+    Rcpp::stop("operator not implemented");
     return new bdtPt();    // not reached
 }
 

@@ -1,8 +1,7 @@
-// -*- mode: C++; c-indent-level: 4; c-basic-offset: 4; indent-tabs-mode: nil; -*-
-//
+
 // RcppBDTdt.cpp: Rcpp and Boost Date_Time glue for dates
 //
-// Copyright (C) 2010 - 2012  Dirk Eddelbuettel and Romain Francois
+// Copyright (C) 2010-2026  Dirk Eddelbuettel and Romain Francois
 //
 // This file is part of RcppBDT.
 //
@@ -74,7 +73,7 @@ bdtDt* arith_bdtDt_int( const bdtDt& e1, const int& e2, std::string op ){
     } else if( ! op.compare("-") ){
         return new bdtDt( e1.m_dt - boost::gregorian::date_duration(e2) );
     }
-    Rf_error( "operator not implemented" );
+    Rcpp::stop( "operator not implemented" );
     // not reached
     return new bdtDt(0,0,0);
 }
@@ -85,7 +84,7 @@ bdtDt* arith_int_bdtDt(const int& e1, const bdtDt& e2, std::string op) {
         //} else if( ! op.compare("-") ){
         //return new bdtDt( e1.m_dt - boost::gregorian::date_duration(e2) );
     }
-    Rf_error( "operator not implemented" );
+    Rcpp::stop( "operator not implemented" );
     // not reached
     return new bdtDt(0,0,0);
 }
@@ -104,7 +103,7 @@ bool compare_bdtDt_bdtDt( const bdtDt& e1, const bdtDt& e2, std::string op ){
     } else if( !op.compare( "<=" ) ){
         return e1.m_dt <= e2.m_dt ;
     }
-    Rf_error( "unknown operator" ) ;
+    Rcpp::stop( "unknown operator" ) ;
     return R_NilValue ;
 }
 
@@ -112,7 +111,7 @@ bdtDt* arith_bdtDd_bdtDt(const bdtDd& e1, const bdtDt& e2, std::string op) {
     if ( ! op.compare("+") ) {
         return new bdtDt(e2.m_dt + e1.m_dd);
     }
-    Rf_error( "operator not implemented" )  ;
+    Rcpp::stop( "operator not implemented" )  ;
     // not reached
     return new bdtDt(0);
 }
@@ -123,7 +122,7 @@ bdtDt* arith_bdtDt_bdtDd(const bdtDt& e1, const bdtDd& e2, std::string op) {
     } else if( ! op.compare("-") ) {
         return new bdtDt(e1.m_dt - e2.m_dd);
     }
-    Rf_error( "operator not implemented" )  ;
+    Rcpp::stop( "operator not implemented" )  ;
     // not reached
     return new bdtDt(0);
 }
