@@ -1,5 +1,7 @@
 2026-03-04  Dirk Eddelbuettel  <edd@debian.org>
 
+	* DESCRIPTION (Version, Date): Roll micro release and date
+
 	* inst/include/RcppBDTtz.h: Replace Rf_error() with Rcpp::stop()
 	* src/RcppBDTdt.cpp: Idem
 	* src/RcppBDTpt.cpp: Idem
