@@ -6,8 +6,8 @@ on:
   push:
   pull_request:
 
-env:
-  _R_CHECK_FORCE_SUGGESTS_: "false"
+#env:
+#  _R_CHECK_FORCE_SUGGESTS_: "false"
 
 jobs:
   ci:
