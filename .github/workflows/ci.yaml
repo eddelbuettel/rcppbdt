@@ -5,6 +5,7 @@ name: ci
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 #env:
 #  _R_CHECK_FORCE_SUGGESTS_: "false"
