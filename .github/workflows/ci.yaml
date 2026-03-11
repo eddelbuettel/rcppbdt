@@ -7,9 +7,6 @@ on:
   pull_request:
   workflow_dispatch:
 
-#env:
-#  _R_CHECK_FORCE_SUGGESTS_: "false"
-
 jobs:
   ci:
     strategy:
@@ -26,9 +23,6 @@ jobs:
 
       - name: Setup
         uses: eddelbuettel/github-actions/r-ci@master
-        with:
-          dev_version: 'TRUE'
-          backend: 'RAPT'
 
       - name: Dependencies
         run: ./run.sh install_deps
