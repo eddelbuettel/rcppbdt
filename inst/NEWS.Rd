@@ -1,6 +1,13 @@
 \name{NEWS}
 \title{News for Package \pkg{RcppBDT}}
 
+\section{Changes in version 0.2.8 (2026-03-12)}{
+  \itemize{
+    \item Replaced Rf_error with Rcpp::stop in three files
+    \item Maintenance updates to continuous integration
+  }
+}
+
 \section{Changes in version 0.2.7 (2025-01-25)}{
   \itemize{
     \item The package no longer sets a C++ compilation standard

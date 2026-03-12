@@ -2,7 +2,7 @@
 ## RcppBDT: R bindings for Boost Date.Time
 
 [![CI](https://github.com/eddelbuettel/rcppbdt/workflows/ci/badge.svg)](https://github.com/eddelbuettel/rcppbdt/actions?query=workflow%3Aci)
-[![License](https://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-2.0.html)
+[![License](https://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](https://www.r-project.org/Licenses/GPL-2)
 [![CRAN](https://www.r-pkg.org/badges/version/RcppBDT)](https://cran.r-project.org/package=RcppBDT)
 [![r-universe](https://eddelbuettel.r-universe.dev/badges/rcppbdt)](https://eddelbuettel.r-universe.dev/rcppbdt)
 [![Downloads](https://cranlogs.r-pkg.org/badges/RcppBDT?color=brightgreen)](https://www.r-pkg.org/pkg/RcppBDT)
